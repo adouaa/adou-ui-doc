@@ -1,0 +1,126 @@
+.tag-input-wrapper {
+    height: 100%;
+    margin-top: 10px;
+
+    .tag-input-form-content {
+        display: flex;
+        flex: 1;
+
+        .form-control {
+            cursor: text;
+            flex: 1;
+        }
+
+        .suffix-content-btn {
+            border-top-right-radius: 0 !important;
+            /* 去掉右上角的圆角 */
+            border-bottom-right-radius: 0 !important;
+            border-right: none;
+            /* 去掉右下角的圆角 */
+        }
+
+
+        .suffix-content-btn-wrapper {
+            min-width: 37px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #eee;
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
+
+        .suffix-content-btn-wrapper .btn {
+            border-top-left-radius: 0;
+            /* 去掉左上角的圆角 */
+            border-bottom-left-radius: 0;
+            /* 去掉左下角的圆角 */
+        }
+
+        .suffix-content-text-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+
+
+
+
+    .inputGroup {
+        display: flex;
+        align-items: center;
+    }
+
+
+    .label-box {
+        font-size: 14px;
+        min-width: 50px;
+        max-width: 120px !important;
+        flex-wrap: wrap;
+    }
+
+
+    .label-in-center {
+        display: flex;
+        align-items: center;
+    }
+
+    .label-in-left-top {
+        display: flex;
+
+        .label-box {
+            display: flex;
+            align-items: start;
+        }
+    }
+
+    .content-box {
+
+        .tag-input-list {
+            padding: 0;
+            margin-bottom: 0;
+            display: flex;
+            flex-wrap: wrap; // 不写这个太窄的话会挤在一起
+
+            .list-item {
+                color: #7e8085;
+                list-style-type: none;
+                font-size: 14px;
+                padding: 3px 22px 3px 12px;
+                border-radius: 13px;
+                background-color: #f4f4f5;
+                position: relative;
+                margin-right: 6px;
+                margin-bottom: 6px;
+
+                .item-icon {
+                    color: #999ba1;
+                    position: absolute;
+                    right: 10px;
+                    bottom: 4px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .tag-input-control {
+        flex: 1;
+
+        .input {
+            width: 100%;
+            outline: none;
+            border: none;
+            color: #adb5bd;
+        }
+    }
+}
+
+.focus {
+    border-color: #80bdff;
+    /* 设置输入框获得焦点时的边框颜色 */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.313);
+    /* 设置输入框获得焦点时的阴影效果 */
+}

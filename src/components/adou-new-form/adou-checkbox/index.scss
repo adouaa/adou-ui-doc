@@ -1,0 +1,48 @@
+.checkbox-wrapper {
+    .content-box {}
+
+    .inputGroup {
+        display: flex;
+        align-items: center;
+    }
+
+    .label-box {
+        font-size: 14px;
+        min-width: 50px;
+        max-width: 120px !important;
+        flex-wrap: wrap;
+    }
+
+    .option-box {
+        width: 100%;
+        flex: 1;
+    }
+
+    .checkbox-form-content {
+        display: flex;
+        align-items: center;
+    }
+
+    .label-in-center {
+        display: flex;
+    }
+
+    .label-in-left-top {
+        display: flex;
+
+        .label-box {
+            display: flex;
+            align-items: start;
+
+        }
+    }
+
+    .label-in-top {
+        display: flex;
+        flex-direction: column;
+
+        .label-box {
+            text-align-last: left;
+        }
+    }
+}

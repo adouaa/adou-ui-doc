@@ -1,0 +1,180 @@
+.retrieve-select-wrapper {
+
+    .content-box {
+        .retrieve-select-form-content {
+            flex: 1;
+            display: flex;
+        }
+    }
+
+    .select-list-box {
+        position: relative;
+        flex: 1;
+        min-height: 38px;
+        cursor: text !important;
+        flex-wrap: wrap;
+    }
+
+    .label-box {
+        font-size: 14px;
+        min-width: 50px;
+        // max-width: 120px !important;
+        flex-wrap: wrap;
+    }
+
+    .label-in-center {
+        display: flex;
+    }
+
+    .label-in-left-top {
+        display: flex;
+
+        .label-box {
+            display: flex;
+            align-items: start;
+        }
+    }
+
+    .icon-box {
+        .icon {
+            transition: transform 0.2s;
+        }
+    }
+
+    .suffix-content-btn-wrapper {
+        min-width: 37px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #eee;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+}
+
+.retrieve-select-content-open {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: scaleY(1) !important;
+}
+
+.option-wrapper {
+    overflow-y: auto;
+}
+
+.retrieve-select-option-active {
+    font-weight: bold;
+    background-color: #2783d8;
+    display: flex;
+    justify-content: space-between;
+}
+
+.retrieve-select-option-wrapper {
+    padding: 14px;
+}
+
+.retrieve-select-option-active::after {
+    content: "✔";
+}
+
+.select-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.selected-option {
+    color: #212529;
+    font-size: 14px;
+    padding: 3px 22px 3px 12px;
+    border-radius: 13px;
+    background-color: #f4f4f5;
+    position: relative;
+    margin-right: 6px;
+}
+
+.option-icon {
+    position: absolute;
+    right: 6px;
+    top: -2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #000;
+
+    &:hover {
+        color: #dc3545;
+        transform: scale(1.2);
+    }
+}
+
+.input-control {
+    flex: 1;
+}
+
+.retrieve-input {
+    // min-width: 120px;
+    width: 100%;
+    outline: none;
+    border: none;
+}
+
+.none-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.multiple-input {
+    min-width: 0;
+}
+
+.retrieve-select-content {
+    min-width: 200px;
+    background-color: #fff;
+    position: absolute;
+    z-index: 10000;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    text-align-last: left;
+    overflow: auto;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    transform: scaleY(0);
+    transform-origin: top;
+
+    .retrieve-select-option {
+        padding: 5px 10px;
+        // margin-bottom: 2px;
+
+        &:hover {
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+
+        &:active {
+            color: #fff;
+            // background-color: #2783d8 !important;
+        }
+    }
+}
+
+.none-option {
+    width: 200px;
+    height: 50px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #a4a3a3;
+}
+
+.none-match {
+    padding: 10px 0;
+    height: 100px;
+    font-style: italic;
+    color: #a4a3a3;
+}
+
+.retrieve-select-option-focused {
+    background-color: #e0e0e0;
+    /* 高亮当前聚焦的选项 */
+}

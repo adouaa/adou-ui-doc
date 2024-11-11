@@ -1,0 +1,2 @@
+const useDragable = (ref, draggable) => {
+};

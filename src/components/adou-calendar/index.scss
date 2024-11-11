@@ -1,0 +1,218 @@
+.calendar-container {
+  position: relative;
+  // max-width: 548px;
+  // max-height: 514px;
+  margin: 20px auto;
+  border: 1px solid #f1efef;
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .05);
+
+
+  .calendar-header {
+    .current-date-info {
+      color: #3b3b3b;
+      // height: 104px;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(to top right, rgba(17, 66, 140, 0) 39.52%, rgba(17, 66, 140, .1) 99.12%);
+      min-height: 88px;
+      padding-left: 12px;
+      padding-bottom: 16px;
+
+      .left {
+        background-color: #fff;
+        border: 1px solid rgba(52, 116, 10, .2);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        height: 64px;
+        justify-content: center;
+        text-align: center;
+        width: 64px;
+
+        .day-box {
+          color: #11428c;
+          font-size: 12px;
+        }
+
+        .date-box {
+          font-weight: bold;
+          font-size: 28px;
+          color: #444444;
+          line-height: 0.9;
+        }
+      }
+
+      .right {
+        font-weight: bold;
+        font-size: 20px;
+        color: #11428c;
+        display: flex;
+      }
+    }
+
+    .calendar-option {
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .left {
+        display: flex;
+      }
+
+      .right {
+        .today-btn {
+          width: 80px;
+          height: 30px;
+          color: #258ffa;
+          border: 1px solid #258ffa;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 18px;
+          cursor: pointer;
+        }
+
+        .today-btn:hover {
+          background-color: #f0f0f0;
+        }
+      }
+    }
+  }
+
+
+
+
+  .calendar-content {
+    padding: 0 20px 16px;
+    overflow: auto;
+
+    .calendar-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      /* 设置为固定布局 */
+    }
+
+    .calendar-table tr {
+      margin-top: 10px;
+    }
+
+    .calendar-table th,
+    .calendar-table td {
+      text-align: center;
+      overflow: hidden;
+      /* 防止内容溢出 */
+      text-overflow: ellipsis;
+      /* 超出部分用省略号表示 */
+      white-space: nowrap;
+      /* 防止自动换行 */
+    }
+
+    .calendar-table th {
+      background-color: #fff;
+    }
+
+    .calendar-cell {
+      position: relative;
+      border: 1px solid #eee;
+      // padding: 10px;
+      // min-height: 4.75rem;
+
+      .calendar-cell-content-box {
+        .calendar-cell-content-day {
+          position: absolute;
+          top: 3px;
+          left: 3px;
+          padding: 5px;
+          display: inline-block;
+          width: 34px;
+          height: 34px;
+          color: #444444;
+          /* 控制每个时间段单元格的高度 */
+          cursor: pointer;
+          font-size: 16px;
+          box-sizing: border-box;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .calendar-cell-content-event {
+          color: #000;
+          background-color: #ecf5ff;
+          margin-top: 20px;
+          white-space: wrap;
+        }
+      }
+
+
+
+      .active {
+        // border: 2px solid red;
+        color: white !important;
+        // border-radius: 8px;
+        // background-color: #e9ecef;
+        border-radius: 50%;
+        background-color: #258ffa;
+
+      }
+    }
+
+    .calendar-cell:hover {
+      background-color: #f6f6f6;
+      cursor: pointer;
+    }
+
+  }
+
+  .calendar-content {
+    overflow: auto;
+    /* 允许滚动 */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  .calendar-content::-webkit-scrollbar {
+    display: none;
+    /* Safari 和 Chrome */
+  }
+
+  .gray {
+    color: #b4b4b4 !important; // 设置文字颜色为灰色
+  }
+
+  .pre-month-btn,
+  .next-month-btn {
+    background-color: #fff;
+    border-radius: 32px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    fill: #767676;
+    height: 32px;
+    position: absolute;
+    top: 50%;
+    width: 32px;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* 平滑过渡效果 */
+  }
+
+  .pre-month-btn {
+    left: -18px;
+  }
+
+  .month-btn:hover {
+    transform: scale(1.1);
+    /* 放大1.1倍 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* 添加阴影 */
+  }
+
+  .next-month-btn {
+    right: -18px;
+  }
+}

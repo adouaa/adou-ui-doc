@@ -1,0 +1,214 @@
+.select-wrapper {
+    select option:first-child {
+        display: none;
+    }
+
+    position: relative;
+
+    .select-placeholder,
+    .select-value {
+        display: block;
+        color: #7d7d7d;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .select-value {
+        color: #000;
+    }
+
+    .select-content {
+        height: 38px;
+        position: relative;
+        cursor: pointer;
+
+        i {
+            transition: transform 0.3s ease;
+            /* 添加过渡效果 */
+        }
+    }
+
+
+    .open {
+        opacity: 1;
+        visibility: visible;
+        transform: scaleY(1);
+    }
+
+    .icon {
+        position: absolute;
+        top: 10px;
+        right: 14px;
+        transition: transform 0.2s;
+
+        &.rotate-down:hover {
+            transform: scale(1.3) rotate(0deg);
+        }
+
+        &.rotate-up:hover {
+            transform: scale(1.3) rotate(90deg);
+        }
+    }
+
+    .content-box {
+        .label-box {
+            font-size: 14px;
+            min-width: 50px;
+            max-width: 200px !important;
+            flex-wrap: wrap;
+        }
+
+        .select-form-content {
+            flex: 1;
+            display: flex;
+        }
+
+        .suffix-content-btn {
+            border-top-right-radius: 0 !important;
+            /* 去掉右上角的圆角 */
+            border-bottom-right-radius: 0 !important;
+            border-right: none;
+            /* 去掉右下角的圆角 */
+        }
+
+        .suffix-content-btn-wrapper {
+            min-width: 37px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #eee;
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
+
+        .suffix-content-btn-wrapper .btn {
+            border-top-left-radius: 0;
+            /* 去掉左上角的圆角 */
+            border-bottom-left-radius: 0;
+            /* 去掉左下角的圆角 */
+        }
+
+        .suffix-content-text-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .label-in-center {
+        display: flex;
+    }
+
+    .label-in-left-top {
+        display: flex;
+
+        .label-box {
+            display: flex;
+            align-items: start;
+        }
+    }
+
+
+}
+
+/* 定义滚动条样式 */
+::-webkit-scrollbar {
+    width: 6px;
+    /* 滚动条宽度 */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    /* 滚动条背景色 */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    /* 滚动条滑块颜色 */
+    border-radius: 2px;
+    /* 滚动条滑块圆角 */
+}
+
+/* 悬停时滑块样式 */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.rotate-up {
+    transform: rotate(90deg);
+    /* 旋转-180度，向上箭头样式 */
+}
+
+.rotate-down {
+    transform: rotate(0deg);
+    /* 不旋转，向下箭头样式 */
+}
+
+
+
+.select-option-content {
+    min-width: 200px;
+    text-align-last: left;
+    background-color: #fff;
+    overflow: hidden;
+    /* 隐藏溢出内容 */
+    position: absolute;
+    z-index: 66666666;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    visibility: hidden;
+    transform: scaleY(0);
+    transform-origin: top;
+
+    /* 添加高度变化的过渡效果 */
+    .select-option {
+        padding: 5px 10px;
+
+        &:hover {
+            background-color: #f6f6f6;
+            cursor: pointer;
+        }
+
+        &:active {
+            color: #fff;
+            background-color: #2783d8;
+        }
+
+        &.focused {
+            background-color: #e0e0e0;
+            /* 高亮当前聚焦的选项 */
+        }
+    }
+
+    .select-option-active {
+        font-weight: bold;
+    }
+
+    &-close {}
+
+    &-open {
+        opacity: 1;
+        visibility: visible;
+        transform: scaleY(1);
+        overflow-y: auto;
+        /* 允许垂直滚动 */
+    }
+}
+
+
+
+.none-option {
+    width: 200px;
+    height: 50px;
+
+    color: #a4a3a3;
+}
+
+.none-match {
+    padding: 10px 0;
+    height: 100px;
+    font-style: italic;
+    color: #a4a3a3;
+}
