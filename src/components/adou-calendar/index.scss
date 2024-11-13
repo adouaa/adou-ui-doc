@@ -1,4 +1,18 @@
 .calendar-container {
+  table {
+    display: table;
+
+    thead,
+    tr,
+    th {
+      border: none;
+    }
+
+    td {
+      padding: 0;
+    }
+  }
+
   position: relative;
   // max-width: 548px;
   // max-height: 514px;

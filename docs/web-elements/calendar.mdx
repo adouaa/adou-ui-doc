@@ -2,8 +2,108 @@
 title: Calendar
 ---
 
+import Calendar from "@site/src/components/adou-calendar"
+import SizeCalendar from "@site/src/pages/web-elements/calendar/size-callendar"
+import DateCalendar from "@site/src/pages/web-elements/calendar/date-calendar"
+import DataCalendar from "@site/src/pages/web-elements/calendar/data-calendar"
+import RenderEventUICalendar from "@site/src/pages/web-elements/calendar/render-event-ui-calendar"
+import DoubleClickCalendar from "@site/src/pages/web-elements/calendar/double-click-calendar"
+
 import DocCalendar from "@site/src/pages/web-elements/calendar/doc-calendar"
 
-###### 注意：在普通的 `React` + `bootstrap` 项目中，样式不会发生异常，而在 `docusaurus` 项目中，`样式`会`出现异常`，需要手动去设置样式
+* 注意：在普通的 `React` + `bootstrap` 项目中，样式不会发生异常，而在 `docusaurus` 项目中，**样式会出现异常**，需要手动去设置样式
 
-<DocCalendar />
+`Calendar` 是一个可交互的日历组件，支持展示日历视图、日期高亮、事件展示、月份和年份切换以及双击事件处理等功能。适用于需要展示日历并与用户交互的应用场景。
+
+## 1. 基本使用
+
+**效果示例**：
+
+<Calendar />
+
+## 2. 控制大小
+
+通过 `wrapperWidth`、`wrapperHeight` 和 `cellHeight` 属性，可以控制日历单元格的大小。
+
+### 2.1 `wrapperWidth`
+
+**介绍**：
+`wrapperWidth` 该属性用于设定整个日历组件容器的宽度
+
+### 2.2 `wrapperHeight`
+
+**介绍**：
+`wrapperHeight` 该属性用于设定整个日历组件容器的高度
+
+### 2.3 `cellHeight`
+
+**介绍**：
+`cellHeight` 该属性用于设置日历单元格内容区域的高度，能够精准控制每个日期单元格内可用于展示内容的空间高度
+
+**效果示例**：
+
+<SizeCalendar />
+
+## 3. `date`
+
+`date`，用于初始化日历显示的特定日期。若未传入该属性，组件默认会展示当前日期。
+* 类型：`Date`
+
+**效果示例**：
+
+<DateCalendar />
+
+
+## 4. `data`
+
+**介绍**：
+
+`data` 该属性是一个非常关键的数据关联属性。需要传入一个数组，数组中的元素应为符合特定格式要求的对象
+
+**效果示例**：
+
+<DataCalendar />
+
+
+## 5. `renderEventUIFn`
+
+**介绍**：
+
+`renderEventUIFn` 该属性接收一个函数，用于自定义渲染每个日期单元格内的事件内容展示逻辑，可以依据传入的参数(dayInfo: CalendarDay)，返回不同样式、格式的 HTML 元素或者 React 组件来展示事件，从而实现个性化、多样化的事件内容展示效果
+
+**效果示例**：
+
+<RenderEventUICalendar />
+
+## 6. `onDoubleClick`
+
+**介绍**：
+
+`onDoubleClick` 当用户双击日历中的某个日期单元格时，该回调函数会被触发，并且会将包含该日期相关详细信息的对象(dayInfo: CalendarDay)作为参数传入
+
+**效果示例**：
+
+<DoubleClickCalendar />
+
+## Calendar Props
+
+| 属性名 | 类型 | 可选值 | 描述 |
+| ---- | ---- | ---- | ---- |
+| `calendarRef` | `any` | - | 获取组件实例引用，可用于后续组件交互拓展。 |
+| `cellHeight` | `any` | - | 设置日历单元格内容区域高度。 |
+| `minCellHeight` | `any` | - | 设置日历单元格内容区域最小高度。 |
+| `date` | `Date` | - | 初始化日历显示的特定日期，默认展示当前日期。 |
+| `wrapperHeight` | `any` | - | 设置整个日历组件容器高度。 |
+| `contentHeight` | `any` | - | 设置日历内容区域高度，综合计算实际可用高度。 |
+| `data` | `CalendarDay[]` | - | 关联日历日期与对应事件等数据的数组。 |
+| `renderEvent` | `any` | - | 自定义渲染日期单元格内事件内容的函数。 |
+| `renderEvent` | `any` | - | 自定义渲染日期单元格内事件内容的函数。 |
+| `onDoubleClick` | `(CalendarDay: any) => void` | - | 双击日期单元格的回调函数，传递日期相关信息。 |
+
+## 类型声明
+```ts
+type CalendarDay = {
+  id: string;
+  event?: string;
+}
+```

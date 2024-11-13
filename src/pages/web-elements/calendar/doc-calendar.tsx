@@ -1,4 +1,4 @@
-import EventCalendar from "@site/src/components/adou-calendar";
+import Calendar from "@site/src/components/adou-calendar";
 import React from "react";
 
 const DocCalendar = () => {
@@ -10,12 +10,12 @@ const DocCalendar = () => {
   ];
 
   return (
-    <div className="px-3 doc-calendar" style={{ width: "600px" }}>
-      <EventCalendar
-        cellHeight={"50px"}
+    <div className="px-3 doc-calendar">
+      <Calendar
+        cellHeight={"30px"}
         date={new Date("2024-11-01")} // 设置初始日期为2024年11月1日
         modalContent={<h3>自定义模态框内容</h3>} // 传入自定义的模态框内容
-        renderEvent={(dayInfo) => (
+        renderEventUI={(dayInfo) => (
           <span style={{ color: "blue" }}>{dayInfo.event}</span>
         )} // 自定义渲染事件内容，这里将事件文本设置为蓝色
       />
