@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import React from "react";
-import Calendar from "@site/src/components/adou-calendar";
+import Calendar from "@site/src/components/web-elements/adou-calendar";
 import Dialog from "@site/src/components/adou-dialog";
 import AdouInput from "@site/src/components/adou-new-form/adou-Input";
 

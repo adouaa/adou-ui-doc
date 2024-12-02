@@ -1,0 +1,257 @@
+---
+title: CollapseY
+---
+
+import Card from "@site/src/components/web-elements/adou-card"
+import CollapseY from '@site/src/components/web-elements/adou-collapseY';
+import Basic from '@site/src/pages/web-elements/collapse-y/Basic';
+import ControlContent from '@site/src/pages/web-elements/collapse-y/ControlContent';
+import According from '@site/src/pages/web-elements/collapse-y/According';
+import Hover from '@site/src/pages/web-elements/collapse-y/Hover';
+import ActiveName from '@site/src/pages/web-elements/collapse-y/ActiveName';
+
+`CollapseY` 是一个可折叠的组件，允许用户通过点击或悬停来展开或折叠内容。适用于需要隐藏和显示内容的场景。
+
+## 1. 基本使用
+
+**效果示例**：
+
+<Card>
+<Basic />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+
+```jsx
+import React from "react";
+import CollapseY from "@site/src/components/web-elements/adou-collapseY";
+
+const BasicExample = () => {
+  return (
+    <div className="basic-wrapper">
+      <CollapseY controlContent={<h1>点击展开</h1>}>
+        <p>这是可折叠的内容。</p>
+      </CollapseY>
+    </div>
+  );
+};
+
+export default BasicExample;
+```
+
+</details>
+</Card>
+
+## 2. 头部内容
+
+### 2.1 `title`
+
+`title` 属性是头部左边所展示的内容。
+
+* 类型：`any`
+
+### 2.2 `controlContentRight`
+
+`controlContentRight` 属性是头部右边所展示的内容，有了它就不会展示 `controlRightIcon` 的内容。
+
+* 类型：`any`
+
+### 2.1 `controlRightIcon`
+
+`controlRightIcon` 属性是头部右边的图标类名。
+
+* 类型：`any`
+
+**效果示例**：
+
+<Card>
+<ControlContent />
+
+<details className="mt-3">
+<summary>查看代码</summary>
+
+```jsx
+import React from "react";
+import CollapseY from "@site/src/components/web-elements/adou-collapseY";
+import CollapseItem from "@site/src/components/web-elements/adou-collapseY/collapseItem";
+import Button from "@site/src/components/adou-button";
+
+const ControlContentExample = () => {
+  return (
+    <div className="control-content-wrapper">
+      <CollapseY>
+        <CollapseItem
+          title={"第一个的title"}
+          controlContentRight={<Button type="warning">点击展开 / 折叠</Button>}
+          name={"Item 1"}
+        >
+          文本一
+        </CollapseItem>
+        <CollapseItem controlRightIcon="fa fa-plus" name={"Item 2"}>
+          文本二
+        </CollapseItem>
+        <CollapseItem name={"Item 2"}>文本三</CollapseItem>
+      </CollapseY>
+    </div>
+  );
+};
+
+export default ControlContentExample;
+
+```
+
+</details>
+</Card>
+
+## 3. 手风琴效果
+
+手风琴效果 通过给 `CollapseItemY` 组件设置 `according` 属性为 `true` 来实现。
+
+
+**效果示例**：
+
+<Card>
+<According />
+
+<details className="mt-3">
+<summary>查看代码</summary>
+
+```jsx
+import React from "react";
+import CollapseY from "@site/src/components/web-elements/adou-collapseY";
+import CollapseItem from "@site/src/components/web-elements/adou-collapseY/collapseItem";
+import Button from "@site/src/components/adou-button";
+
+const AccordingExample = () => {
+  return (
+    <div className="according-wrapper">
+      <CollapseY according>
+        <CollapseItem
+          title={"第一个的title"}
+          controlContentRight={<Button type="warning">点击展开 / 折叠</Button>}
+          name={"Item 1"}
+        >
+          文本一11
+        </CollapseItem>
+        <CollapseItem controlRightIcon="fa fa-plus" name={"Item 2"}>
+          文本二
+        </CollapseItem>
+        <CollapseItem name={"Item 3"}>文本三</CollapseItem>
+      </CollapseY>
+    </div>
+  );
+};
+
+export default AccordingExample;
+
+```
+
+</details>
+</Card>
+
+## 4. 鼠标移入时触发
+
+`Hover` 属性用于设置是否在鼠标移入时展开。
+
+* 类型：`boolean`
+
+**效果示例**：
+
+<Card>
+<Hover />
+
+<details className="mt-3">
+<summary>查看代码</summary>
+
+```jsx
+import React from "react";
+import CollapseY from "@site/src/components/web-elements/adou-collapseY";
+import CollapseItem from "@site/src/components/web-elements/adou-collapseY/collapseItem";
+import Button from "@site/src/components/adou-button";
+
+const HoverExample = () => {
+  return (
+    <div className="hover-wrapper">
+      <CollapseY canHover>
+        <CollapseItem
+          title={"第一个的title"}
+          controlContentRight={<Button type="warning">点击展开 / 折叠</Button>}
+          name={"Item 1"}
+        >
+          文本一11
+        </CollapseItem>
+        <CollapseItem controlRightIcon="fa fa-plus" name={"Item 2"}>
+          文本二
+        </CollapseItem>
+        <CollapseItem name={"Item 3"}>文本三</CollapseItem>
+      </CollapseY>
+    </div>
+  );
+};
+
+export default HoverExample;
+```
+</details>
+</Card>
+
+
+## 5. 默认展开
+
+通过 `activeName` 属性可以控制默认展开的面板。
+
+* 类型：`string`
+
+**效果示例**：
+
+<Card>
+<ActiveName />
+
+<details className="mt-3">
+<summary>查看代码</summary>
+
+```jsx
+import React from "react";
+import CollapseY from "@site/src/components/web-elements/adou-collapseY";
+import CollapseItem from "@site/src/components/web-elements/adou-collapseY/collapseItem";
+import Button from "@site/src/components/adou-button";
+
+const ActiveNameExample = () => {
+  return (
+    <div className="activeName-wrapper">
+      <CollapseY activeName="Item 2">
+        <CollapseItem
+          title={"第一个的title"}
+          controlContentRight={<Button type="warning">点击展开 / 折叠</Button>}
+          name={"Item 1"}
+        >
+          文本一
+        </CollapseItem>
+        <CollapseItem controlRightIcon="fa fa-plus" name={"Item 2"}>
+          文本二
+        </CollapseItem>
+        <CollapseItem name={"Item 3"}>文本三</CollapseItem>
+      </CollapseY>
+    </div>
+  );
+};
+
+export default ActiveNameExample;
+```
+</details>
+</Card>
+
+
+
+## CollapseY Props
+
+| 属性名           | 类型          | 默认值   | 描述                           |
+| ---------------- | ------------- | -------- | ------------------------------ |
+| wrapperClassName | `string`      | -        | 外层容器的类名。               |
+| controlRightIcon | `string`      | -        | 控制区域右侧图标的类名。       |
+| controlClassName | `string`      | -        | 控制区域的类名。               |
+| showBorder       | `boolean`     | `true`   | 是否显示边框。                 |
+| according           | `boolean`     | -        | 是否单一展开。                 |
+| hover            | `boolean`     | -        | 是否在悬停时展开或折叠。             |
+| title   | `any`         | -        | 控制区域的左侧内容。               |
+| children         | `any`         | -        | 折叠组件的子元素内容。         |
+| activeName      | `boolean`     | -  | 初次加载时显示的面板 `name`。     |
+| onClick          | `() => void`  | -        | 点击控制区域时的回调函数。     |

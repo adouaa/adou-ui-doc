@@ -1,0 +1,23 @@
+.collapse-container {
+  // border: 1px solid #ddd;
+  margin-bottom: 1rem;
+}
+
+.collapse-header {
+  // background-color: #f7f7f7;
+
+  &-content {
+    cursor: pointer;
+    display: inline-block;
+
+  }
+}
+
+.collapse-content {
+  padding-left: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: all 0.5s ease, opacity 0.5s ease;
+  display: inline-block;
+  vertical-align: top;
+}

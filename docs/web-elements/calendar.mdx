@@ -2,7 +2,7 @@
 title: Calendar
 ---
 
-import Calendar from "@site/src/components/adou-calendar"
+import Calendar from "@site/src/components/web-elements/adou-calendar"
 import SizeCalendar from "@site/src/pages/web-elements/calendar/size-callendar"
 import DateCalendar from "@site/src/pages/web-elements/calendar/date-calendar"
 import DataCalendar from "@site/src/pages/web-elements/calendar/data-calendar"
@@ -69,7 +69,7 @@ import DocCalendar from "@site/src/pages/web-elements/calendar/doc-calendar"
 
 **介绍**：
 
-`renderEventUIFn` 该属性接收一个函数，用于自定义渲染每个日期单元格内的事件内容展示逻辑，可以依据传入的参数(dayInfo: CalendarDay)，返回不同样式、格式的 HTML 元素或者 React 组件来展示事件，从而实现个性化、多样化的事件内容展示效果
+`renderEventUIFn` 该属性接收一个函数，用于自定义渲染每个日期单元格内的事件内容展示逻辑，可以依据传入的参数 `(dayInfo: CalendarDay)`，返回不同样式、格式的 HTML 元素或者 React 组件来展示事件，从而实现个性化、多样化的事件内容展示效果
 
 **效果示例**：
 
@@ -79,7 +79,7 @@ import DocCalendar from "@site/src/pages/web-elements/calendar/doc-calendar"
 
 **介绍**：
 
-`onDoubleClick` 当用户双击日历中的某个日期单元格时，该回调函数会被触发，并且会将包含该日期相关详细信息的对象(dayInfo: CalendarDay)作为参数传入
+`onDoubleClick` 当用户双击日历中的某个日期单元格时，该回调函数会被触发，并且会将包含该日期相关详细信息的对象 `(dayInfo: CalendarDay)` 作为参数传入
 
 **效果示例**：
 

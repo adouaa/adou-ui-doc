@@ -140,7 +140,7 @@ const Dialog: React.FC<DialogProps> = ({
                   <Button
                     externalClassName={`me-2 btn-${cancelBtnClass}`}
                     size="md"
-                    onClickOK={onCancel ?? onClose}
+                    onClick={onCancel ?? onClose}
                   >
                     {cancelText}
                   </Button>
@@ -150,7 +150,7 @@ const Dialog: React.FC<DialogProps> = ({
                     disabled={!canConfirm}
                     externalClassName={`btn-${confirmBtnClass}`}
                     size="md"
-                    onClickOK={onConfirm}
+                    onClick={onConfirm}
                   >
                     {confirmText}
                   </Button>

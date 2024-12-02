@@ -28,6 +28,22 @@ const config: Config = {
     defaultLocale: "zh-Hans",
     locales: ["zh-Hans"],
   },
+  stylesheets: [
+    {
+      href: "/src/assets/css/bootstrap.css",
+      type: "text/css",
+    },
+    {
+      href: "/src/assets/css/fontawesome/6.3.0/all.min.css",
+      type: "text/css",
+      media: "all",
+    },
+    {
+      href: "/src/assets/css/bi/1.11.0/all.min.css",
+      type: "text/css",
+      media: "all",
+    },
+  ],
 
   presets: [
     [

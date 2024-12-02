@@ -1,0 +1,142 @@
+---
+title: CollapseX
+---
+
+import Card from "@site/src/components/web-elements/adou-card"
+import Collapse from '@site/src/components/web-elements/adou-collapseX';
+import Basic from '@site/src/pages/web-elements/collapse-x/Basic';
+import Header from '@site/src/pages/web-elements/collapse-x/Header';
+import Children from '@site/src/pages/web-elements/collapse-x/Children';
+import FirstShow from '@site/src/pages/web-elements/collapse-x/FirstShow';
+
+`Collapse` 是一个可折叠的组件，允许用户点击标题以展开或折叠内容。适用于需要隐藏和显示内容的场景。
+
+## 1. 基本使用
+
+**效果示例**：
+
+<Card>
+<Basic />
+<details>
+<summary>点击查看代码</summary>
+</details>
+</Card>
+
+## 2. `Header`
+
+`Header` 属性用于设置折叠组件的标题内容。用户点击标题可以展开或折叠内容。
+
+* 类型：`any`
+
+**效果示例**：
+
+<Card>
+<Header />
+
+<details className="mt-3">
+<summary>查看代码</summary>
+
+```javascript
+import React from "react";
+import Collapse from "@site/src/components/web-elements/adou-collapse";
+
+interface HeaderProps {}
+
+const Header = ({}: HeaderProps) => {
+  return (
+    <div className="header-wrapper">
+      <Collapse header={<h1>点击展开</h1>}>
+        <p>这是可折叠的内容。</p>
+      </Collapse>
+    </div>
+  );
+};
+
+export default Header;
+```
+
+</details>
+</Card>
+
+## 3. `Children`
+
+`Children` 属性用于设置折叠组件的子元素内容，即折叠和展开时显示的内容。
+
+* 类型：`any`
+
+**效果示例**：
+
+<Card>
+<Children />
+
+<details className="mt-3">
+<summary>查看代码</summary>
+
+```javascript
+import React from "react";
+import Collapse from "@site/src/components/web-elements/adou-collapse";
+
+interface ChildrenProps {}
+
+const Children = ({}: ChildrenProps) => {
+  return (
+    <div className="header-wrapper">
+      <Collapse header={"常见问题解答"}>
+        <p style={{ color: "green" }}>这里是关于常见问题的详细解答内容。</p>
+      </Collapse>
+    </div>
+  );
+};
+
+export default Children;
+
+```
+
+</details>
+</Card>
+
+## 4. `FirstShow`
+
+`FirstShow` 属性用于设置折叠组件的子元素内容，即折叠和展开时显示的内容。
+
+* 类型：`any`
+
+**效果示例**：
+
+<Card>
+<FirstShow />
+
+<details className="mt-3">
+<summary>查看代码</summary>
+
+```javascript
+import React from "react";
+import Collapse from "@site/src/components/web-elements/adou-collapse";
+
+interface FirstShowProps {}
+
+const FirstShow = ({}: FirstShowProps) => {
+  return (
+    <div className="first-show-wrapper">
+      <Collapse firstShow header={"常见问题解答"}>
+        <p style={{ color: "greenyellow" }}>
+          这里是关于常见问题的详细解答内容。
+        </p>
+      </Collapse>
+    </div>
+  );
+};
+
+export default FirstShow;
+```
+
+</details>
+</Card>
+
+## CollapseX Props
+
+| 属性名    | 类型      | 默认值   | 描述                           |
+| --------- | --------- | -------- | ------------------------------ |
+| header    | `any`     | -        | 折叠组件的标题内容。           |
+| children  | `any`     | -        | 折叠组件的子元素内容。         |
+| firstShow | `boolean` | `false`  | 是否在初次加载时显示内容。     |

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import React from "react";
-import Card from "@site/src/components/adou-card";
+import Card from "@site/src/components/web-elements/adou-card";
 import Button from "../../../../../components/adou-button";
 
 interface ButtonBasicExampleProps {}

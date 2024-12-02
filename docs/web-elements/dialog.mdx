@@ -1,0 +1,440 @@
+---
+title: Dialog
+---
+
+import Card from "@site/src/components/web-elements/adou-card";
+import Dialog from "@site/src/components/web-elements/adou-dialog";
+import Basic from "@site/src/pages/web-elements/dialog/Basic";
+import CustomFooterText from "@site/src/pages/web-elements/dialog/CustomFooterText";
+import CanConfirm from "@site/src/pages/web-elements/dialog/CanConfirm";
+import ClickOutside from "@site/src/pages/web-elements/dialog/ClickOutside";
+import Maximize from "@site/src/pages/web-elements/dialog/Maximize";
+import Draggable from "@site/src/pages/web-elements/dialog/Draggable";
+import AsyncClose from "@site/src/pages/web-elements/dialog/AsyncClose";
+import Type from "@site/src/pages/web-elements/dialog/Type";
+import MaxHeight from "@site/src/pages/web-elements/dialog/MaxHeight";
+
+`Dialog` 是一个模态对话框组件，支持多种配置选项，如最大化、确认和取消按钮、点击外部关闭以及可以拖拽等。适用于需要用户交互的场景。
+
+## 1. 基本使用
+
+**效果示例**：
+
+<Card>
+<Basic />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+
+```jsx
+import React, { useState } from "react";
+import Dialog from "@site/src/components/web-elements/adou-dialog";
+import Button from "@site/src/components/adou-button";
+
+const BasicExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="basic-wrapper">
+      <Button onClick={() => setIsOpen(true)}>Primary</Button>
+      <Dialog show={isOpen} onClose={() => setIsOpen(false)}></Dialog>
+    </div>
+  );
+};
+
+export default BasicExample;
+```
+
+</details>
+</Card>
+
+## 2. 自定义页脚
+
+### 2.1 页脚文字
+
+#### 2.1.1 `confirmText` 和 `cancelText`
+
+- 类型：`any`
+
+**效果示例**：
+
+<Card>
+<CustomFooterText />
+
+<details className="mt-3">
+<summary>查看代码</summary>
+
+```jsx
+import React, { useState } from "react";
+import Dialog from "@site/src/components/web-elements/adou-dialog";
+import Button from "@site/src/components/adou-button";
+
+const CustomFooterExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="custom-footer-wrapper">
+      <Button onClick={() => setIsOpen(true)}>自定义页脚文字</Button>
+      <Dialog
+        cancelText="关闭的文字"
+        confirmText="确定的文字"
+        show={isOpen}
+        onClose={() => setIsOpen(false)}
+        title="基本对话框"
+      >
+        <p>这是一个自定义页脚按钮文字的对话框内容。</p>
+      </Dialog>
+    </div>
+  );
+};
+
+export default CustomFooterExample;
+```
+
+</details>
+</Card>
+
+### 2.2 禁用确定按钮
+
+#### 2.2.1 `canConfirm`
+
+- 类型：`boolean`
+
+**效果示例**：
+
+<Card>
+
+<CanConfirm />
+<details className="mt-3">
+<summary>查看代码</summary>
+
+```jsx
+import React, { useState } from "react";
+import Dialog from "@site/src/components/web-elements/adou-dialog";
+import Button from "@site/src/components/adou-button";
+
+const CanConfirmExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="can-confirm-wrapper">
+      <Button size="md" onClick={() => setIsOpen(true)}>
+        Primary
+      </Button>
+      <Dialog
+        showCancel={false}
+        canConfirm={false}
+        show={isOpen}
+        onClose={() => setIsOpen(false)}
+      ></Dialog>
+    </div>
+  );
+};
+
+export default CanConfirmExample;
+```
+
+</details>
+</Card>
+
+## 3. 点击外部关闭
+
+通过 `ClickOutside` 属性可以实现点击对话框外部关闭对话框。
+
+- 类型：`boolean`
+
+**效果示例**：
+
+<Card>
+<ClickOutside />
+
+<details className="mt-3">
+<summary>查看代码</summary>
+
+```jsx
+import React, { useState } from "react";
+import Dialog from "@site/src/components/web-elements/adou-dialog";
+import Button from "@site/src/components/adou-button";
+
+const ClickOutsideExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="click-outside-wrapper">
+      <Button onClick={() => setIsOpen(true)}>打开对话框</Button>
+      <Dialog
+        show={isOpen}
+        onClose={() => setIsOpen(false)}
+        clickOutside
+        title="点击外部关闭"
+      >
+        <p>点击对话框外部可以关闭此对话框。</p>
+      </Dialog>
+    </div>
+  );
+};
+
+export default ClickOutsideExample;
+```
+
+</details>
+</Card>
+
+## 4. 最大化
+
+`Maximize` 属性可用于设置对话框是否最大化显示。
+
+- 类型：`boolean`
+
+**效果示例**：
+
+<Card>
+<Maximize />
+
+<details className="mt-3">
+<summary>查看代码</summary>
+
+```jsx
+import React, { useState } from "react";
+import Dialog from "@site/src/components/web-elements/adou-dialog";
+import Button from "@site/src/components/adou-button";
+
+const MaximizeExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="maximize-wrapper">
+      <Button onClick={() => setIsOpen(true)}>打开最大对话框</Button>
+      <Dialog
+        show={isOpen}
+        onClose={() => setIsOpen(false)}
+        max
+        title="最大化对话框"
+      >
+        <p>这是一个最大化显示的对话框。</p>
+      </Dialog>
+    </div>
+  );
+};
+
+export default MaximizeExample;
+```
+
+</details>
+</Card>
+
+## 5. 可拖拽
+
+`draggable` 属性可用于设置对话框是否可拖拽。
+
+- 类型：`boolean`
+
+**效果示例**：
+
+<Card>
+<Draggable />
+
+<details className="mt-3">
+<summary>查看代码</summary>
+
+```jsx
+import React, { useState } from "react";
+import Dialog from "@site/src/components/web-elements/adou-dialog";
+import Button from "@site/src/components/adou-button";
+
+const DragExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="drag-wrapper">
+      <Button onClick={() => setIsOpen(true)}>打开对话框</Button>
+      <Dialog
+        draggable
+        show={isOpen}
+        onClose={() => setIsOpen(false)}
+        title="基本对话框"
+      >
+        <p>这是一个基本的对话框内容。</p>
+      </Dialog>
+    </div>
+  );
+};
+
+export default DragExample;
+```
+
+</details>
+</Card>
+
+## 6. 异步关闭
+
+`confirmLoading` 属性可用于设置对话框确定按钮 `Loading` 效果。
+
+- 类型：`boolean`
+
+**效果示例**：
+
+<Card>
+<AsyncClose />
+
+<details className="mt-3">
+<summary>查看代码</summary>
+
+```jsx
+import React, { useState } from "react";
+import Dialog from "@site/src/components/web-elements/adou-dialog";
+import Button from "@site/src/components/adou-button";
+
+const BasicExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState < boolean > false;
+
+  const handleConfirm = () => {
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setConfirmLoading(false);
+      setIsOpen(false);
+    }, 2000);
+  };
+
+  return (
+    <div className="basic-wrapper">
+      <Button
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
+        打开对话框
+      </Button>
+      <Dialog
+        show={isOpen}
+        confirmLoading={confirmLoading}
+        onConfirm={handleConfirm}
+        title="异步关闭对话框"
+      >
+        <p>这是一个异步关闭的对话框内容。</p>
+      </Dialog>
+    </div>
+  );
+};
+
+export default BasicExample;
+```
+
+</details>
+</Card>
+
+## 7. 对话框类型
+
+对话框分为正常对话框和 `提示` 对话框，将 `type` 属性设置为 `tip`即可
+
+- 类型：`string`
+
+**效果示例**：
+
+<Card>
+<Type />
+
+<details className="mt-3">
+<summary>查看代码</summary>
+
+```jsx
+import React, { useState } from "react";
+import Dialog from "@site/src/components/web-elements/adou-dialog";
+import Button from "@site/src/components/adou-button";
+
+const TypeExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="type-wrapper">
+      <Button onClick={() => setIsOpen(true)}>Tip对话框</Button>
+      <Dialog
+        type="tip"
+        show={isOpen}
+        onClose={() => setIsOpen(false)}
+      ></Dialog>
+    </div>
+  );
+};
+
+export default TypeExample;
+```
+
+</details>
+</Card>
+
+## 8. 超出滚动
+
+为对话框设置 `maxHeight` 属性，可以实现 `Y轴` 超出滚动，默认值为 `400px`。
+
+- 类型：`string`
+
+**效果示例**：
+
+<Card>
+<MaxHeight />
+
+<details className="mt-3">
+<summary>查看代码</summary>
+
+```jsx
+import React, { useState } from "react";
+import Dialog from "@site/src/components/web-elements/adou-dialog";
+import Button from "@site/src/components/adou-button";
+
+const MaxHeightExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="max-height-wrapper">
+      <Button onClick={() => setIsOpen(true)}>打开对话框</Button>
+      <Dialog show={isOpen} onClose={() => setIsOpen(false)}>
+        <h1>这是一段文本</h1>
+        <h1>这是一段文本</h1>
+        <h1>这是一段文本</h1>
+        <h1>这是一段文本</h1>
+        <h1>这是一段文本</h1>
+        <h1>这是一段文本</h1>
+        <h1>这是一段文本</h1>
+        <h1>这是一段文本</h1>
+      </Dialog>
+    </div>
+  );
+};
+
+export default MaxHeightExample;
+```
+
+</details>
+</Card>
+
+## Dialog Props
+
+| 属性名          | 类型         | 默认值        | 描述                                     |
+| --------------- | ------------ | ------------- | ---------------------------------------- |
+| draggable       | `boolean`    | -             | 是否允许对话框拖动。                     |
+| confirmLoading  | `boolean`    | -             | 确认按钮是否显示加载状态(**异步关闭**)。 |
+| needDestroy     | `boolean`    | `false`       | 是否需要销毁对话框。                     |
+| maxY            | `boolean`    | -             | 是否在 Y 轴上最大化。                    |
+| maxX            | `boolean`    | -             | 是否在 X 轴上最大化。                    |
+| max             | `boolean`    | -             | 是否最大化显示。                         |
+| showConfirm     | `boolean`    | `true`        | 是否显示确认按钮。                       |
+| showCancel      | `boolean`    | `true`        | 是否显示取消按钮。                       |
+| showClose       | `boolean`    | `true`        | 是否显示关闭按钮。                       |
+| canConfirm      | `boolean`    | `true`        | 确认按钮是否可用。                       |
+| clickOutside    | `boolean`    | `false`       | 是否可以通过点击外部关闭。               |
+| confirmText     | `string`     | `"确定"`      | 确认按钮的文本。                         |
+| cancelText      | `string`     | `"取消"`      | 取消按钮的文本。                         |
+| confirmBtnClass | `string`     | `"primary"`   | 确认按钮的样式类。                       |
+| cancelBtnClass  | `string`     | `"secondary"` | 取消按钮的样式类。                       |
+| show            | `boolean`    | `false`       | 是否显示对话框。                         |
+| title           | `string`     | `"提示"`      | 对话框的标题。                           |
+| children        | `ReactNode`  | `null`        | 对话框的内容。                           |
+| type            | `string`     | `""`          | 对话框的类型。                           |
+| maxHeight       | `string`     | `"400px"`     | 对话框的最大高度。                       |
+| width           | `string`     | `"600px"`     | 对话框的宽度。                           |
+| height          | `string`     | -             | 对话框的高度。                           |
+| maxWidth        | `string`     | -             | 对话框的最大宽度。                       |
+| onCancel        | `() => void` | -             | 取消按钮的回调函数。                     |
+| onClose         | `() => void` | -             | 关闭对话框的回调函数。                   |
+| onConfirm       | `() => void` | -             | 确认按钮的回调函数。                     |

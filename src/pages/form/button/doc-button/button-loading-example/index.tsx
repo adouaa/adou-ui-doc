@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.scss";
-import Card from "@site/src/components/adou-card";
+import Card from "@site/src/components/web-elements/adou-card";
 import Button from "../../../../../components/adou-button";
 
 const ButtonLoadingExample = () => {

@@ -1,0 +1,237 @@
+---
+title: Input
+---
+
+import Card from "@site/src/components/web-elements/adou-card";
+import Input from "@site/src/components/adou-new-form/adou-Input";
+import Basic from "@site/src/pages/form/input/Basic";
+import Size from "@site/src/pages/form/input/Size";
+import Varient from "@site/src/pages/form/input/Varient";
+import Addon from "@site/src/pages/form/input/Addon";
+
+## 1. 基本使用
+
+**效果示例**：
+
+<Card>
+<Basic />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Input from "@site/src/components/adou-new-form/adou-Input";
+const VarientExample = () => {
+  return (
+    <div className="varient-wrapper">
+      <div className="outlined-input">
+        <Input placeholder="请输入内容" />
+      </div>
+      <div className="filled-input my-2">
+        <Input varient="filled" size="lg" placeholder="请输入内容" />
+      </div>
+      <div className="borderless-input">
+        <Input varient="borderless" size="sm" placeholder="请输入内容" />
+      </div>
+    </div>
+  );
+};
+export default VarientExample;
+````
+</details>
+</Card>
+
+## 2. 三种大小
+
+通过 `size` 属性可以改变输入框的大小，可选值为 `sm`、`default` 和 `lg`，分别对应`32px`、`40px` 和 `48px`，默认值为 `default`。
+
+**效果示例**：
+
+<Card>
+<Size />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Input from "@site/src/components/adou-new-form/adou-Input";
+const SizeExample = () => {
+  return (
+    <div className="size-wrapper">
+      <div className="sm-input">
+        <Input size="sm" placeholder="请输入内容" />
+      </div>
+      <div className="default-input my-2">
+        <Input placeholder="请输入内容" />
+      </div>
+      <div className="lg-input">
+        <Input size="lg" placeholder="请输入内容" />
+      </div>
+    </div>
+  );
+};
+export default SizeExample;
+````
+
+</details>
+</Card>
+
+## 3. 三种形式
+
+通过 `varient` 属性可以改变输入框的展示形式，可选值有 `outlined`、`filled`、`borderless`，分别对应`正常边框`、`填充色`（默认没有边框，在有 `addonBefore` 或者 `addonAfter` 的时候有默认边框色）和 `无边框`，默认值为 `outlined`。
+
+**效果示例**：
+
+<Card>
+<Varient />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Input from "@site/src/components/adou-new-form/adou-Input";
+const SizeExample = () => {
+  return (
+    <div className="size-wrapper">
+      <div className="sm-input">
+        <Input size="sm" placeholder="请输入内容" />
+      </div>
+      <div className="default-input my-2">
+        <Input placeholder="请输入内容" />
+      </div>
+      <div className="lg-input">
+        <Input size="lg" placeholder="请输入内容" />
+      </div>
+    </div>
+  );
+};
+export default SizeExample;
+```
+</details>
+</Card>
+
+## 4. 前置 / 后置标签
+
+**效果示例**：
+
+<Card>
+<Addon />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Input from "@site/src/components/adou-new-form/adou-Input";
+const VarientExample = () => {
+  return (
+    <div className="varient-wrapper">
+      <div className="outlined-input">
+        <Input placeholder="请输入内容" />
+      </div>
+      <div className="filled-input my-2">
+        <Input varient="filled" size="lg" placeholder="请输入内容" />
+      </div>
+      <div className="borderless-input">
+        <Input varient="borderless" size="sm" placeholder="请输入内容" />
+      </div>
+    </div>
+  );
+};
+export default VarientExample;
+````
+</details>
+</Card>
+
+## 5. 文本域
+
+用于多行输入，通过 `rows` 属性可以设置文本域的行数，默认值为 `4`。
+
+**效果示例**：
+
+<Card>
+<Addon />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Input from "@site/src/components/adou-new-form/adou-Input";
+const VarientExample = () => {
+  return (
+    <div className="varient-wrapper">
+      <div className="outlined-input">
+        <Input placeholder="请输入内容" />
+      </div>
+      <div className="filled-input my-2">
+        <Input varient="filled" size="lg" placeholder="请输入内容" />
+      </div>
+      <div className="borderless-input">
+        <Input varient="borderless" size="sm" placeholder="请输入内容" />
+      </div>
+    </div>
+  );
+};
+export default VarientExample;
+````
+</details>
+</Card>
+
+## 6. 前缀和后缀
+
+## 7. 带移除图标
+
+## Input Props
+
+| 属性名                         | 类型                                                         | 默认值         | 描述                     |
+| ------------------------------ | ------------------------------------------------------------ | -------------- | ------------------------ |
+| inputStyle                     | `React.CSSProperties`                                        | 无             | 输入框的自定义样式       |
+| prefix                         | `any`                                                        | 无             | 输入框前缀内容           |
+| suffix                         | `any`                                                        | 无             | 输入框后缀内容           |
+| addonBefore                    | `ReactNode \| string \| number`                              | 无             | 输入框前的附加内容       |
+| addonAfter                     | `ReactNode \| string \| number`                              | 无             | 输入框后的附加内容       |
+| varient                        | `'outlined' \| 'filled' \| 'borderless'`                     | `'outlined'`   | 输入框的样式变体         |
+| valueKey                       | `string`                                                     | 无             | 值的键名                 |
+| labelKey                       | `string`                                                     | 无             | 标签的键名               |
+| wrapperWidth                   | `any`                                                        | 无             | 包裹层的宽度             |
+| wrapperStyle                   | `React.CSSProperties`                                        | 无             | 包裹层的自定义样式       |
+| commonSuffixContent            | `string`                                                     | 无             | 通用后缀内容             |
+| clearable                      | `boolean`                                                    | `false`        | 是否可清除输入框内容     |
+| formStyle                      | `React.CSSProperties`                                        | 无             | 表单样式                 |
+| suffixContentExternalClassName | `string`                                                     | 无             | 后缀内容的外部类名       |
+| inputExternalClassName         | `string`                                                     | 无             | 输入框的外部类名         |
+| textEnd                        | `boolean`                                                    | 无             | 文本是否右对齐           |
+| name                           | `string`                                                     | 无             | 输入框的名称             |
+| inline                         | `boolean`                                                    | 无             | 是否为内联样式           |
+| isFormItem                     | `boolean`                                                    | 无             | 是否为表单项             |
+| errMsg                         | `string`                                                     | 无             | 错误信息                 |
+| labelWidth                     | `any`                                                        | 无             | 标签的宽度               |
+| commonSuffixIcon               | `string`                                                     | 无             | 通用后缀图标             |
+| width                          | `any`                                                        | 无             | 输入框的宽度             |
+| label                          | `string`                                                     | 无             | 输入框的标签             |
+| layout                         | `'horizontal' \| 'horizontal-top' \| 'vertical' \| 'inline'` | `'horizontal'` | 布局方式                 |
+| inputGroup                     | `boolean`                                                    | 无             | 是否为输入组             |
+| labelColor                     | `string`                                                     | 无             | 标签的颜色               |
+| required                       | `boolean`                                                    | `false`        | 是否为必填项             |
+| type                           | `'text' \| 'datetime-local' \| 'date' \| 'time' \| 'number'` | `'text'`       | 输入框的类型             |
+| defaultValue                   | `any`                                                        | 无             | 默认值                   |
+| size                           | `'lg' \| 'default' \| 'sm'`                                  | 无             | 输入框的大小             |
+| externalClassName              | `string`                                                     | 无             | 外部类名                 |
+| prefixContent                  | `any`                                                        | 无             | 前缀内容                 |
+| suffixContent                  | `any`                                                        | 无             | 后缀内容                 |
+| suffixContentType              | `string`                                                     | `'button'`     | 后缀内容的类型           |
+| placeholder                    | `string`                                                     | 无             | 占位符                   |
+| style                          | `React.CSSProperties`                                        | 无             | 自定义样式               |
+| readOnly                       | `boolean`                                                    | 无             | 是否只读                 |
+| transparent                    | `boolean`                                                    | 无             | 是否透明                 |
+| children                       | `any`                                                        | 无             | 子元素                   |
+| onClick                        | `(e: any) => void`                                           | 无             | 点击事件处理函数         |
+| onFocus                        | `(e: any) => void`                                           | 无             | 聚焦事件处理函数         |
+| onBlur                         | `(e: any) => void`                                           | 无             | 失焦事件处理函数         |
+| onChange                       | `(value: any) => void`                                       | 无             | 值改变事件处理函数       |
+| onIconClick                    | `(value: string) => void`                                    | 无             | 图标点击事件处理函数     |
+| onFormDataChange               | `(key: string, value: any) => void`                          | 无             | 表单数据改变事件处理函数 |
+| onFieldChange                  | `(name: string, value: any) => void`                         | 无             | 字段改变事件处理函数     |
+| onValidateField                | `(name: string, value?: any) => void`                        | 无             | 字段验证事件处理函数     |
+
+```
+
+```
+
+```
+
+```

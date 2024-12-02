@@ -1,134 +1,193 @@
-.suffix-icon {
-    /* margin-left: -40px !important;
-    margin-top: 6px;
-    z-index: 9; */
-    position: absolute;
-    right: 12px;
-    top: 30px;
-    /* 垂直居中 */
-    cursor: pointer;
-    /* 鼠标悬停时显示指针样式 */
-    transition: transform 0.3s;
-    /* 添加过渡效果 */
-    color: #c6c6cd;
+// .suffix-icon {
+//     /* margin-left: -40px !important;
+//     margin-top: 6px;
+//     z-index: 9; */
+//     position: absolute;
+//     right: 12px;
+//     top: 30px;
+//     /* 垂直居中 */
+//     cursor: pointer;
+//     /* 鼠标悬停时显示指针样式 */
+//     transition: transform 0.3s;
+//     /* 添加过渡效果 */
+//     color: #c6c6cd;
 
-    &:hover {
-        transform: scale(1.3);
-        /* 水平和垂直方向都放大1.5倍 */
-        color: #51515b;
-    }
-}
+//     &:hover {
+//         transform: scale(1.3);
+//         /* 水平和垂直方向都放大1.5倍 */
+//         color: #51515b;
+//     }
+// }
 
-.common-suffix-icon {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
+// .common-suffix-icon {
+//     display: flex;
+//     align-items: center;
+//     cursor: pointer;
+// }
 
-.common-suffix-icon {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
+// .common-suffix-icon {
+//     display: flex;
+//     align-items: center;
+//     cursor: pointer;
+// }
 
-.label-box {
-    font-size: 14px;
-    min-width: 50px;
-    text-align: right;
-    justify-content: flex-end;
-    padding-right: 10px;
-    flex-wrap: wrap;
-}
+// .label-box {
+//     font-size: 14px;
+//     min-width: 50px;
+//     text-align: right;
+//     justify-content: flex-end;
+//     padding-right: 10px;
+//     flex-wrap: wrap;
+// }
 
-.icon-input {
-    position: relative;
-    /* 让伪元素相对于输入框定位 */
+// .icon-input {
+//     position: relative;
+//     /* 让伪元素相对于输入框定位 */
 
-}
+// }
 
-.input-wrapper {
+// .input-wrapper {
+//     input::placeholder {
+//         color: #999; // 你可以根据需要修改颜色
+//     }
 
-    input::placeholder {
-        color: #999; // 你可以根据需要修改颜色
-    }
+//     .content-box {
+//         flex: 1;
+//         align-items: stretch;
 
-    .content-box {
-        flex: 1;
-        align-items: stretch;
+//         .label-box {}
 
-        .label-box {}
+//         .input-form-content {
+//             flex: 1;
+//             display: flex;
+//         }
 
-        .input-form-content {
-            flex: 1;
+//         .suffix-content-btn {
+//             border-top-right-radius: 0 !important;
+//             /* 去掉右上角的圆角 */
+//             border-bottom-right-radius: 0 !important;
+//             border-right: none;
+//             /* 去掉右下角的圆角 */
+//         }
+
+//         .suffix-content-btn-wrapper {
+//             min-width: 37px;
+//             display: flex;
+//             align-items: center;
+//             justify-content: center;
+//             background-color: #eee;
+//             border-top-right-radius: 6px;
+//             border-bottom-right-radius: 6px;
+//         }
+
+//         .suffix-content-btn-wrapper .btn {
+//             border-top-left-radius: 0;
+//             /* 去掉左上角的圆角 */
+//             border-bottom-left-radius: 0;
+//             /* 去掉左下角的圆角 */
+//         }
+
+//         .suffix-content-text-wrapper {
+//             display: flex;
+//             align-items: center;
+//             justify-content: center;
+//         }
+
+//     }
+
+// }
+
+// .label-in-center {
+//     display: flex;
+
+//     .suffix-icon {
+//         top: 7px;
+//     }
+// }
+
+// .label-in-left-top {
+//     display: flex;
+
+//     .label-box {
+//         display: flex;
+//         align-items: start;
+//     }
+
+//     .suffix-icon {
+//         top: 7px;
+//     }
+// }
+
+
+
+// .input-group {
+//     .suffix-icon {
+//         top: 7px !important;
+//     }
+// }
+
+// .input-group-text {
+//     cursor: pointer;
+// }
+
+// .lable-in-control {}
+
+.adou-input-wrapper {
+
+    .adou-input {
+
+        &-form-content {
+            height: 100%;
+            border: 1px solid #ced4da;
+            border-radius: 0.375rem;
+            // box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075); 加上这个在 borderless 情况下底部会有条线
+            transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        &-label-vertical {
             display: flex;
+            align-items: self-start;
+            justify-content: center;
+            flex-direction: column;
         }
 
-        .suffix-content-btn {
-            border-top-right-radius: 0 !important;
-            /* 去掉右上角的圆角 */
-            border-bottom-right-radius: 0 !important;
-            border-right: none;
-            /* 去掉右下角的圆角 */
+        &-label-horizontal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+
+            .adou-input-label-box {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
 
-        .suffix-content-btn-wrapper {
-            min-width: 37px;
+        &-label-horizontal-top {
+            display: flex;
+            justify-content: center;
+            align-items: self-start;
+            flex-direction: row;
+        }
+
+        &-clear-icon-box {
+            width: 24px;
+            text-align: right;
             display: flex;
             align-items: center;
-            justify-content: center;
-            background-color: #eee;
-            border-top-right-radius: 6px;
-            border-bottom-right-radius: 6px;
         }
 
-        .suffix-content-btn-wrapper .btn {
-            border-top-left-radius: 0;
-            /* 去掉左上角的圆角 */
-            border-bottom-left-radius: 0;
-            /* 去掉左下角的圆角 */
+        &-clear-icon {
+
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #c6c6cd;
+
+            &:hover {
+                transform: scale(1.2);
+                color: red !important;
+            }
         }
-
-        .suffix-content-text-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-    }
-
-}
-
-.label-in-center {
-    display: flex;
-
-    .suffix-icon {
-        top: 7px;
     }
 }
-
-.label-in-left-top {
-    display: flex;
-
-    .label-box {
-        display: flex;
-        align-items: start;
-    }
-
-    .suffix-icon {
-        top: 7px;
-    }
-}
-
-
-
-.input-group {
-    .suffix-icon {
-        top: 7px !important;
-    }
-}
-
-.input-group-text {
-    cursor: pointer;
-}
-
-.lable-in-control {}

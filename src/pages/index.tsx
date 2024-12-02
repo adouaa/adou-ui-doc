@@ -4,6 +4,9 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import Heading from "@theme/Heading";
+// 在这里引入 图标库
+import "@site/src/assets/css/fontawesome/6.3.0/all.min.css";
+import "@site/src/assets/css/bi/1.11.0/all.min.css";
 
 import styles from "./index.module.css";
 import "bootstrap/dist/css/bootstrap.min.css"; // 引入 bootstrap 属性在滚动的时候，左侧的导航栏会跟着一起滚动

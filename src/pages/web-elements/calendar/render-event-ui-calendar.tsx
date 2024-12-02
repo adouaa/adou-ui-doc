@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import React from "react";
-import Calendar from "@site/src/components/adou-calendar";
+import Calendar from "@site/src/components/web-elements/adou-calendar";
 import { CalendarDay } from "./type";
 
 interface RenderEventUICalendarProps {}

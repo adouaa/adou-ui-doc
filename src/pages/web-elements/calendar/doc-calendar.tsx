@@ -1,4 +1,4 @@
-import Calendar from "@site/src/components/adou-calendar";
+import Calendar from "@site/src/components/web-elements/adou-calendar";
 import React from "react";
 
 const DocCalendar = () => {

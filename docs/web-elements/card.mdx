@@ -1,0 +1,63 @@
+---
+title: Card
+---
+
+import Card from "@site/src/components/web-elements/adou-card"
+
+* 注意：在普通的 `React` + `bootstrap` 项目中，样式不会发生异常，而在 `docusaurus` 项目中，**样式会出现异常**，需要手动去设置样式
+
+`Card` 是一个可自定义的卡片组件，支持头部、主体和底部内容的展示，并提供了悬停上升的动画效果。适用于需要展示信息卡片的应用场景。
+
+## 1. 基本使用
+
+**效果示例**：
+
+<Card header="卡片头部" footer="卡片底部">
+  这是卡片的主体内容。
+</Card>
+
+## 2. `header` 和 `footer`
+
+通过 `header` 和 `footer` 属性，可以自定义卡片的头部和底部内容。
+
+### 2.1 `header`
+
+**介绍**：
+`header` 属性用于设定卡片的头部内容，可以是任何 `ReactNode`。
+
+### 2.2 `footer`
+
+**介绍**：
+`footer` 属性用于设定卡片的底部内容，可以是任何 `ReactNode`。
+
+**效果示例**：
+
+<Card header="自定义头部" footer="自定义底部">
+  这是卡片的主体内容。
+</Card>
+
+## 3. `hoverUp`
+
+`hoverUp` 属性用于控制卡片在鼠标悬停时是否上升。
+
+* 类型：`boolean`
+
+**效果示例**：
+
+<Card header="悬停上升" hoverUp>
+  悬停在此卡片上时，它会轻微上升。
+</Card>
+
+## Card Props
+
+| 属性名 | 类型 | 可选值 | 描述 |
+| ---- | ---- | ---- | ---- |
+| `header` | `ReactNode` | - | 卡片头部内容。 |
+| `headerAlign` | `"start" | "center" | "end"` | - | 头部内容的对齐方式。 |
+| `footer` | `ReactNode` | - | 卡片底部内容。 |
+| `footerAlign` | `"start" | "center" | "end"` | - | 底部内容的对齐方式。 |
+| `children` | `ReactNode` | - | 卡片主体内容。 |
+| `externalClassName` | `string` | - | 外部扩展类名。 |
+| `hoverUp` | `boolean` | - | 控制卡片在悬停时是否上升。 |
+
+## 类型声明
