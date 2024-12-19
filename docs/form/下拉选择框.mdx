@@ -1,0 +1,723 @@
+---
+title: Select
+---
+
+import Card from "@site/src/components/web-elements/adou-card";
+import Basic from "@site/src/pages/form/select/Basic";
+import ShowSearch from "@site/src/pages/form/select/ShowSearch";
+import FilterOption from "@site/src/pages/form/select/FilterOption";
+import Multiple from "@site/src/pages/form/select/Multiple";
+import LiveSearch from "@site/src/pages/form/select/LiveSearch";
+import Tags from "@site/src/pages/form/select/Tags";
+import Size from "@site/src/pages/form/select/Size";
+import Varient from "@site/src/pages/form/select/Varient";
+import OptionRender from "@site/src/pages/form/select/OptionRender";
+import Disabled from "@site/src/pages/form/select/Disabled";
+import Placeholder from "@site/src/pages/form/select/Placeholder";
+import Clearable from "@site/src/pages/form/select/Clearable";
+import PrefixAndSuffix from "@site/src/pages/form/select/PrefixAndSuffix";
+
+
+## 1. 基本使用
+
+**默认值** 通过 `defaultValue` 属性设置，默认值可以是 `字符串`，**多选或者** `tags` **模式下为数组**。
+
+**效果示例**：
+
+<Card>
+<Basic />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Select from "@site/src/components/adou-new-form/adou-select";
+const BasicExample = () => {
+  const options = [
+    { label: "Option 1", value: "1" },
+    { label: "Option 2", value: "2" },
+    { label: "Option 3", value: "3" },
+  ];
+  return (
+    <div className="basic-select-wrapper">
+      <Select defaultValue={"2"} placeholder="请选择" options={options} />
+    </div>
+  );
+};
+export default BasicExample;
+
+```
+</details>
+</Card>
+
+## 2. 带输入框(过滤)
+
+通过 `showSearch` 属性可以展示输入框，通过输入框可以达到基础过滤选项的效果。
+
+**效果示例**：
+
+<Card>
+<ShowSearch />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Select from "@site/src/components/adou-new-form/adou-select";
+const ShowSearchExample = () => {
+  const options = [
+    {
+      value: "john_smith",
+      label: "John Smith",
+    },
+    {
+      value: "emma_watson",
+      label: "Emma Watson",
+    },
+    {
+      value: "william_jones",
+      label: "William Jones",
+    },
+    {
+      value: "olivia_brown",
+      label: "Olivia Brown",
+    },
+    {
+      value: "james_davis",
+      label: "James Davis",
+    },
+    {
+      value: "ava_wilson",
+      label: "Ava Wilson",
+    },
+    {
+      value: "henry_taylor",
+      label: "Henry Taylor",
+    },
+    {
+      value: "sophia_miller",
+      label: "Sophia Miller",
+    },
+    {
+      value: "benjamin_white",
+      label: "Benjamin White",
+    },
+    {
+      value: "isabella_green",
+      label: "Isabella Green",
+    },
+    {
+      value: "daniel_king",
+      label: "Daniel King",
+    },
+    {
+      value: "mia_lee",
+      label: "Mia Lee",
+    },
+    {
+      value: "alexander_clark",
+      label: "Alexander Clark",
+    },
+    {
+      value: "charlotte_ross",
+      label: "Charlotte Ross",
+    },
+    {
+      value: "matthew_hall",
+      label: "Matthew Hall",
+    },
+    {
+      value: "amelia_baker",
+      label: "Amelia Baker",
+    },
+    {
+      value: "joseph_turner",
+      label: "Joseph Turner",
+    },
+    {
+      value: "evelyn_cook",
+      label: "Evelyn Cook",
+    },
+    {
+      value: "david_porter",
+      label: "David Porter",
+    },
+    {
+      value: "scarlett_moore",
+      label: "Scarlett Moore",
+    },
+  ];
+  return (
+    <div className="show-search-wrapper">
+      <Select showSearch placeholder="请选择" options={options} />
+    </div>
+  );
+};
+export default ShowSearchExample;
+
+```
+</details>
+</Card>
+
+## 3. 自定义过滤
+
+通过 `filterOption` 属性传入一个**函数**可以自定义过滤逻辑，这边以检索包含 `jo` 字符的数据为例。
+
+**效果示例**：
+
+<Card>
+<FilterOption />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Select from "@site/src/components/adou-new-form/adou-select";
+const FilterOptionExample = () => {
+  const options = [
+    {
+      value: "john_smith",
+      label: "John Smith",
+    },
+    {
+      value: "emma_watson",
+      label: "Emma Watson",
+    },
+    {
+      value: "william_jones",
+      label: "William Jones",
+    },
+    {
+      value: "olivia_brown",
+      label: "Olivia Brown",
+    },
+    {
+      value: "james_davis",
+      label: "James Davis",
+    },
+    {
+      value: "ava_wilson",
+      label: "Ava Wilson",
+    },
+    {
+      value: "joseph_turner",
+      label: "Joseph Turner",
+    },
+  ];
+  return (
+    <div className="filter-option-wrapper">
+      <Select
+        filterOption={(inputValue, option) =>
+          option.label.toLowerCase().includes("jo")
+        }
+        placeholder="请输入"
+        options={options}
+      />
+    </div>
+  );
+};
+export default FilterOptionExample;
+```
+</details>
+</Card>
+
+## 4. 多选
+
+设置 `multiple` 即可实现多选。
+
+**效果示例**：
+
+<Card>
+<Multiple />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Select from "@site/src/components/adou-new-form/adou-select";
+const MultipleExample = () => {
+  const options = [
+    {
+      value: "john_smith",
+      label: "John Smith",
+    },
+    {
+      value: "emma_watson",
+      label: "Emma Watson",
+    },
+    {
+      value: "william_jones",
+      label: "William Jones",
+    },
+    {
+      value: "olivia_brown",
+      label: "Olivia Brown",
+    },
+    {
+      value: "james_davis",
+      label: "James Davis",
+    },
+    {
+      value: "ava_wilson",
+      label: "Ava Wilson",
+    },
+    {
+      value: "joseph_turner",
+      label: "Joseph Turner",
+    },
+  ];
+  return (
+    <div className="multiple-wrapper">
+      <Select
+        defaultValue={[
+          { value: "ava_wilson", label: "ava_wilson" },
+          "james_davis",
+        ]}
+        multiple
+        placeholder="请选择"
+        options={options}
+      />
+    </div>
+  );
+};
+export default MultipleExample;
+
+```
+</details>
+</Card>
+
+## 5. 输入时过滤
+
+设置 `mode="liveSearch"` 可以实现可以输入也可以选择过滤后的数据。
+
+**效果示例**：
+
+<Card>
+<LiveSearch />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Select from "@site/src/components/adou-new-form/adou-select";
+const LiveSearcExample = () => {
+  const options = [
+    {
+      value: "john_smith",
+      label: "John Smith",
+    },
+    {
+      value: "emma_watson",
+      label: "Emma Watson",
+    },
+    {
+      value: "william_jones",
+      label: "William Jones",
+    },
+    {
+      value: "olivia_brown",
+      label: "Olivia Brown",
+    },
+    {
+      value: "james_davis",
+      label: "James Davis",
+    },
+    {
+      value: "ava_wilson",
+      label: "Ava Wilson",
+    },
+    {
+      value: "joseph_turner",
+      label: "Joseph Turner",
+    },
+  ];
+  return (
+    <div className="live-search-wrapper">
+      <Select mode="liveSearch" placeholder="请输入" options={options} />
+    </div>
+  );
+};
+export default LiveSearcExample;
+
+```
+</details>
+</Card>
+
+## 6. 标签
+
+通过设置 `mode="tags"` 输入框变成多选，并且是以标签的形式展示。
+
+**效果示例**：
+
+<Card>
+<Tags />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Select from "@site/src/components/adou-new-form/adou-select";
+const TagsExample = () => {
+  const options = [
+    {
+      value: "john_smith",
+      label: "John Smith",
+    },
+    {
+      value: "emma_watson",
+      label: "Emma Watson",
+    },
+    {
+      value: "william_jones",
+      label: "William Jones",
+    },
+    {
+      value: "olivia_brown",
+      label: "Olivia Brown",
+    },
+    {
+      value: "james_davis",
+      label: "James Davis",
+    },
+    {
+      value: "ava_wilson",
+      label: "Ava Wilson",
+    },
+    {
+      value: "joseph_turner",
+      label: "Joseph Turner",
+    },
+  ];
+  return (
+    <div className="tags-wrapper">
+      <Select
+        defaultValue={[
+          { value: "john_smith", label: "John Smith" },
+          "Emma Watson",
+        ]}
+        mode="tags"
+        placeholder="请输入"
+        options={options}
+      />
+    </div>
+  );
+};
+export default TagsExample;
+
+```
+</details>
+</Card>
+
+## 7. 三种大小
+
+通过 `size` 属性可以改变下拉框的大小，可选值为 `sm`、`default` 和 `lg`，分别对应`32px`、`40px` 和 `48px`，默认值为 `default`。
+
+**效果示例**：
+
+<Card>
+<Size />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Select from "@site/src/components/adou-new-form/adou-select";
+const SizeExample = () => {
+  const options = [
+    { label: "Option 1", value: "1" },
+    { label: "Option 2", value: "2" },
+    { label: "Option 3", value: "3" }
+  ];
+  return (
+    <div className="size-select-wrapper">
+      <div className="sm-select">
+        <Select size="sm" placeholder="请选择" options={options} />
+      </div>
+      <div className="default-select my-2">
+        <Select placeholder="请选择" options={options} />
+      </div>
+      <div className="lg-select">
+        <Select size="lg" placeholder="请选择" options={options} />
+      </div>
+    </div>
+  );
+};
+export default SizeExample;
+```
+</details>
+</Card>
+
+## 8. 三种形式
+
+通过 `varient` 属性可以改变下拉框的展示形式，可选值有 `outlined`、`filled`、`borderless`，分别对应`正常边框`、`填充色`（默认没有边框，在有 `addonBefore` 或者 `addonAfter` 的时候有默认边框色）和 `无边框`，默认值为 `outlined`。
+
+**效果示例**：
+
+<Card>
+<Varient />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Select from "@site/src/components/adou-new-form/adou-select";
+const VarientExample = () => {
+  const options = [
+    { label: "Option 1", value: "1" },
+    { label: "Option 2", value: "2" },
+    { label: "Option 3", value: "3" }
+  ];
+  return (
+    <div className="varient-select-wrapper">
+      <div className="outlined-select">
+        <Select varient="outlined" placeholder="请选择" options={options} />
+      </div>
+      <div className="filled-select my-2">
+        <Select varient="filled" placeholder="请选择" options={options} />
+      </div>
+      <div className="borderless-select">
+        <Select varient="borderless" placeholder="请选择" options={options} />
+      </div>
+    </div>
+  );
+};
+export default VarientExample;
+```
+</details>
+</Card>
+
+## 9. 自定义选项
+
+通过 `optionRender` 可以自定义展示的选项。
+
+**效果示例**：
+
+<Card>
+<OptionRender />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Select from "@site/src/components/adou-new-form/adou-select";
+const OptionRenderExample = () => {
+  const options = [
+    {
+      label: "Option 1",
+      value: "1",
+      render: (option: any) => (
+        <div>
+          <span>{option.label}</span>
+          <i className="fa fa-plus-circle ms-2"></i>
+        </div>
+      ),
+    },
+    {
+      label: "Option 2",
+      value: "2",
+      render: (option: any) => (
+        <div>
+          <span>{option.label}</span>
+          <i className="fa fa-trash ms-2 text-danger"></i>
+        </div>
+      ),
+    },
+    {
+      label: "Option 3",
+      value: "3",
+    },
+  ];
+  return (
+    <div className="multiple-select-wrapper">
+      <Select placeholder="请选择" options={options} />
+    </div>
+  );
+};
+export default OptionRenderExample;
+
+```
+</details>
+</Card>
+
+## 10. 禁用状态
+
+通过设置 `disabled` 属性为 `true`，可以使下拉框处于禁用状态，用户无法进行交互操作。
+
+**效果示例**：
+
+<Card>
+<Disabled />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Select from "@site/src/components/adou-new-form/adou-select";
+const DisabledExample = () => {
+  const options = [
+    { label: "Option 1", value: "1" },
+    { label: "Option 2", value: "2" },
+    { label: "Option 3", value: "3" }
+  ];
+  return (
+    <div className="disabled-select-wrapper">
+      <Select disabled placeholder="请选择" options={options} />
+    </div>
+  );
+};
+export default DisabledExample;
+```
+</details>
+</Card>
+
+## 11. 自定义占位符
+
+通过 `placeholder` 属性可以设置下拉框的占位符文本。
+
+**效果示例**：
+
+<Card>
+<Placeholder />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Select from "@site/src/components/adou-new-form/adou-select";
+const PlaceholderExample = () => {
+  const options = [
+    { label: "Option 1", value: "1" },
+    { label: "Option 2", value: "2" },
+    { label: "Option 3", value: "3" }
+  ];
+  return (
+    <div className="placeholder-select-wrapper">
+      <Select placeholder="请选择你的选项~" options={options} />
+    </div>
+  );
+};
+export default PlaceholderExample;
+```
+</details>
+</Card>
+
+## 12. 可清除选项
+
+通过 `clearable` 属性可以在下拉框有选中值的时候展示清除按钮，点击可清除选中内容。
+
+**效果示例**：
+
+<Card>
+<Clearable />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Select from "@site/src/components/adou-new-form/adou-select";
+const ClearableExample = () => {
+  const options = [
+    { label: "Option 1", value: "1" },
+    { label: "Option 2", value: "2" },
+    { label: "Option 3", value: "3" }
+  ];
+  return (
+    <div className="clearable-select-wrapper">
+      <Select clearable placeholder="请选择" options={options} />
+    </div>
+  );
+};
+export default ClearableExample;
+```
+</details>
+</Card>
+
+## 13. 前后缀
+
+通过 `prefix` 和 `suffix` 属性为下拉框设置 前后缀。
+
+**效果示例**：
+
+<Card>
+<PrefixAndSuffix />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Select from "@site/src/components/adou-new-form/adou-select";
+const PrefixAndSuffixExample = () => {
+  const options = [
+    { label: "www.baidu.com", value: "1baidu" },
+    { label: "www.github.com", value: "github" },
+    { label: "www.google.com", value: "google" },
+  ];
+  return (
+    <div className="prefix-and-suffix-select-wrapper">
+      <Select
+        prefix={"http://"}
+        suffix={<i className="fa fa-search"></i>}
+        placeholder="请选择"
+        options={options}
+      />
+    </div>
+  );
+};
+export default PrefixAndSuffixExample;
+```
+</details>
+</Card>
+
+
+## Select Props
+
+| 属性名                        | 类型                                                                 | 默认值         | 描述                     |
+| ----------------------------- | -------------------------------------------------------------------- | -------------- | ------------------------ |
+| mode                          | `"common" \| "liveSearch" \| "tags"`                                 | `"common"`     | 模式类型                 |
+| multiple                      | `boolean`                                                           | 无             | 是否支持多选             |
+| showSearch                    | `boolean`                                                           | 无             | 是否显示搜索框           |
+| prefix                        | `any`                                                               | 无             | 下拉框前缀内容           |
+| suffix                        | `any`                                                               | 无             | 下拉框后缀内容           |
+| varient                       | `"outlined" \| "filled" \| "borderless"`                             | `"outlined"`   | 下拉框的样式变体         |
+| contentWrap                   | `boolean`                                                           | `true`         | 内容是否换行             |
+| ellipsis                      | `boolean`                                                           | `true`         | 是否显示省略号           |
+| compact                       | `boolean`                                                           | 无             | 是否紧凑模式             |
+| wrapperStyle                  | `React.CSSProperties`                                               | 无             | 包裹层的自定义样式       |
+| wrapperWidth                  | `any`                                                               | 无             | 包裹层的宽度             |
+| commonSuffixContent           | `string`                                                            | 无             | 通用后缀内容             |
+| clearable                     | `boolean`                                                           | `false`        | 是否可清除选中内容       |
+| isAddon                       | `boolean`                                                           | 无             | 是否为附加内容           |
+| formStyle                     | `React.CSSProperties`                                               | 无             | 表单样式                 |
+| errorPaddingLeft              | `any`                                                               | 无             | 错误信息左侧填充         |
+| suffixContentExternalCls      | `string`                                                            | 无             | 后缀内容的外部类名       |
+| selectContentExternalCls      | `string`                                                            | 无             | 下拉框内容的外部类名     |
+| labelMinWidth                 | `any`                                                               | 无             | 标签的最小宽度           |
+| noWrap                        | `boolean`                                                           | `true`         | 是否不换行               |
+| shouldFocus                   | `boolean`                                                           | `false`        | 是否应聚焦               |
+| activeColor                   | `{ font: string; bgc: string }`                                     | `{ font: "#fff", bgc: "#2783d8" }` | 激活时的颜色             |
+| returnType                    | `"str" \| "obj"`                                                    | `"obj"`        | 返回值类型               |
+| showEmpty                     | `boolean`                                                           | `true`         | 是否显示空选项           |
+| showDefaultValue              | `boolean`                                                           | `false`        | 是否显示默认值           |
+| labelKey                      | `string`                                                            | `"label"`      | 标签的键名               |
+| valueKey                      | `string`                                                            | `"value"`      | 值的键名                 |
+| showLabel                     | `boolean`                                                           | `true`         | 是否显示标签             |
+| suffixContent                 | `any`                                                               | 无             | 后缀内容                 |
+| suffixContentType             | `string`                                                            | 无             | 后缀内容的类型           |
+| inline                        | `boolean`                                                           | 无             | 是否为内联样式           |
+| isFormItem                    | `boolean`                                                           | 无             | 是否为表单项             |
+| name                          | `string`                                                            | 无             | 下拉框的名称             |
+| errMsg                        | `string`                                                            | 无             | 错误信息                 |
+| labelWidth                    | `any`                                                               | 无             | 标签的宽度               |
+| commonSuffixIcon              | `string`                                                            | 无             | 通用后缀图标             |
+| width                         | `any`                                                               | 无             | 下拉框的宽度             |
+| label                         | `any`                                                               | 无             | 下拉框的标签             |
+| labelPosition                 | `"left-top" \| "center" \| "top"`                                   | `"center"`     | 标签的位置               |
+| inputGroup                    | `boolean`                                                           | `false`        | 是否为输入组             |
+| labelColor                    | `string`                                                            | 无             | 标签的颜色               |
+| required                      | `boolean`                                                           | `false`        | 是否为必填项             |
+| defaultValue                  | `any`                                                               | 无             | 默认值                   |
+| options                       | `any[]`                                                             | 无             | 下拉框的选项列表         |
+| placeholder                   | `string`                                                            | 无             | 占位符                   |
+| size                          | `"sm" \| "lg" \| "default"`                                         | 无             | 下拉框的大小             |
+| externalClassName             | `string`                                                            | 无             | 外部类名                 |
+| disabled                      | `boolean`                                                           | 无             | 是否禁用                 |
+| transparent                   | `boolean`                                                           | 无             | 是否透明                 |
+| optionContentMaxHeight        | `string`                                                            | `"200px"`      | 选项内容的最大高度       |
+| onChange                      | `(e?: any, ...args: any) => void`                                   | 无             | 值改变事件处理函数       |
+| onFormDataChange              | `(key: string, value: any) => void`                                 | 无             | 表单数据改变事件处理函数 |
+| onFieldChange                 | `(name: string, value: any) => void`                                | 无             | 字段改变事件处理函数     |
+| onValidateField               | `(name: string, value?: any) => void`                               | 无             | 字段验证事件处理函数     |
+| optionRender                  | `(option: any, labelKey?: any, valueKey?: any) => void`             | 无             | 自定义渲染选项           |
+| onInputChange                 | `(value: string) => void`                                           | 无             | 输入改变事件处理函数     |
+| filterOption                  | `(input: string, option: any, labelKey?: any, valueKey?: any) => any \| boolean` | 无             | 选项过滤函数             |
+
+
+
+以上是一份下拉框组件的文档示例，你可以根据实际组件的功能和属性进行调整与补充。 

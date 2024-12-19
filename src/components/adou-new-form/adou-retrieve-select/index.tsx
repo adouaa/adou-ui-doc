@@ -7,6 +7,15 @@ import useClickOutside from "../../../common/hooks/useClickOutside";
 import getAbsolutePosition from "@site/src/common/utils/getAbsolutePosition";
 
 export interface SelectProps {
+  shouldFocus?: boolean;
+  closeWhenSelect?: boolean;
+  wrapperStyle?: React.CSSProperties;
+  wrapperWidth?: any;
+  commonSuffixContent?: string;
+  clearable?: boolean;
+  formStyle?: React.CSSProperties;
+  autoFocus?: boolean;
+  showLabel?: boolean;
   maxSelectedListWidth?: any;
   maxHeight?: string;
   activeColor?: { font: string; bgc: string };
@@ -33,28 +42,39 @@ export interface SelectProps {
   defaultValue?: any;
   options: any[];
   placeholder?: string;
-  size?: "sm" | "lg";
+  size?: "sm" | "lg" | "default";
   externalClassName?: string;
   readOnly?: any;
   showSelected?: boolean;
   single?: boolean;
   onInputChange?: (e?: any, ...args: any) => void;
   onFormDataChange?: (key: string, value: any) => void;
+  onFieldChange?: (name: string, value: any) => void;
+  onValidateField?: (name: string, value: any) => void;
 }
 
 interface RetrieveSelectProps extends SelectProps {
   onRetrieveSelectChange?: (selectedOptions: any[]) => void;
-  onDelete?: () => void;
+  onDelete?: (item: any) => void;
 }
 
 const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
   (props: RetrieveSelectProps, ref) => {
     const {
+      shouldFocus = true, // 是否聚焦
+      closeWhenSelect = true,
+      wrapperStyle,
+      wrapperWidth,
+      clearable = true,
+      commonSuffixContent,
+      formStyle,
+      autoFocus = true,
+      showLabel = true,
       maxSelectedListWidth,
       maxHeight = "300px",
       activeColor = { font: "#fff", bgc: "#2783d8" },
       returnType,
-      showDefaultValue = true,
+      showDefaultValue = false, // 不能为 true
       placeholder = "请输入",
       isFormItem = true,
       labelKey = "label",
@@ -84,6 +104,8 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
       onRetrieveSelectChange,
       onDelete,
       onFormDataChange,
+      onFieldChange,
+      onValidateField,
     } = props;
 
     const searchValueRef = useRef<string>(defaultValue || "");
@@ -95,12 +117,12 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
     const [isHighlighted, setIsHighlighted] = useState(false);
     const [focusedIndex, setFocusedIndex] = useState<number>(-1); // 新增状态，用于跟踪当前聚焦的选项
     const [isInputFocusing, setIsInputFocusing] = useState<boolean>(false);
+    const [isEnter, setIsEnter] = useState<boolean>(false);
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [closing, setClosing] = useState<boolean>(false);
 
     const retrieveInputRef = useRef<any>();
-    const selectListRef = useRef<any>();
     const retrieveSelectWrapperFormControlRef = useRef<any>();
     const contentRef = useRef<any>();
     const [customSelectContentPosition, setCustomSelectContentPosition] =
@@ -110,12 +132,21 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
       setIsOpen((prev: boolean) => !prev);
     };
 
+    const handleFieldChange = (value: any) => {
+      onFieldChange && onFieldChange(name!, value);
+    };
+
+    const handleValidate = (data?: any) => {
+      onValidateField && onValidateField(name!, data);
+    };
+
     const handleClose = () => {
       if (readOnly) return;
 
       if (isOpen) {
         validate();
         setClosing(true);
+        setIsHighlighted(false);
         setTimeout(() => {
           setClosing(false);
           setIsOpen((prev: boolean) => !prev);
@@ -137,7 +168,29 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
       isOpen && contentRef.current
     );
 
-    const handleSelect = (option: any) => {
+    const calcContentPosition = () => {
+      const position = getAbsolutePosition(
+        retrieveSelectWrapperFormControlRef.current,
+        0,
+        0
+      );
+      const viewportHeight = window.innerHeight;
+      const rect =
+        retrieveSelectWrapperFormControlRef.current.getBoundingClientRect();
+      const distanceToBottom = viewportHeight - rect.bottom;
+      // 如果 距离底部小于内容高度，则向上弹出
+      if (distanceToBottom < contentRef.current?.clientHeight) {
+        position.y =
+          position.y - contentRef.current?.clientHeight - position.height;
+      }
+      setCustomSelectContentPosition(position);
+    };
+
+    const handleSelect = (
+      option: any,
+      e?: React.MouseEvent<HTMLDivElement>
+    ) => {
+      e?.stopPropagation();
       if (!option) return;
       retrieveInputRef.current.value = "";
       const currentSelectList = optionList
@@ -182,7 +235,7 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
         }
       }
       let hasSelected = selectedOptions.some(
-        (item) => item[labelKey] === option[labelKey]
+        (item) => item[valueKey || labelKey] === option[valueKey || labelKey]
       );
       if (single) {
         const data = hasSelected ? [] : [option];
@@ -191,8 +244,12 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
           onRetrieveSelectChange(hasSelected ? {} : option);
         if (returnType === "obj" || showDefaultValue) {
           onFormDataChange && onFormDataChange(name!, data[0]);
+          handleFieldChange && handleFieldChange(data[0]);
+          handleValidate && handleValidate(data[0]);
         } else {
           onFormDataChange && onFormDataChange(name!, data[0]?.[valueKey]);
+          handleFieldChange && handleFieldChange(data[0]?.[valueKey]);
+          handleValidate && handleValidate(data[0]?.[valueKey]);
         }
       } else {
         const currentSelectedOptions = [...selectedOptions, option];
@@ -202,20 +259,16 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
             )
           : currentSelectedOptions;
         setSelectedOptions(data);
-        onRetrieveSelectChange && onRetrieveSelectChange(data);
         onFormDataChange && onFormDataChange(name!, data);
+
+        onRetrieveSelectChange && onRetrieveSelectChange(option);
+        handleFieldChange && handleFieldChange(data);
+        handleValidate && handleValidate(data[0]?.[valueKey]);
       }
       setShowSelectedList(true);
-
-      setShowOptions(false);
-      setIsOpen(false);
-      setIsInputFocusing(false);
-
-      setFocusedIndex(-1);
-    };
-
-    const handleInputClick = (e: any) => {
-      setIsHighlighted(true);
+      if (single) {
+        closeWhenSelect && handleClose();
+      }
     };
 
     // 输入框聚焦
@@ -232,14 +285,26 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
       searchValueRef.current = value;
       onInputChange && onInputChange(e.target?.value);
       // 搜索词修改时也需要展示选项--为了防止有值的时候 handleFocus无法打开
-      setIsOpen(true);
+      // setShowOptions(true);
       setTimeout(() => {
+        setIsOpen(true);
+
         setShowOptions(true);
       }, 10);
     };
 
-    const handleDeleteItem = (item: any) => {
-      const selectedList = selectedOptions.filter((option) => option !== item);
+    const handleDeleteIconFocus = (e: React.FocusEvent<HTMLSpanElement>) => {
+      console.log("1: ", 1);
+      e.stopPropagation();
+      debugger;
+    };
+
+    const handleDeleteItem = (e: React.MouseEvent, item: any) => {
+      e.stopPropagation();
+      const selectedList = selectedOptions.filter(
+        (option) => option[valueKey] !== item[valueKey]
+      );
+      console.log("selectedList: ", selectedList);
       setSelectedOptions(selectedList);
       setOptionList(
         optionList.map((v: any) => {
@@ -250,23 +315,36 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
         })
       );
       validate();
-      onDelete && onDelete();
+      onDelete && onDelete(item);
+      handleValidate(selectedList);
+      handleFieldChange(selectedList);
     };
 
-    const handleBlur = () => {};
+    const handleBlur = () => {
+      setIsHighlighted(false);
+    };
 
-    const handleWrapperClick = (e: any) => {
+    const handleMouseEnter = () => {
+      setIsEnter(true);
+    };
+
+    const handleMouseLeave = () => {
+      setIsEnter(false);
+    };
+
+    const handleWrapperClick = (e: React.MouseEvent<HTMLDivElement>) => {
+      console.log("wrapper: ");
+      e.stopPropagation();
       if (readOnly) return;
       // retrieveInputRef.current && retrieveInputRef.current.focus();
       setIsHighlighted(true);
-      const position = getAbsolutePosition(
-        retrieveSelectWrapperFormControlRef.current,
-        0,
-        0
-      );
-      setCustomSelectContentPosition(position);
+
       if (!isOpen && selectedOptions.length === 0) {
         toggleDropdown();
+        setTimeout(() => {
+          setShowOptions(true);
+          calcContentPosition();
+        }, 10);
       }
       // 为了适配通过tab键来定位聚焦，把这些点击的逻辑去掉
       /* if (!isOpen) {
@@ -308,9 +386,15 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
       );
     };
 
-    const handleClickCommonSuffixIcon = () => {
+    const handleClickCommonSuffixIcon = () => {};
+
+    const handleClearIconClick = (e: React.MouseEvent<HTMLSpanElement>) => {
+      e.stopPropagation();
       clear();
       if (required) setError(true);
+      handleFieldChange?.(returnType === "str" ? "" : {});
+      retrieveInputRef.current.value = "";
+      handleValidate("");
     };
 
     useImperativeHandle(ref, () => ({
@@ -329,26 +413,22 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
     };
 
     const retrieveSelectClasses = classNames({
-      "mb-3": !error && isFormItem,
-      "retrieve-select-wrapper": true,
+      // 'mb-3': !error && isFormItem,
+      "adou-retrieve-select-wrapper": true,
       [externalClassName as string]: externalClassName,
     });
 
     const handleFocus = (event: any) => {
+      if (!shouldFocus) return;
       setIsHighlighted(true);
       // 没值的时候打开， 去掉了&& selectedOptions.length === 0 这个判断
-      if (!readOnly && !isOpen) {
+      if (!readOnly && !isOpen && selectedOptions.length === 0) {
         toggleDropdown(); // 键盘tab过来的时候打开下拉框
         setTimeout(() => {
           setShowOptions(true);
         }, 10);
       }
-      const position = getAbsolutePosition(
-        retrieveSelectWrapperFormControlRef.current,
-        0,
-        0
-      );
-      setCustomSelectContentPosition(position);
+      calcContentPosition();
       retrieveInputRef.current?.focus();
     };
 
@@ -386,6 +466,7 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
     };
 
     useEffect(() => {
+      console.log("defaultValue: ", defaultValue);
       let arr: any[] = [];
       if (single) {
         if (defaultValue) {
@@ -454,7 +535,7 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
         }
       } else {
         if (defaultValue?.length) {
-          defaultValue?.map((item: any) => {
+          defaultValue?.map?.((item: any) => {
             tempOptions.some((option: any) => {
               option[valueKey] === item[valueKey] && arr.push(option);
               return false;
@@ -505,48 +586,46 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
 
     return (
       <div
+        onClick={handleWrapperClick}
         onFocus={handleFocus}
         onKeyDown={handleKeyDown}
         className={retrieveSelectClasses}
         style={{
-          width,
-          ...(inline && !width ? { flex: 1, marginRight: "15px" } : {}),
+          ...wrapperStyle,
+          ...(wrapperWidth ? { width: wrapperWidth } : { flex: 1 }),
         }}
       >
         <div
-          className={`content-box ${
+          className={`adou-retrieve-select-content-box ${
             inputGroup ? "inputGroup" : `label-in-${labelPosition}`
-          }`}
+          } ${labelPosition === "top" && inline ? "me-2" : ""}`}
         >
-          <span
-            className={`label-box ${inputGroup ? "input-group-text" : ""}`}
-            style={{
-              color: labelColor,
-              width: labelWidth,
-              alignItems: labelPosition === "left-top" ? "start" : "center",
-              ...(labelPosition !== "top" && { display: "flex" }),
-            }}
+          <div
+            className="adou-retrieve-select"
+            style={{ flex: 1 }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
-            {label}
-          </span>
-          <div className="retrieve-select-form-content">
             <div
               style={{
-                display: "flex",
-                flexWrap: single ? "nowrap" : "wrap",
-                ...(suffixContentType === "button"
+                flexWrap: "nowrap",
+                ...(suffixContent && suffixContentType === "button"
                   ? {
                       borderTopRightRadius: 0,
                       borderBottomRightRadius: 0,
                       // borderRight: "none",
                     }
                   : {}),
+
+                ...formStyle,
+                /* minHeight:
+                  size === "lg" ? "48px" : size === "sm" ? "31px" : "40px", */
               }}
               ref={retrieveSelectWrapperFormControlRef}
               tabIndex={0}
               onBlur={handleBlur}
-              onClick={handleWrapperClick}
-              className={`select-list-box form-control ${
+              // onClick={handleWrapperClick}
+              className={`adou-retrieve-select-list-box d-flex align-items-center form-control ${
                 isHighlighted ? "focus" : ""
               }`}
             >
@@ -559,8 +638,7 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
                     );
                   })}{" "}
               </select>
-
-              <div ref={selectListRef} className="select-list">
+              <div className="adou-retrieve-select-list">
                 {!isInputFocusing &&
                   showSelected &&
                   showSelectedList &&
@@ -572,57 +650,73 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
                         }}
                         className={`${
                           single
-                            ? "selected-option-single ellipsis-1"
-                            : "selected-option"
+                            ? "adou-retrieve-selectd-option-single ellipsis-1"
+                            : "adou-retrieve-selectd-option"
                         }`}
                         key={option[valueKey]}
                       >
                         {option[labelKey]}
                         {!single && (
                           <i
-                            onClick={() => handleDeleteItem(option)}
-                            className="option-icon fa-regular fa-circle-xmark"
+                            onClick={(e) => handleDeleteItem(e, option)}
+                            className="adou-retrieve-select-option-icon fa-regular fa-circle-xmark"
                           ></i>
                         )}
                       </div>
                     );
                   })}
               </div>
-              <div className="input-control">
+              <div className="adou-retrieve-select-input-control">
                 <input
                   onKeyDown={handleInputKeyDown}
                   ref={retrieveInputRef}
-                  placeholder={isInputFocusing ? placeholder : ""}
+                  placeholder={
+                    isInputFocusing || !selectedOptions.length
+                      ? placeholder
+                      : ""
+                  }
                   onFocus={handleInputFocus}
                   onChange={(e) => handleInputChange(e)}
-                  onClick={handleInputClick}
+                  // onClick={handleInputClick}
                   readOnly={readOnly}
                   type="text"
-                  className="retrieve-input"
+                  className="adou-retrieve-select-input"
                   aria-label="Username"
                   aria-describedby="basic-addon1"
+                  style={
+                    {
+                      // 要比父组件 少 2px，否则会把父组件给挡住
+                      /* minHeight:
+                      size === "lg" ? "46px" : size === "sm" ? "30px" : "38px", */
+                      // maxWidth: "60px",
+                    }
+                  }
                 />
               </div>
-              <div className="icon-box">
-                <i
-                  className={`icon text-secondary fa-solid fa-angle-right ${
-                    isOpen ? "rotate-up" : "rotate-down"
-                  }`}
-                ></i>
-              </div>
+              {clearable && isEnter && selectedOptions.length ? (
+                <div
+                  onClick={(e) => e.stopPropagation()}
+                  className="adou-retrieve-select-clear-icon-box"
+                >
+                  <i
+                    onFocus={(e) => e.stopPropagation()}
+                    className="adou-retrieve-select-clear-icon fa-regular fa-circle-xmark text-secondary"
+                    style={{ fontSize: "12px", cursor: "pointer" }}
+                    onClick={handleClearIconClick}
+                  ></i>
+                </div>
+              ) : (
+                <div className="adou-retrieve-select-icon-box">
+                  <i
+                    className={`adou-retrieve-select-icon text-secondary fa-solid fa-angle-right ${
+                      isOpen ? "rotate-up" : "rotate-down"
+                    }`}
+                  ></i>
+                </div>
+              )}
             </div>
-            {suffixContent && (
-              <div
-                className={`${
-                  suffixContentType === "button"
-                    ? "suffix-content-btn-wrapper px-2"
-                    : "ms-2"
-                }`}
-              >
-                {suffixContent}
-              </div>
-            )}
           </div>
+
           {commonSuffixIcon && (
             <i
               onClick={handleClickCommonSuffixIcon}
@@ -644,8 +738,8 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
               maxHeight,
               ...(closing ? { opacity: 0, transform: "scaleY(0)" } : {}),
             }}
-            className={`retrieve-select-content ${
-              showOptions ? "retrieve-select-content-open" : ""
+            className={`adou-retrieve-select-content ${
+              showOptions ? "adou-retrieve-select-content-open" : ""
             }`}
           >
             {!readOnly &&
@@ -659,12 +753,12 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
                         color: option.selected ? activeColor.font : "#000",
                         backgroundColor: option.selected ? activeColor.bgc : "",
                       }}
-                      onClick={() => handleSelect(option)}
-                      className={`retrieve-select-option ${
-                        option.selected && "retrieve-select-option-active"
+                      onClick={(e: any) => handleSelect(option, e)}
+                      className={`adou-retrieve-select-option ${
+                        option.selected && "adou-retrieve-select-option-active"
                       } ${
                         focusedIndex === index &&
-                        "retrieve-select-option-focused"
+                        "adou-retrieve-select-option-focused"
                       }`}
                     >
                       {option[labelKey]}
@@ -672,7 +766,9 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
                   );
                 })
               ) : (
-                <div className="none-match ps-2 font-italic">No content</div>
+                <div className="adou-retrieve-select-none-match ps-2 font-italic">
+                  No content
+                </div>
               ))}
           </div>,
           document.body
@@ -694,5 +790,7 @@ const RetrievrSelect: React.FC<RetrieveSelectProps> = React.forwardRef(
     );
   }
 );
+
+RetrievrSelect.displayName = "RetrievrSelect";
 
 export default RetrievrSelect;

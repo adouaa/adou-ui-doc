@@ -37,12 +37,18 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Form",
-      items: ["form/button", "form/cascader", "form/checkbox", "form/input"],
+      items: [
+        "form/cascader",
+        "form/checkbox",
+        "form/input",
+        "form/下拉选择框",
+      ],
     },
     {
       type: "category",
       label: "Web-Elements",
       items: [
+        "web-elements/button",
         "web-elements/calendar",
         "web-elements/card",
         "web-elements/collapseX",

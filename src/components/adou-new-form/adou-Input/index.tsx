@@ -255,7 +255,7 @@ const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
       />
       {suffix && <div className="suffix-box">{suffix}</div>}
 
-      {clearable && true && value ? (
+      {clearable && isEnter && value ? (
         <span
           className="adou-input-clear-icon-box fade-enter me-1"
           style={{

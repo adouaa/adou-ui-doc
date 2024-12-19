@@ -8,6 +8,10 @@ import Basic from "@site/src/pages/form/input/Basic";
 import Size from "@site/src/pages/form/input/Size";
 import Varient from "@site/src/pages/form/input/Varient";
 import Addon from "@site/src/pages/form/input/Addon";
+import TextArea from "@site/src/pages/form/input/TextArea";
+import AutoSize from "@site/src/pages/form/input/AutoSize";
+import PrefixAndSuffix from "@site/src/pages/form/input/PrefixAndSuffix";
+import Clearable from "@site/src/pages/form/input/Clearable";
 
 ## 1. 基本使用
 
@@ -36,7 +40,7 @@ const VarientExample = () => {
   );
 };
 export default VarientExample;
-````
+```
 </details>
 </Card>
 
@@ -69,7 +73,7 @@ const SizeExample = () => {
   );
 };
 export default SizeExample;
-````
+```
 
 </details>
 </Card>
@@ -134,46 +138,129 @@ const VarientExample = () => {
   );
 };
 export default VarientExample;
-````
+```
 </details>
 </Card>
 
 ## 5. 文本域
 
-用于多行输入，通过 `rows` 属性可以设置文本域的行数，默认值为 `4`。
+用于多行输入，通过 `rows` 属性可以设置文本域的行数，默认值为 `2`。
 
 **效果示例**：
 
 <Card>
-<Addon />
+<TextArea />
 <details className="mt-3">
 <summary>点击查看代码</summary>
 ```jsx
 import React from "react";
-import Input from "@site/src/components/adou-new-form/adou-Input";
-const VarientExample = () => {
+import TextArea from "@site/src/components/adou-new-form/adou-textarea";
+
+const TextAreaExample = () => {
+return (
+
+<div className="text-area-wrapper">
+<TextArea defaultValue="这是一段文字"></TextArea>
+</div>
+);
+};
+export default TextAreaExample;
+```
+</details>
+</Card>
+
+## 6. 适应文本高度的文本域
+
+`autoSize` 是一个对象，在指定最小行数和最大行数， `TextArea` 会自动适应文本的高度。
+
+**效果示例**：
+
+<Card>
+<AutoSize />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React, { useState } from "react";
+import TextArea from "@site/src/components/adou-new-form/adou-textarea";
+
+const AutoSizeExample = () => {
   return (
-    <div className="varient-wrapper">
-      <div className="outlined-input">
-        <Input placeholder="请输入内容" />
-      </div>
-      <div className="filled-input my-2">
-        <Input varient="filled" size="lg" placeholder="请输入内容" />
-      </div>
-      <div className="borderless-input">
-        <Input varient="borderless" size="sm" placeholder="请输入内容" />
-      </div>
+    <div className="auto-size-wrapper">
+      <TextArea
+        autoSize={{ minRows: 2, maxRows: 4 }}
+        defaultValue="这是一段文字"
+      ></TextArea>
     </div>
   );
 };
-export default VarientExample;
-````
+export default AutoSizeExample;
+```
 </details>
 </Card>
 
 ## 6. 前缀和后缀
 
+通过 `prefix` 和 `suffix` 属性可以为输入框上添加 `前缀` 或 `后缀`。
+
+**效果示例**：
+
+<Card>
+<PrefixAndSuffix />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React, { useState } from "react";
+import Input from "@site/src/components/adou-new-form/adou-Input";
+
+const PrefixAndSuffixExample = () => {
+  return (
+    <div className="basic-wrapper">
+      <div className="common">
+        <Input prefix={"￥"} placeholder="前缀和后缀" />
+      </div>
+      <div className="icon mt-2">
+        <Input
+          prefix={<i className="fa fa-user"></i>}
+          suffix={<i className="fa fa-search"></i>}
+          placeholder="前缀和后缀图标"
+        />
+      </div>
+    </div>
+  );
+};
+export default PrefixAndSuffixExample;
+```
+
+</details>
+</Card>
+
 ## 7. 带移除图标
+
+通过 `clearable` 属性可以在输入框有值的时候展示 清除 按钮。
+
+**效果示例**：
+
+<Card>
+<Clearable />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React, { useState } from "react";
+import Input from "@site/src/components/adou-new-form/adou-Input";
+
+const ClearableExample = () => {
+  return (
+    <div className="clearable-wrapper">
+      <Input clearable placeholder="请输入内容" />
+    </div>
+  );
+};
+export default ClearableExample;
+```
+
+</details>
+</Card>
+
 
 ## Input Props
 
@@ -228,10 +315,4 @@ export default VarientExample;
 | onFieldChange                  | `(name: string, value: any) => void`                         | 无             | 字段改变事件处理函数     |
 | onValidateField                | `(name: string, value?: any) => void`                        | 无             | 字段验证事件处理函数     |
 
-```
 
-```
-
-```
-
-```
