@@ -1,0 +1,61 @@
+# 水平滚动 组件
+
+import Card from "@site/src/components/web-elements/adou-card";
+import Basic from "@site/src/pages/web-elements/horizontal-scroll-view/Basic"
+import Custom from "@site/src/pages/form/hint/Custom"
+
+`HorizonScrollView` 是一个水平滚动视图组件，支持左右滚动按钮，适用于需要水平滚动的内容展示。。
+
+## 基本使用
+
+传入 `children` 即可
+
+**效果示例**：
+
+<Card>
+<Basic />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import { useState, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
+import React from "react";
+import HorizonScrollView from "@site/src/components/web-elements/adou-horizontal-scroll-view";
+
+interface BasicProps {}
+
+const Basic = ({}: BasicProps) => {
+  return (
+    <div className="basic-wrapper">
+      <HorizonScrollView>
+        <div className="scroll-item px-3">Item1</div>
+        <div className="scroll-item px-3">Item2</div>
+        <div className="scroll-item px-3">Item3</div>
+        <div className="scroll-item px-3">Item4</div>
+        <div className="scroll-item px-3">Item5</div>
+        <div className="scroll-item px-3">Item6</div>
+        <div className="scroll-item px-3">Item7</div>
+        <div className="scroll-item px-3">Item8</div>
+        <div className="scroll-item px-3">Item9</div>
+        <div className="scroll-item px-3">Item10</div>
+        <div className="scroll-item px-3">Item11</div>
+        <div className="scroll-item px-3">Item12</div>
+        <div className="scroll-item px-3">Item13</div>
+        <div className="scroll-item px-3">Item14</div>
+      </HorizonScrollView>
+    </div>
+  );
+};
+
+export default Basic;
+
+```
+</details>
+</Card>
+
+
+## Props
+
+| 属性名   | 类型   | 默认值 | 描述           |
+| -------- | ------ | ------ | -------------- |
+| children | `any`  | 无     | 滚动视图的内容 |

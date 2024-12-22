@@ -36,7 +36,7 @@ const TagsExample = () => {
       <Select
         defaultValue={[
           { value: "john_smith", label: "John Smith" },
-          "Emma Watson",
+          "emma_watson",
         ]}
         mode="tags"
         placeholder="请输入"

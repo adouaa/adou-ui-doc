@@ -1,0 +1,146 @@
+# Hint 组件
+
+import Card from "@site/src/components/web-elements/adou-card";
+import Basic from "@site/src/pages/form/hint/Basic"
+import Custom from "@site/src/pages/form/hint/Custom"
+
+`Hint` 组件用于显示提示信息，支持自定义背景色和文字颜色。每个提示项可以包含多个文本段落，并支持高亮显示。
+
+## 1. 基本使用
+
+组件传入 `hintContent` 属性，是一个数组，数组的每一项是一个 对象，对象包含 `title` 和 `content` 属性，`title`是每一项的头部内容，`content` 也是一个数组，是这一项提示所包含的内容
+
+**效果示例**：
+
+<Card>
+<Basic />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import { useState, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
+import React from "react";
+import Hint from "@site/src/components/adou-hint";
+
+interface BasicProps {}
+
+const Basic = ({}: BasicProps) => {
+  const hintContent = [
+    {
+      title: "提示标题1",
+      content: [
+        {
+          value: "这是普通文本。",
+        },
+        {
+          value: "这是高亮文本。",
+          textColor: "#ff0000",
+          textBgcolor: "#ffff00",
+        },
+      ],
+    },
+    {
+      title: "提示标题2",
+      content: [{ value: "另一个普通文本。" }],
+    },
+  ];
+
+  return (
+    <div className="basic-wrapper">
+      <Hint hintContent={hintContent} bgc="#e0f7fa" color="#006064"></Hint>
+    </div>
+  );
+};
+
+export default Basic;
+
+```
+</details>
+</Card>
+
+## 2. 自定义文本内容
+
+如果不像 **基本使用** 那样通过对 `content` 下的 `textColor` 和 `textBgcolor` 属性赋值，可以直接 **自定义** 要展示的内容
+
+**效果示例**：
+
+<Card>
+<Custom />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import { useState, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
+import React from "react";
+import Hint from "@site/src/components/adou-hint";
+import Button from "@site/src/components/adou-button";
+
+interface BasicProps {}
+
+const Custom = ({}: BasicProps) => {
+  const hintContent = [
+    {
+      title: "提示标题1",
+      content: [
+        {
+          value: "这是普通文本。",
+        },
+        {
+          value: (
+            <span>
+              这是自定义文本：
+              <Button
+                onClick={() => window.alert("这是一个提示")}
+                type="primary"
+                size="sm"
+              >
+                提示
+              </Button>
+            </span>
+          ),
+        },
+      ],
+    },
+    {
+      title: "提示标题2",
+      content: [{ value: "另一个普通文本。" }],
+    },
+  ];
+
+  return (
+    <div className="custom-wrapper">
+      <Hint hintContent={hintContent} bgc="#bbf146" color="black"></Hint>
+    </div>
+  );
+};
+
+export default Custom;
+
+```
+</details>
+</Card>
+
+
+## Hint Props
+
+| 属性名      | 类型                | 默认值       | 描述                       |
+| ----------- | ------------------- | ------------ | -------------------------- |
+| hintContent | `HintItem[]`        | 无           | 提示内容列表               |
+| bgc         | `string`            | `"#cff4fc"`  | 提示框背景色               |
+| color       | `string`            | `"#087990"`  | 提示框文字颜色             |
+
+### HintItem
+
+| 属性名  | 类型          | 描述               |
+| ------- | ------------- | ------------------ |
+| title   | `string`      | 提示项的标题       |
+| content | `ContentProps[]` | 提示项的内容       |
+
+### ContentProps
+
+| 属性名      | 类型                     | 描述                       |
+| ----------- | ------------------------ | -------------------------- |
+| value       | `string \| React.ReactNode` | 文本内容或 React 节点      |
+| textColor   | `string`                 | 文本颜色                   |
+| textBgcolor | `string`                 | 文本背景色                 |
+

@@ -627,7 +627,15 @@ const Select = React.forwardRef((props: SelectProps, ref) => {
         if (defaultValue) {
           setSelectValueList(
             Array.isArray(defaultValue)
-              ? defaultValue
+              ? defaultValue.map((item: any) => {
+                  if (typeof item === "object") {
+                    // 如果是 对象类型 ，则直接加入 数组
+                    return item;
+                  } else {
+                    // 如果不是 对象类型 ， 则根据 valueKey 和 labelKey 生成 对象
+                    return { [valueKey]: item, [labelKey]: item };
+                  }
+                })
               : typeof defaultValue === "object"
               ? [defaultValue]
               : [{ [valueKey]: defaultValue, [labelKey]: defaultValue }]

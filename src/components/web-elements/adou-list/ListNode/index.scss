@@ -1,0 +1,142 @@
+.list-node-wrapper {
+    color: #606266;
+    font-size: 14px;
+
+    .node-item-list {
+        position: relative;
+
+        &.show-line::before {
+            height: calc(0.875rem * 1.5 + 0.5rem + 0.5rem);
+            content: '';
+            position: absolute;
+            left: -8px;
+            // border-inline-end: 1px solid #d9d9d9;
+            width: 0.875rem;
+            top: calc(0px - 1.24rem);
+            border-bottom: 1px solid #d9d9d9;
+            border-left: 1px solid #d9d9d9;
+            z-index: 0;
+        }
+
+        &.show-line:not(.each-last):after {
+            content: '';
+            position: absolute;
+            // top: calc(0.875rem * 1.5);
+            left: -8px;
+            bottom: -16px;
+            // border-inline-end: 1px solid #d9d9d9;
+            width: 0.875rem;
+            height: 100%;
+            border-bottom: 1px solid #d9d9d9;
+            border-left: 1px solid #d9d9d9;
+            border-bottom-width: 0;
+            z-index: -1;
+        }
+
+        &.show-line.first::after {
+            left: -0px !important; // 由于 overflow 的原因，所以让 都是第一层的节点，左边框线的 left 为0
+            // border-left-width: 5px;
+        }
+
+        &.show-line.first::before {
+            border-left-width: 0px;
+        }
+
+        .node-item-content {
+            // 使用 display 会出现 hover背景色和 active高亮色宽度比较短，但是没事。。
+            display: flex;
+            align-items: center;
+            /* display: inline-block; // 这个加上就会把这个盒子的宽度变成跟内容的宽度一样，而不会是根据父容器的宽度 */
+            padding: 3px 0px 3px 14px;
+            // white-space: wrap;
+            position: relative;
+            /* 添加相对定位--好像没用 */
+            min-width: 120px;
+            cursor: pointer;
+
+            /*  &:hover {
+      background-color: #f6f6f6;
+    } */
+
+            .tag1 {
+                font-size: 12px;
+                padding: 2px 6px;
+                border-radius: 6px;
+                background-color: #f0f9eb;
+                color: #6dc442;
+                white-space: nowrap;
+            }
+
+            .tag2 {
+                font-size: 12px;
+                padding: 2px 6px;
+                border-radius: 6px;
+                background-color: #fef0f0;
+                color: #f67878;
+                white-space: nowrap;
+            }
+
+            .item-name {
+                flex: 1;
+                padding: 2px 8px;
+                border-radius: 6px;
+                word-break: break-all; // 树节点 的名字太长让它换行
+
+                &:hover {
+                    background-color: #cce1fc;
+                }
+
+                /* &.active {
+                    background-color: red;
+                } */
+
+
+            }
+
+            .right-content {
+                padding: 1px;
+                position: absolute;
+                border-radius: 4px;
+                // top: 2px;
+                right: 10px;
+                color: #606266;
+                background-color: #fff;
+                z-index: 999;
+
+                i {
+                    margin: 0 4px;
+                }
+            }
+
+            .toggle-icon {
+                transition: all 0.3s ease;
+            }
+        }
+
+        .has-children {}
+
+        .no-children {
+            /* padding-left: 10px; */
+        }
+    }
+
+    .children {
+        /* padding-left: 10px; */
+        max-height: 0;
+        /* 初始状态下高度为0 */
+        overflow-y: hidden;
+
+        /* 隐藏溢出内容 */
+        &.not-expand {
+            transition: max-height 0.25s ease; //这个加上过度效果会出现点击的节点的内部闪现x轴滚动条
+        }
+
+        &.expanded {
+            overflow-y: clip; // 这句话加上就不会出现很多歌滚动条。。。
+            transition: max-height 0.3s ease;
+            /* 添加过渡效果 */
+            max-height: 1000px;
+            /* 展开时高度自动适应内容 */
+        }
+    }
+}

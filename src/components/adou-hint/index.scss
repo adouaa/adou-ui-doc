@@ -1,0 +1,21 @@
+.hint-wrapper {
+    font-size: 12px;
+    padding: 7px;
+    border-radius: 6px;
+    .hint-item {
+        padding: 0px 20px 14px 0px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #9ed6e2;
+        .hint-title {
+            font-weight: bold;
+        }
+        .hint-content {
+            padding-left: 16px;
+        }
+        &:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+    }
+}

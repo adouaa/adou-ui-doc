@@ -41,7 +41,8 @@ const sidebars: SidebarsConfig = {
         "form/cascader",
         "form/checkbox",
         "form/input",
-        "form/下拉选择框",
+        "form/select",
+        "form/hint",
       ],
     },
     {
@@ -54,6 +55,8 @@ const sidebars: SidebarsConfig = {
         "web-elements/collapseX",
         "web-elements/collapseY",
         "web-elements/dialog",
+        "web-elements/horizontal-scroll-view",
+        "web-elements/list",
       ],
     },
   ],

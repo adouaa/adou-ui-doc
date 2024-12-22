@@ -1,0 +1,124 @@
+# 树形 组件
+
+import Card from "@site/src/components/web-elements/adou-card";
+import Basic from "@site/src/pages/web-elements/list/Basic"
+import ShowLine from "@site/src/pages/web-elements/list/ShowLine"
+import Async from "@site/src/pages/web-elements/list/Async"
+
+`List` 是一个 树控件，可以用于展示树形结构的数据，使用它可以完整展现其中的 **层级关系**，并具有展开收起选择等交互功能。
+
+## 1. 基本使用
+
+**效果示例**：
+
+<Basic />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import List from "@site/src/components/web-elements/adou-list";
+import { data } from "./data";
+
+interface BasicProps {}
+
+const Basic = ({}: BasicProps) => {
+  return (
+    <div className="basic-wrapper p-2">
+      <List isTree data={data}></List>
+    </div>
+  );
+};
+
+export default Basic;
+```
+</details>
+
+## 2. 连接线
+
+`showLine` 属性用于控制是否显示连接线，默认为 `false`。
+
+**效果示例**：
+
+<ShowLine />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import List from "@site/src/components/web-elements/adou-list";
+import { data } from "./data";
+
+interface BasicProps {}
+
+const Basic = ({}: BasicProps) => {
+  return (
+    <div className="basic-wrapper p-2">
+      <List isTree data={data}></List>
+    </div>
+  );
+};
+
+export default Basic;
+```
+</details>
+
+## 3. 异步加载数据
+
+通过 `onLoadNode` 属性，**返回获取的数据**，即可实现 异步加载数据
+
+**效果示例**：
+
+<Async />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import List from "@site/src/components/web-elements/adou-list";
+import { data } from "./data";
+
+interface AsyncProps {}
+
+const Async = ({}: AsyncProps) => {
+  const handleLoadNode = async () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve([
+          {
+            id: "11-1-1-2",
+            name: "子节点11-1-1-2",
+            children: [
+              {
+                id: "111-1-1-2",
+                name: "曾孙节点111-1-1-2",
+              },
+            ],
+          },
+        ]);
+      }, 1000);
+    });
+  };
+
+  return (
+    <div className="async-wrapper p-2">
+      <List onLoadNode={handleLoadNode} isTree data={data}></List>
+    </div>
+  );
+};
+
+export default Async;
+
+```
+</details>
+
+## 4. 自定义图标
+
+## 4. 自定义节点？
+
+## 4. 默认展开行
+
+## 5. 操作栏
+
+## Props
+
+| 属性名   | 类型   | 默认值 | 描述           |
+| -------- | ------ | ------ | -------------- |
+| children | `any`  | 无     | 滚动视图的内容 |

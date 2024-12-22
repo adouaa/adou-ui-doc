@@ -1,0 +1,53 @@
+.horizon-scroll-view-wrapper {
+  position: relative;
+  padding: 8px 0;
+
+  .horizon-scroll-view-btn {
+    cursor: pointer;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255 255 255/0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid rgb(0 0 0/0.3);
+    line-height: 1;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgb(0 0 0/0.2);
+
+    &.right {
+      right: 0;
+      transform: translate(50%, -50%);
+
+      &:hover {
+        transform: translate(50%, -50%) scale(1.1);
+        /* 保持 translate 并添加 scale */
+      }
+    }
+
+    &.left {
+      &:hover {
+        transform: translate(-50%, -50%) scale(1.1);
+        /* 保持 translate 并添加 scale */
+      }
+    }
+  }
+
+  .scroll-wrapper {
+    overflow: hidden;
+
+    .scroll-content {
+      display: flex;
+      /* overflow: hidden; 不能在 scroll-content里面加 overflow: hidden，不然一开始被隐藏的元素就会被一直隐藏 */
+
+      transition: transform 0.3s ease;
+    }
+  }
+}
