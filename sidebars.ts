@@ -36,7 +36,7 @@ const sidebars: SidebarsConfig = {
     }, */
     {
       type: "category",
-      label: "Form",
+      label: "Form 表单",
       items: [
         "form/cascader",
         "form/checkbox",
@@ -47,7 +47,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Web-Elements",
+      label: "Web Elements 网页元素",
       items: [
         "web-elements/button",
         "web-elements/calendar",

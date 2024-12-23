@@ -114,3 +114,8 @@
 .fadeInUp {
   animation: fadeInUp 1s ease-in-out 0s 1;
 }
+
+/* 菜单取消下划线 */
+.menu__link.menu__link--sublist, .menu__link {
+  text-decoration: none;
+}

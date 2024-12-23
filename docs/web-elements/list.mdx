@@ -1,9 +1,16 @@
-# 树形 组件
+---
+title: List 树形
+---
+
 
 import Card from "@site/src/components/web-elements/adou-card";
 import Basic from "@site/src/pages/web-elements/list/Basic"
 import ShowLine from "@site/src/pages/web-elements/list/ShowLine"
 import Async from "@site/src/pages/web-elements/list/Async"
+import Custom from "@site/src/pages/web-elements/list/Custom"
+import DefaultExpand from "@site/src/pages/web-elements/list/DefaultExpand"
+import OptBar from "@site/src/pages/web-elements/list/OptBar"
+import ActiveId from "@site/src/pages/web-elements/list/ActiveId"
 
 `List` 是一个 树控件，可以用于展示树形结构的数据，使用它可以完整展现其中的 **层级关系**，并具有展开收起选择等交互功能。
 
@@ -109,16 +116,353 @@ export default Async;
 ```
 </details>
 
-## 4. 自定义图标
+## 4. 自定义节点
 
-## 4. 自定义节点？
+通过 修改每一项数据的 `prefixTag` 和 `name` 属性，可以自定义节点的 图标 和 名称
 
-## 4. 默认展开行
+**效果示例**：
 
-## 5. 操作栏
+<Custom />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import List from "@site/src/components/web-elements/adou-list";
+import { data } from "./data";
 
-## Props
+interface CustomProps {}
 
-| 属性名   | 类型   | 默认值 | 描述           |
-| -------- | ------ | ------ | -------------- |
-| children | `any`  | 无     | 滚动视图的内容 |
+const Custom = ({}: CustomProps) => {
+  const data = [
+    {
+      id: "1",
+      name: "根节点1",
+      isExpanded: false,
+      prefixTag: "fa fa-home",
+      children: [
+        {
+          id: "1-1",
+          isExpanded: false,
+          name: (
+            <>
+              <h3>
+                测试<i className="fa fa-plus ms-3 small text-success"></i>
+              </h3>
+            </>
+          ),
+          children: [
+            {
+              id: "1-1-1",
+              name: "孙节点1-1-1",
+              isExpanded: false,
+              prefixTag: "fa fa-trash text-danger",
+              children: [
+                {
+                  id: "1-1-1-1",
+                  name: "曾孙节点1-1-1-1",
+                  isExpanded: false,
+                  children: [],
+                },
+                {
+                  id: "11-11-1-1",
+                  name: "曾孙节点11-11-1-1",
+                  isExpanded: false,
+                  children: [],
+                },
+                {
+                  id: "121-121-1-1",
+                  name: "曾孙节点121-1-1-1",
+                  isExpanded: false,
+                  children: [],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: "1-2",
+          name: "子节点1-2",
+          isExpanded: false,
+          children: [
+            {
+              id: "1-2-1",
+              name: "孙节点1-2-1",
+              isExpanded: false,
+              children: [],
+            },
+            {
+              id: "1-2-2",
+              name: "孙节点1-2-2",
+              isExpanded: false,
+              children: [],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: "3-1-1-2",
+      name: <em>曾孙节点3-1-1-2</em>,
+      isExpanded: false,
+      children: [
+        {
+          id: "13-1-1-2",
+          name: "曾孙节点13-1-1-2",
+          isExpanded: false,
+          children: [
+            {
+              id: "113-1-1-2",
+              name: "曾孙节点113-1-1-2",
+              isExpanded: false,
+              prefixTag: "fa fa-trash text-danger",
+              children: [
+                {
+                  id: "1113-1-1-2",
+                  name: "曾孙节点1113-1-1-2",
+                  isExpanded: false,
+                },
+              ],
+            },
+            {
+              id: "213-1-1-2",
+              name: "曾孙节点213-1-1-2",
+              isExpanded: false,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: "2",
+      name: "根节点2",
+      isExpanded: false,
+      children: [
+        {
+          id: "2-1-1-2",
+          name: "曾孙节点2-1-1-2",
+          isExpanded: false,
+          children: [
+            {
+              id: "2-2-1-2",
+              name: "曾孙节点2-2-1-2",
+              isExpanded: false,
+              children: [
+                {
+                  id: "2-3-1-2",
+                  name: "曾孙节点2-3-1-2",
+                  isExpanded: false,
+                  children: [],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: "12-2-1-2",
+          name: "曾孙节点2-2-1-2",
+          isExpanded: false,
+          children: [
+            {
+              id: "2-3-1-5",
+              name: "曾孙节点2-3-1-5",
+              isExpanded: false,
+              children: [],
+            },
+          ],
+        },
+      ],
+    },
+  ];
+
+  return (
+    <div className="custom-wrapper p-2">
+      <List isTree data={data}></List>
+    </div>
+  );
+};
+
+export default Custom;
+
+```
+</details>
+
+## 5. 默认展开行
+
+`defaultExpand` 属性传入一个数组，可以控制默认展开行
+
+**效果示例**：
+
+<DefaultExpand />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import List from "@site/src/components/web-elements/adou-list";
+import { data } from "./data";
+
+interface DefaultExpandProps {}
+
+const DefaultExpand = ({}: DefaultExpandProps) => {
+  return (
+    <div className="basic-wrapper p-2">
+      <List
+        defaltExpandNodes={["1", "1-1", "1-1-1", "3-1-1-2"]}
+        isTree
+        data={data}
+      ></List>
+    </div>
+  );
+};
+export default DefaultExpand;
+```
+</details>
+
+## 6. 操作栏
+
+`showOptIcons` 属性传入 `true` ，即可出现每项数据的操作栏，接收一个 `onOptIconClick` 函数，该函数接收两个参数，分别为 操作类型 `add | edit | delte` 和 当前项数据
+
+**效果示例**：
+
+<OptBar />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import List from "@site/src/components/web-elements/adou-list";
+import { data } from "./data";
+import Card from "@site/src/components/web-elements/adou-card";
+
+interface OptBarProps {}
+
+const OptBar = ({}: OptBarProps) => {
+  const handleOptIconClick = (type: "add" | "edit" | "delete", item: any) => {
+    alert(
+      `点击了 ${type} 按钮，当前项【id】为${item.id}，【name】为${item.name}`
+    );
+  };
+
+  return (
+    <>
+      <Card header="默认操作栏">
+        <div className="opt-bar-wrapper p-2">
+          <List
+            onOptIconClick={handleOptIconClick}
+            showOptIcons
+            isTree
+            data={data}
+          ></List>
+        </div>
+      </Card>
+      <hr />
+      <Card header="自定义操作栏">
+        <div className="opt-bar-wrapper p-2">
+          <List
+            onOptIconClick={handleOptIconClick}
+            showOptIcons
+            addIconClass="fa-solid fa-circle-plus text-success"
+            editIconClass="fa-solid fa-pencil text-secondary"
+            isTree
+            data={data}
+          ></List>
+        </div>
+      </Card>
+    </>
+  );
+};
+
+export default OptBar;
+```
+</details>
+
+## 7. 默认选中
+
+通过 `activeId` 可以设置默认选中项，传入一个字符串，表示默认选中项的 `id`
+
+**效果示例**：
+
+<ActiveId />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import List from "@site/src/components/web-elements/adou-list";
+import { data } from "./data";
+
+interface ActiveProps {}
+
+const Active = ({}: ActiveProps) => {
+  return (
+    <div className="active-wrapper p-2">
+      <List activeId={"1"} isTree data={data}></List>
+    </div>
+  );
+};
+export default Active;
+```
+</details>
+
+## 属性
+
+### List 属性
+
+| 属性名             | 类型                              | 默认值   | 描述                                   |
+| ------------------ | --------------------------------- | -------- | -------------------------------------- |
+| defaltExpandNodes  | `any[]`                           | 无       | 默认展开的节点 ID 列表                 |
+| showLine           | `boolean`                         | 无       | 是否显示连接线                         |
+| maxLevel           | `number`                          | 无       | 最大层级                               |
+| lazy               | `boolean`                         | 无       | 是否懒加载                             |
+| overflowY          | `boolean`                         | `true`   | 是否允许垂直滚动                       |
+| data               | `any[]`                           | 无       | 列表数据                               |
+| activeBgc          | `any`                             | 无       | 激活节点的背景色                       |
+| deleteIconClass    | `string`                          | 无       | 删除图标的类名                         |
+| addIconClass       | `string`                          | 无       | 添加图标的类名                         |
+| editIconClass      | `string`                          | 无       | 编辑图标的类名                         |
+| isTree             | `boolean`                         | `false`  | 是否为树形结构                         |
+| maxWidth           | `any`                             | `300`    | 最大宽度                               |
+| maxHeight          | `any`                             | `"100%"` | 最大高度                               |
+| showOptIcons       | `boolean`                         | `false`  | 是否显示操作图标                       |
+| showAddIcon        | `boolean`                         | `true`   | 是否显示添加图标                       |
+| showEditIcon       | `boolean`                         | `true`   | 是否显示编辑图标                       |
+| activeId           | `string \| number`                | 无       | 当前激活的节点 ID                      |
+| wrap               | `boolean`                         | `true`   | 是否换行                               |
+| children           | `any`                             | 无       | 子组件                                 |
+| showTag            | `boolean`                         | `true`   | 是否显示标签                           |
+| showSearch         | `boolean`                         | `false`  | 是否显示搜索                           |
+| prefixTag          | `string`                          | 无       | 前缀标签                               |
+| onToggle           | `(node: any) => void`             | 无       | 切换节点展开状态的回调                 |
+| onItemClick        | `(node: any) => void`             | 无       | 节点点击事件的回调                     |
+| onToggleIconClick  | `(node: any) => void`             | 无       | 切换图标点击事件的回调                 |
+| onOptIconClick     | `(type: string, node: any) => void` | 无     | 操作图标点击事件的回调                 |
+| onLoadNode         | `(node: any, treeData: any) => void` | 无     | 加载节点数据的回调                     |
+
+### ListNode 属性
+
+| 属性名             | 类型                              | 默认值   | 描述                                   |
+| ------------------ | --------------------------------- | -------- | -------------------------------------- |
+| defaltExpandNodes  | `any[]`                           | 无       | 默认展开的节点 ID 列表                 |
+| showLine           | `boolean`                         | 无       | 是否显示连接线                         |
+| maxLevel           | `number`                          | 无       | 最大层级                               |
+| onLoadNode         | `any`                             | 无       | 加载节点数据的回调                     |
+| lazy               | `boolean`                         | `false`  | 是否懒加载                             |
+| activeFontColor    | `string`                          | `"#fff"` | 激活节点的字体颜色                     |
+| bgc                | `string`                          | `"transparent"` | 节点背景色                       |
+| children           | `any`                             | 无       | 子组件                                 |
+| activeBgc          | `any`                             | `"#2783d8"` | 激活节点的背景色                     |
+| deleteIconClass    | `string`                          | 无       | 删除图标的类名                         |
+| addIconClass       | `string`                          | 无       | 添加图标的类名                         |
+| editIconClass      | `string`                          | 无       | 编辑图标的类名                         |
+| node               | `any`                             | 无       | 节点数据                               |
+| isTree             | `boolean`                         | 无       | 是否为树形结构                         |
+| showOptIcons       | `boolean`                         | `false`  | 是否显示操作图标                       |
+| showAddIcon        | `boolean`                         | `false`  | 是否显示添加图标                       |
+| showEditIcon       | `boolean`                         | `false`  | 是否显示编辑图标                       |
+| activeId           | `string \| number`                | 无       | 当前激活的节点 ID                      |
+| wrap               | `boolean`                         | `true`   | 是否换行                               |
+| isTreeChildren     | `boolean`                         | 无       | 是否为树形子节点                       |
+| isExpanded         | `boolean`                         | 无       | 节点是否展开                           |
+| showTag            | `boolean`                         | `true`   | 是否显示标签                           |
+| prefixTag          | `string`                          | 无       | 前缀标签                               |
+| onToggle           | `(node: any) => void`             | 无       | 切换节点展开状态的回调                 |
+| onItemClick        | `(node: any) => void`             | 无       | 节点点击事件的回调                     |
+| onToggleIconClick  | `(node: any) => void`             | 无       | 切换图标点击事件的回调                 |
+| onOptIconClick     | `(type: string, node: any) => void` | 无     | 操作图标点击事件的回调                 |

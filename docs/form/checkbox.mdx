@@ -1,5 +1,5 @@
 ---
-title: Checkbox
+title: Checkbox 复选框
 ---
 
 import Checkbox from "@site/src/components/adou-new-form/adou-checkbox"
@@ -13,7 +13,7 @@ import SuffixContent from "@site/src/pages/form/checkbox/suffix-content"
 import Required from "@site/src/pages/form/checkbox/required"
 import LabelWidth from "@site/src/pages/form/checkbox/label"
 
-`Checkbox` 是一个多选框组件，支持多选项选择，适用于需要从多个选项中选择一个或多个的场景。
+`Checkbox` 是一个复选框组件，支持多选项选择，适用于需要从多个选项中选择一个或多个的场景。
 
 ## 1. 基本使用
 
@@ -55,12 +55,12 @@ export default Basic;
 
 ## 2. `options`
 
-通过 `options` 属性，可以设置多选框的选项。
+通过 `options` 属性，可以设置复选框的选项。
 
 ### 2.1 `options`
 
 **介绍**：
-`options` 属性用于设定多选框的选项，数据源应为一个对象数组，每个对象包含 `label` 和 `value` 属性。
+`options` 属性用于设定复选框的选项，数据源应为一个对象数组，每个对象包含 `label` 和 `value` 属性。
 
 **效果示例**：
 
@@ -104,7 +104,7 @@ export default Options;
 
 ## 3. `defaultValue`
 
-`defaultValue` 属性用于设置多选框的默认选中值。
+`defaultValue` 属性用于设置复选框的默认选中值。
 
 * 类型：`string | string[] | any[]`
 
@@ -352,7 +352,7 @@ export default Required;
 </Card>
 
 
-## Checkbox Props
+## 属性
 
 | 属性名 | 类型 | 可选值 | 描述 |
 | ---- | ---- | ---- | ---- |
@@ -374,12 +374,10 @@ export default Required;
 | required | `boolean` | - | 控制组件是否为必填项。 |
 | defaultValue | `string` | string[] | `any[]` | - | 设置默认选中值。 |
 | externalClassName | `string` | - | 设置外部类名。 |
-| options | `any[]` | - | 设置多选框的选项。 |
+| options | `any[]` | - | 设置复选框的选项。 |
 | inline | `boolean` | - | 控制选项是否为行内显示。 |
 | wrap | `boolean` | - | 控制选项是否换行。 |
 | onChange | `(item: any) => void` | - | 选中值变化时的回调函数。 |
 | onFormDataChange | `() => void` | - | 表单数据变化时的回调函数。 |
 | onFieldChange | `() => void` | - | 字段变化时的回调函数。 |
 | onValidateField | `() => void` | - | 字段验证时的回调函数。 |
-
-## 类型声明

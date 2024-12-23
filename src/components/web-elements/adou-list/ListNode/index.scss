@@ -81,6 +81,7 @@
                 padding: 2px 8px;
                 border-radius: 6px;
                 word-break: break-all; // 树节点 的名字太长让它换行
+                transition: all .3s ease;
 
                 &:hover {
                     background-color: #cce1fc;
@@ -102,9 +103,20 @@
                 color: #606266;
                 background-color: #fff;
                 z-index: 999;
+                transition: all 0.3s ease;
 
                 i {
                     margin: 0 4px;
+                }
+
+                &.show-opt-icons {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+
+                &.hide-opt-icons {
+                    transform: scale(0.8);
+                    opacity: 0;
                 }
             }
 

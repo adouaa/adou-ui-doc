@@ -63,7 +63,7 @@ const List = forwardRef(
       children,
       wrap = true,
       data,
-      isTree = true,
+      isTree = false,
       showOptIcons = false,
       showAddIcon = true,
       showEditIcon = true,
@@ -220,7 +220,6 @@ const List = forwardRef(
       });
     }
 
-    // 这个函数 没用了
     const handleLoadNode = async (node: any) => {
       if (onLoadNode) {
         const res = await onLoadNode(node, treeData);
@@ -276,7 +275,7 @@ const List = forwardRef(
                 defaltExpandNodes={defaltExpandNodes}
                 showLine={showLine}
                 maxLevel={maxLevel}
-                onLoadNode={onLoadNode}
+                onLoadNode={handleLoadNode}
                 lazy={lazy}
                 activeBgc={activeBgc}
                 addIconClass={addIconClass}

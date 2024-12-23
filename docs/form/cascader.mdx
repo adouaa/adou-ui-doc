@@ -1,5 +1,5 @@
 ---
-title: Cascader
+title: Cascader 级联选择器
 ---
 
 import Cascader from "@site/src/components/adou-cascader"
@@ -38,7 +38,7 @@ import Cascader from "@site/src/components/adou-cascader"
 
 <Cascader options={[{ label: 'Option 1', value: '1', children: [{ label: 'Option 1-1', value: '1-1' }] }]} defaultValue={['1', '1-1']} />
 
-## Cascader Props
+## 属性
 
 | 属性名 | 类型 | 可选值 | 描述 |
 | ---- | ---- | ---- | ---- |
@@ -63,5 +63,3 @@ import Cascader from "@site/src/components/adou-cascader"
 | `defaultValue` | `string[]` | - | 设置默认选中值。 |
 | `onChange` | `(value: string[]) => void` | - | 选中值变化时的回调函数。 |
 | `onFormDataChange` | `(key: string, value: any) => void` | - | 表单数据变化时的回调函数。 |
-
-## 类型声明
