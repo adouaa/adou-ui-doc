@@ -1,0 +1,133 @@
+---
+title: Popover 气泡卡片
+---
+
+import Card from "@site/src/components/web-elements/adou-card";
+import Basic from "@site/src/pages/web-elements/popover/Basic"
+import Show from "@site/src/pages/web-elements/popover/Show"
+import Trigger from "@site/src/pages/web-elements/popover/Trigger"
+
+`Popover` 组件用于在用户与页面元素交互时显示更多的信息或内容，支持点击和悬停触发。
+和 `Tooltip` 的区别是，用户可以对浮层上的元素进行操作，因此它可以承载更复杂的内容，比如链接或按钮等。
+
+## 1. 基本使用
+
+**效果示例**：
+
+<Basic />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import Button from "@site/src/components/adou-button";
+import Popover from "@site/src/components/web-elements/adou-popover";
+import React, { useState } from "react";
+
+interface BasicProps {}
+
+const Basic = ({}: BasicProps) => {
+  const [show, setShow] = useState<boolean>(false);
+
+  return (
+    <div className="basic-wrapper">
+      <Popover
+        title={"Title"}
+        content={<span className="text-primary small">浮层内容</span>}
+      >
+        <Button onClick={() => setShow(true)}>click me</Button>
+      </Popover>
+    </div>
+  );
+};
+
+export default Basic;
+
+```
+</details>
+
+## 2. 控制关闭和显示
+
+通过给 `Popover` 设置 `show` 属性，可以控制在特定的情况下显示，并且可以在浮层内实现关闭浮层。
+下面通过判断 `count` 的值大于等于 2 的时候 显示浮层。
+
+**效果示例**：
+
+<Show />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import Button from "@site/src/components/adou-button";
+import Popover from "@site/src/components/web-elements/adou-popover";
+import React, { useState } from "react";
+
+interface ShowProps {}
+
+const Show = ({}: ShowProps) => {
+  const [show, setShow] = useState<boolean>(false);
+  const [count, setCount] = useState<number>(0);
+
+  const handleClick = () => {
+    if (count >= 2) {
+      setShow(true);
+    }
+    setCount(count + 1);
+  };
+
+  return (
+    <div className="show-wrapper">
+      <Popover
+        show={show}
+        title={"Title"}
+        content={
+          <span className="text-primary small" onClick={() => setShow(false)}>
+            关闭
+          </span>
+        }
+      >
+        <Button onClick={handleClick}>click me</Button>
+      </Popover>
+    </div>
+  );
+};
+
+export default Show;
+
+```
+</details>
+
+## 3. 触发方式
+
+通过 `trigger` 属性可以控制浮层的触发方式，默认为 `click`，支持 `click`、`hover`、。
+
+**效果示例**：
+
+<Trigger />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import Button from "@site/src/components/adou-button";
+import Popover from "@site/src/components/web-elements/adou-popover";
+import React, { useState } from "react";
+
+interface TriggerProps {}
+
+const Trigger = ({}: TriggerProps) => {
+  const [show, setShow] = useState<boolean>(false);
+
+  return (
+    <div className="trigger-wrapper">
+      <Popover
+        trigger="hover"
+        title={"Title"}
+        content={<span className="text-primary small">浮层内容</span>}
+      >
+        <Button onClick={() => setShow(true)}>click me</Button>
+      </Popover>
+    </div>
+  );
+};
+
+export default Trigger;
+
+```
+</details>
+

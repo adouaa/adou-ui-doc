@@ -119,3 +119,7 @@
 .menu__link.menu__link--sublist, .menu__link {
   text-decoration: none;
 }
+
+.navbar__title.text--truncate {
+  text-decoration: none;
+}

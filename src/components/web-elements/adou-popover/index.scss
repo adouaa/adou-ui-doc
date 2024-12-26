@@ -1,0 +1,97 @@
+.adou-popover-wrapper {
+  width: fit-content;
+  position: relative;
+
+  .trigger-content {}
+}
+
+.adou-popover {
+  min-width: 150px;
+  position: absolute;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.88);
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: all .2s ease-in-out;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+    0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  // border: 1px solid #e4e7ed;
+  z-index: 1;
+  transform: translate(-54%, 0px);
+  // pointer-events: none;
+  /* 防止鼠标事件穿透到 Tooltip 后面的元素 */
+
+  &.show-popover {
+    transform: scale(1.2) translate(-43%, -20px);
+    opacity: 1;
+    pointer-events: auto;
+    /* 启用鼠标事件 */
+  }
+
+  &.adou-popover-top {
+    bottom: 100%;
+    left: 50%;
+    transform: sclae(1.2) translate(-43%, -20px);
+  }
+
+  &.adou-popover-bottom {
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 10px);
+  }
+
+  &.adou-popover-left {
+    right: 100%;
+    top: 50%;
+    transform: translate(-10px, -50%);
+  }
+
+  &.adou-popover-right {
+    left: 100%;
+    top: 50%;
+    transform: translate(10px, -50%);
+  }
+}
+
+.adou-popover-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+
+  &.adou-popover-arrow-top {
+    border-width: 8px 8px 0 8px;
+    border-color: #fff transparent transparent transparent;
+    bottom: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.adou-popover-arrow-bottom {
+    border-width: 0 8px 8px 8px;
+    border-color: transparent transparent #fff transparent;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.adou-popover-arrow-left {
+    border-width: 8px 0 8px 8px;
+    border-color: transparent transparent transparent #fff;
+    right: -7px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &.adou-popover-arrow-right {
+    border-width: 8px 8px 8px 0;
+    border-color: transparent #fff transparent transparent;
+    left: -7px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

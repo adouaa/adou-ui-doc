@@ -57,6 +57,8 @@ const sidebars: SidebarsConfig = {
         "web-elements/dialog",
         "web-elements/horizontal-scroll-view",
         "web-elements/list",
+        "web-elements/list-group",
+        "web-elements/popover",
       ],
     },
   ],
