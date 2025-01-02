@@ -53,7 +53,7 @@ const Collapse = ({ header, children, firstShow = false }: CollapseProps) => {
         className="collapse-content mt-2"
         style={{
           maxWidth: isOpen ? `${maxWidth}px` : "0px",
-          maxHeight: isOpen ? `${maxHeight}px` : "0px",
+          // maxHeight: isOpen ? `${maxHeight}px` : "0px",
           opacity: isOpen ? 1 : 0,
         }}
         ref={contentRef}

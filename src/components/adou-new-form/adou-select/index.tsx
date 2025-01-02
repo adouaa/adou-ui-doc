@@ -10,6 +10,7 @@ import isEmptyO from "@site/src/common/utils/isEmptyO";
 import IconClose from "@site/src/common/components/icon_close";
 
 export interface SelectProps {
+  backgroundColor?: string;
   mode?: "common" | "liveSearch" | "tags";
   multiple?: boolean;
   showSearch?: boolean;
@@ -76,6 +77,7 @@ export interface SelectProps {
 
 const Select = React.forwardRef((props: SelectProps, ref) => {
   const {
+    backgroundColor,
     mode = "common",
     multiple,
     showSearch,
@@ -144,7 +146,7 @@ const Select = React.forwardRef((props: SelectProps, ref) => {
   // const { isShow, selectWrapperRef, handleClose } = useClickOutside();
   const [newOptions, setNewOptions] = useState(options || []);
   const [originalOptions, setOriginalOptions] = useState<any>(options || []);
-  const [selectValue, setSelectValue] = useState({});
+  const [selectValue, setSelectValue] = useState<any>({});
   const [selectValueList, setSelectValueList] = useState<any[]>([]);
   // 暂存上一次选中的数据，防止更换 options 的时候，无法展示上次的数据
   const [tempSelectValue, setTempSelectValue] = useState<any>(
@@ -514,6 +516,7 @@ const Select = React.forwardRef((props: SelectProps, ref) => {
   // 计算所取到的值能展示的最大宽度
   const getMaxSelectValueWidth = () => {
     const selectWidth = getContentWidth(selectRef.current);
+
     if (!selectWidth) return;
     const cliearIconBoxWidth = document.querySelector(
       ".adou-select-clear-icon-box"
@@ -625,14 +628,13 @@ const Select = React.forwardRef((props: SelectProps, ref) => {
       } else if (mode === "tags") {
         // 如果是 tags 模式，单独处理
         if (defaultValue) {
+          console.log("defaultValue: ", defaultValue);
           setSelectValueList(
             Array.isArray(defaultValue)
               ? defaultValue.map((item: any) => {
                   if (typeof item === "object") {
-                    // 如果是 对象类型 ，则直接加入 数组
                     return item;
                   } else {
-                    // 如果不是 对象类型 ， 则根据 valueKey 和 labelKey 生成 对象
                     return { [valueKey]: item, [labelKey]: item };
                   }
                 })
@@ -704,7 +706,7 @@ const Select = React.forwardRef((props: SelectProps, ref) => {
     setTimeout(() => {
       getMaxSelectValueWidth();
     }, 100);
-  }, []);
+  }, [defaultValue]);
 
   // 为了做 聚焦高亮，只能把第三个参数写为 true，本来是 contentRef.current && isShow
   useClickOutside([selectRef, contentRef, inputRef], handleClose, true);
@@ -732,7 +734,9 @@ const Select = React.forwardRef((props: SelectProps, ref) => {
           } ${isFocus ? "adou-form-control-focus" : ""}`}
           style={{
             textAlign: "left",
-            background: transparent
+            background: backgroundColor
+              ? backgroundColor
+              : transparent
               ? "transparent"
               : disabled
               ? "#eee"
@@ -817,6 +821,7 @@ const Select = React.forwardRef((props: SelectProps, ref) => {
                     contentWrap ? "ellipsis-1" : ""
                   }`} // ellipsis-1 加上这个，选择框会自动变大或者变小
                   style={{
+                    maxWidth: selectValueMaxWidth, // 设置最大宽度来支持 ellipsis
                     ...(!showSearch && !filterOption && mode !== "liveSearch"
                       ? { flex: 1 }
                       : {}),

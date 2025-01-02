@@ -1,0 +1,147 @@
+---
+title: RandomArrange 随机排列组件
+---
+
+import Card from "@site/src/components/web-elements/adou-card";
+import Basic from "@site/src/pages/web-elements/random-arrange/Basic"
+import CustomAnimation from "@site/src/pages/web-elements/random-arrange/CustomAnimation"
+import RefControl from "@site/src/pages/web-elements/random-arrange/RefControl"
+
+`RandomArrange` 是一个用于实现列表项随机排序的动画组件。<br />
+它使用 **Fisher-Yates 洗牌算法** 来实现随机排序，并通过 **FLIP 动画技术** 以及 **节流** 实现平滑的过渡效果。
+
+## 1. 基本使用
+
+最简单的用法是将需要排序的元素作为子元素传入。
+
+**效果示例**：
+
+<Card>
+<Basic />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import RandomArrange from "@site/src/components/web-elements/adou-random-arrange";
+import React from "react";
+const Basic = () => {
+  return (
+    <RandomArrange>
+      <div className="p-3 bg-info m-2 rounded">Item 1</div>
+      <div className="p-3 bg-info m-2 rounded">Item 2</div>
+      <div className="p-3 bg-info m-2 rounded">Item 3</div>
+      <div className="p-3 bg-info m-2 rounded">Item 4</div>
+      <div className="p-3 bg-info m-2 rounded">Item 5</div>
+    </RandomArrange>
+  );
+};
+export default Basic;
+
+```
+</details>
+</Card>
+
+
+## 2. 自定义动画
+
+通过设置 `animationDuration` 和 `animationTiming` 属性可以自定义动画效果。
+
+**效果示例**：
+
+<Card>
+<CustomAnimation />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import RandomArrange from "@site/src/components/web-elements/adou-random-arrange";
+import React from "react";
+const CustomAnimation = () => {
+  return (
+    <RandomArrange
+      buttonText="慢速打乱"
+      animationDuration={800}
+      animationTiming="cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+      onShuffle={() => console.log("排序完成")}
+    >
+      <div className="p-3 bg-primary-subtle m-2 rounded">Item 1</div>
+      <div className="p-3 bg-primary-subtle m-2 rounded">Item 2</div>
+      <div className="p-3 bg-primary-subtle m-2 rounded">Item 3</div>
+      <div className="p-3 bg-primary-subtle m-2 rounded">Item 4</div>
+      <div className="p-3 bg-primary-subtle m-2 rounded">Item 5</div>
+    </RandomArrange>
+  );
+};
+export default CustomAnimation;
+
+```
+</details>
+</Card>
+
+## 3. 外部控制
+
+通过 `actRef` 可以在外部控制随机排序的触发。
+
+**效果示例**：
+
+<Card>
+<RefControl />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import Button from "@site/src/components/adou-button";
+import RandomArrange from "@site/src/components/web-elements/adou-random-arrange";
+import React, { useRef } from "react";
+const RefControl = () => {
+  const arrangeRef = useRef<any>();
+  const handleShuffle = () => {
+    arrangeRef.current.shuffle();
+  };
+  return (
+    <div>
+      <Button type="warning" onClick={handleShuffle} externalClassName="mb-2">
+        外部触发排序
+      </Button>
+      <RandomArrange actRef={arrangeRef} showButton={false}>
+        <div className="p-3 bg-primary m-2 rounded">Item 1</div>
+        <div className="p-3 bg-primary m-2 rounded">Item 2</div>
+        <div className="p-3 bg-primary m-2 rounded">Item 3</div>
+        <div className="p-3 bg-primary m-2 rounded">Item 4</div>
+        <div className="p-3 bg-primary m-2 rounded">Item 5</div>
+      </RandomArrange>
+    </div>
+  );
+};
+export default RefControl;
+
+```
+</details>
+</Card>
+
+## 属性
+
+| 属性名 | 类型 | 默认值 | 描述 |
+| ----------------- | --------------------------------- | -------- | -------------------------------------------------------------------- |
+| children | `React.ReactNode` | - | 需要进行随机排序的子元素。 |
+| buttonText | `string` | `'随机排序'` | 按钮文字。 |
+| onShuffle | `() => void` | - | 排序完成后的回调函数。 |
+| className | `string` | `''` | 容器的自定义类名。 |
+| buttonClassName | `string` | `''` | 按钮的自定义类名。 |
+| showButton | `boolean` | `true` | 是否显示排序按钮。 |
+| animationDuration | `number` | `300` | 动画持续时间（毫秒）。 |
+| animationTiming | `string` | `'ease-in-out'` | 动画缓动函数。 |
+| actRef | `React.RefObject` | - | 用于获取组件实例的 ref。 |
+
+## ref 方法
+
+组件通过 `actRef` 暴露以下方法：
+
+| 方法名 | 说明 | 参数 | 返回值 |
+| ----------------- | --------------------------------- | -------- | -------------------------------------------------------------------- |
+| shuffle | 触发随机排序动画。 | - | `void` |
+
+## 注意事项
+
+1. 组件使用了 FLIP 动画技术，确保流畅的过渡效果
+2. 排序按钮有 300ms 的节流处理，防止频繁触发
+3. 子元素会被自动包裹在 `random-arrange-item-wrapper` 中
+4. 动画基于 CSS transform，确保子元素没有影响 transform 的样式
+5. 为了最佳性能，建议限制子元素数量在合理范围内

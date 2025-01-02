@@ -1,0 +1,138 @@
+---
+title: ResizableSidebar 可伸缩侧边栏
+---
+
+import Card from "@site/src/components/web-elements/adou-card";
+import Basic from "@site/src/pages/web-elements/resizeable-sliderbar/Basic"
+import InitialWidth from "@site/src/pages/web-elements/resizeable-sliderbar/InitialWidth"
+import ShowToggleBtn from "@site/src/pages/web-elements/resizeable-sliderbar/ShowToggleBtn"
+
+
+`ResizableSidebar` 是一个 **可以调整宽度** 的侧边栏组件，支持 **拖拽调整大小、展开/收起** 等功能。<br />
+常用于需要 **动态调整内容区域大小** 的场景，如菜单栏列表等。
+
+## 1. 基本使用
+
+在内部放置需要显示的内容，默认 **首次渲染不展开** ，并且默认展开的 **最大宽度** 为 `300px`
+
+**效果示例**：
+
+<Card>
+<Basic />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import ResizableSidebar from "@site/src/components/web-elements/adou-resizeable-sliderbar";
+import React from "react";
+const Basic = () => {
+  return (
+    <div className="basic" style={{ height: "200px" }}>
+      <ResizableSidebar>
+        <div className="p-3">
+          <h5>侧边栏内容</h5>
+          <p>这是一个可以调整大小的侧边栏</p>
+        </div>
+      </ResizableSidebar>
+    </div>
+  );
+};
+export default Basic;
+
+```
+</details>
+</Card>
+
+## 2. 首次渲染展开
+
+通过设置 `initialWidth` 可以实现 **首次渲染时展开** 设置的宽度
+
+**效果示例**：
+
+<Card>
+<InitialWidth />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import ResizableSidebar from "@site/src/components/web-elements/adou-resizeable-sliderbar";
+import React from "react";
+const InitialWidth = () => {
+  return (
+    <div className="initial-width" style={{ height: "200px" }}>
+      <ResizableSidebar initialWidth="300px">
+        <div className="p-3">
+          <h5>侧边栏内容</h5>
+          <p>首次渲染时展开</p>
+        </div>
+      </ResizableSidebar>
+    </div>
+  );
+};
+export default InitialWidth;
+
+```
+</details>
+</Card>
+
+## 3. 控制展开/收起按钮
+
+* 通过设置 `showToggleBtn` 可以控制组件是否展示 **展开/收起按钮** ，默认展示<br/ >
+* 通过设置 `showTggleBtnWhenNotExpanded` 可以控制组件在 **收起状态** 是否展示 **展开/收起按钮** ，默认展示<br/ >
+* 给组件设置 `actRef` 可以获取组件实例，通过调用 `toggleSidebar` 方法来 **控制组件的展开/收起状态**
+
+**效果示例**：
+
+<Card>
+<ShowToggleBtn />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import ResizableSidebar from "@site/src/components/web-elements/adou-resizeable-sliderbar";
+import React from "react";
+const InitialWidth = () => {
+  return (
+    <div className="initial-width" style={{ height: "200px" }}>
+      <ResizableSidebar initialWidth="300px">
+        <div className="p-3">
+          <h5>侧边栏内容</h5>
+          <p>首次渲染时展开</p>
+        </div>
+      </ResizableSidebar>
+    </div>
+  );
+};
+export default InitialWidth;
+
+```
+</details>
+</Card>
+
+## 属性
+
+### 组件属性
+
+| 属性名 | 类型 | 默认值 | 描述 |
+| ----------------- | --------------------------------- | -------- | -------------------------------------------------------------------- |
+| initialWidth | `string` | `'0px'` | 侧边栏的初始宽度。 |
+| initialHeight | `string \| number` | `'100%'` | 侧边栏的初始高度。 |
+| minWidth | `number` | `50` | 侧边栏的最小宽度。 |
+| maxWidth | `string` | `'300px'` | 侧边栏的最大宽度。 |
+| wrapperClsassName | `string` | - | 容器的自定义类名。 |
+| wrapperStyle | `React.CSSProperties` | - | 容器的自定义样式。 |
+| showToggleBtn | `boolean` | `true` | 是否显示切换按钮。 |
+| showTggleBtnWhenNotExpanded | `boolean` | `true` | 收起状态是否显示切换按钮。 |
+| toggleBtnClassName | `string` | - | 切换按钮的自定义类名。 |
+| toggleBtnStyle | `React.CSSProperties` | - | 切换按钮的自定义样式。 |
+| contentOverflow | `boolean` | `true` | 是否允许内容区域溢出滚动。 |
+| contentFlex | `boolean` | `false` | 内容区域是否使用 flex 布局。 |
+| actRef | `any` | - | 用于获取组件实例的 ref。 |
+| children | `React.ReactNode` | - | 侧边栏的内容。 |
+| onToggle | `(isExpanded: boolean) => void` | - | 展开/收起状态改变时的回调函数。 |
+
+### ref 方法
+
+组件通过 `actRef` 暴露以下方法：
+
+| 方法名 | 说明 | 参数 | 返回值 |
+| ----------------- | --------------------------------- | -------- | -------------------------------------------------------------------- |
+| getExpandStatus | 获取当前展开状态。 | - | `boolean` |
+| toggleSidebar | 切换侧边栏的展开/收起状态。 | - | `void` |

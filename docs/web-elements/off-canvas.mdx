@@ -1,0 +1,131 @@
+---
+title: OffCanvas 抽屉组件
+---
+
+import Card from "@site/src/components/web-elements/adou-card";
+import Basic from "@site/src/pages/web-elements/off-canvas/Basic"
+import Placement from "@site/src/pages/web-elements/off-canvas/Placement"
+import CustomTrigger from "@site/src/pages/web-elements/off-canvas/CustomTrigger"
+import NoClickOutside from "@site/src/pages/web-elements/off-canvas/NoClickOutside"
+import CustomContent from "@site/src/pages/web-elements/off-canvas/CustomContent"
+
+`OffCanvas` 是一个可以从屏幕边缘滑出的抽屉组件，支持 **多个方向、自定义触发器、遮罩层、键盘ESC关闭** 等特性。常用于展示临时的、补充的内容，如导航菜单、筛选面板等。
+
+## 1. 基本使用
+
+最基本的用法，从右侧滑出的抽屉面板。
+
+**效果示例**：
+
+<Card>
+<Basic />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+</details>
+</Card>
+
+## 2. 不同方向
+
+通过 `placement` 属性可以控制抽屉从不同方向滑出。
+
+**效果示例**：
+
+<Card>
+<Placement />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+</details>
+</Card>
+
+## 3. 自定义触发器
+
+通过 `trigger` 属性可以自定义触发器，通过 `ref` 可以在外部控制抽屉的开关。
+
+**效果示例**：
+
+<Card>
+<CustomTrigger />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+</details>
+</Card>
+
+## 4. 禁用点击外部关闭
+
+通过设置 `clickOutside={false}` 以及 `maskClosable={false}` 可以禁用点击外部区域关闭抽屉的功能。
+
+**效果示例**：
+
+<Card>
+<NoClickOutside />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+</details>
+</Card>
+
+## 5. 自定义内容
+
+抽屉内可以放置任意内容，如表单、列表等。
+
+**效果示例**：
+
+<Card>
+<CustomContent />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+</details>
+</Card>
+
+## 属性
+
+| 属性名 | 类型 | 默认值 | 描述 |
+| ----------------- | --------------------------------- | -------- | -------------------------------------------------------------------- |
+| title | `React.ReactNode` | `'Offcanvas'` | 抽屉标题。 |
+| placement | `'start' \| 'end' \| 'top' \| 'bottom'` | `'end'` | 抽屉滑出的方向。 |
+| width | `string \| number` | `'400px'` | 抽屉宽度（左右方向时有效）。 |
+| height | `string \| number` | `'100%'` | 抽屉高度（上下方向时为宽度）。 |
+| showMask | `boolean` | `true` | 是否显示遮罩层。 |
+| maskClosable | `boolean` | `true` | 点击遮罩层是否可以关闭。 |
+| showCloseButton | `boolean` | `true` | 是否显示关闭按钮。 |
+| clickOutside | `boolean` | `true` | 是否可以点击外部区域关闭。 |
+| className | `string` | `''` | 抽屉容器的自定义类名。 |
+| headerClassName | `string` | `''` | 抽屉头部的自定义类名。 |
+| bodyClassName | `string` | `''` | 抽屉内容区的自定义类名。 |
+| trigger | `React.ReactNode` | - | 自定义触发器。 |
+| onClose | `() => void` | - | 抽屉关闭时的回调。 |
+| onOpen | `() => void` | - | 抽屉打开时的回调。 |
+
+## Ref 方法
+
+组件通过 `actRef` 或 `ref` 暴露以下方法：
+
+| 方法名 | 说明 | 参数 | 返回值 |
+| ----------------- | --------------------------------- | -------- | -------------------------------------------------------------------- |
+| open | 打开抽屉。 | - | `void` |
+| close | 关闭抽屉。 | - | `void` |
+| toggle | 切换抽屉开关状态。 | - | `void` |
+| isOpen | 获取当前抽屉是否打开。 | - | `boolean` |
+
+## 注意事项
+
+1. **动画时序**：
+   - 打开时：先显示遮罩层（100ms）后显示抽屉
+   - 关闭时：先隐藏抽屉（300ms）后隐藏遮罩层（500ms）
+
+2. **样式覆盖**：
+   - 可以通过 `className`、`headerClassName`、`bodyClassName` 自定义样式
+   - 宽度和高度可以通过 `width` 和 `height` 属性控制
+
+3. **可访问性**：
+   - 组件包含适当的 ARIA 属性
+   - 支持键盘操作
+
+4. **性能优化**：
+   - 使用 `useClickOutside` hook 处理外部点击
+   - 动画使用 CSS transform 实现
+
+## 常见问题
+
+### Q: 如何在外部控制抽屉的开关？
+
+A: 可以通过 ref 来控制：
