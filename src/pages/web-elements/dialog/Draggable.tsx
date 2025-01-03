@@ -9,7 +9,7 @@ const DragExample = () => {
     <div className="drag-wrapper">
       <Button onClick={() => setIsOpen(true)}>打开对话框</Button>
       <Dialog
-        draggable
+        draggble
         show={isOpen}
         onClose={() => setIsOpen(false)}
         title="基本对话框"

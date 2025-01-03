@@ -21,6 +21,24 @@ import CustomContent from "@site/src/pages/web-elements/off-canvas/CustomContent
 <Basic />
 <details className="mt-3">
 <summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import OffCanvas from "@site/src/components/web-elements/adou-off-canvas";
+const Basic = () => {
+  return (
+    <OffCanvas
+      title="基础示例"
+      trigger={<button className="btn btn-primary">打开抽屉</button>}
+    >
+      <div>
+        <p>这是一个基础的抽屉示例</p>
+        <p>点击遮罩层或关闭按钮可以关闭抽屉</p>
+      </div>
+    </OffCanvas>
+  );
+};
+export default Basic;
+```
 </details>
 </Card>
 
@@ -34,6 +52,32 @@ import CustomContent from "@site/src/pages/web-elements/off-canvas/CustomContent
 <Placement />
 <details className="mt-3">
 <summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import OffCanvas from "@site/src/components/web-elements/adou-off-canvas";
+const Placement = () => {
+  return (
+    <div className="d-flex gap-2">
+      <OffCanvas
+        placement="start"
+        title="左侧抽屉"
+        trigger={<button className="btn btn-primary">从左侧打开</button>}
+      >
+        <p>从左侧滑出的抽屉</p>
+      </OffCanvas>
+      <OffCanvas
+        placement="top"
+        height="300px"
+        title="顶部抽屉"
+        trigger={<button className="btn btn-primary">从顶部打开</button>}
+      >
+        <p>从顶部滑出的抽屉</p>
+      </OffCanvas>
+    </div>
+  );
+};
+export default Placement;
+```
 </details>
 </Card>
 
@@ -47,6 +91,36 @@ import CustomContent from "@site/src/pages/web-elements/off-canvas/CustomContent
 <CustomTrigger />
 <details className="mt-3">
 <summary>点击查看代码</summary>
+```jsx
+import React, { useRef } from "react";
+import OffCanvas from "@site/src/components/web-elements/adou-off-canvas";
+const CustomTrigger = () => {
+  const offCanvasRef = useRef<any>();
+  return (
+    <div>
+      <OffCanvas
+        actRef={offCanvasRef}
+        title="自定义触发器"
+        trigger={
+          <div className="d-flex gap-2">
+            <button className="btn btn-primary">触发器1</button>
+            <button className="btn btn-secondary">触发器2</button>
+          </div>
+        }
+      >
+        <p>使用自定义的触发器打开抽屉</p>
+      </OffCanvas>
+      <button
+        className="btn btn-link"
+        onClick={() => offCanvasRef.current.open()}
+      >
+        外部打开抽屉
+      </button>
+    </div>
+  );
+};
+export default CustomTrigger;
+```
 </details>
 </Card>
 
@@ -60,6 +134,25 @@ import CustomContent from "@site/src/pages/web-elements/off-canvas/CustomContent
 <NoClickOutside />
 <details className="mt-3">
 <summary>点击查看代码</summary>
+```jsx
+import OffCanvas from "@site/src/components/web-elements/adou-off-canvas";
+import React from "react";
+const NoClickOutside = () => {
+  return (
+    <OffCanvas
+      clickOutside={false}
+      maskClosable={false}
+      trigger={<button className="btn btn-primary">打开抽屉</button>}
+    >
+      <div className="p-3">
+        <h5>禁用点击外部关闭</h5>
+        <p>只能通过关闭按钮关闭抽屉</p>
+      </div>
+    </OffCanvas>
+  );
+};
+export default NoClickOutside;
+```
 </details>
 </Card>
 
@@ -73,10 +166,40 @@ import CustomContent from "@site/src/pages/web-elements/off-canvas/CustomContent
 <CustomContent />
 <details className="mt-3">
 <summary>点击查看代码</summary>
+```jsx
+import OffCanvas from "@site/src/components/web-elements/adou-off-canvas";
+import React from "react";
+const CustomContent = () => {
+  return (
+    <OffCanvas trigger={<button className="btn btn-primary">打开抽屉</button>}>
+      <div className="p-3">
+        <h5>自定义内容</h5>
+        <form>
+          <div className="mb-3">
+            <label className="form-label">邮箱</label>
+            <input type="email" className="form-control" />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">密码</label>
+            <input type="password" className="form-control" />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            提交
+          </button>
+        </form>
+      </div>
+    </OffCanvas>
+  );
+};
+export default CustomContent;
+
+```
 </details>
 </Card>
 
 ## 属性
+
+### 组件属性
 
 | 属性名 | 类型 | 默认值 | 描述 |
 | ----------------- | --------------------------------- | -------- | -------------------------------------------------------------------- |
@@ -95,7 +218,7 @@ import CustomContent from "@site/src/pages/web-elements/off-canvas/CustomContent
 | onClose | `() => void` | - | 抽屉关闭时的回调。 |
 | onOpen | `() => void` | - | 抽屉打开时的回调。 |
 
-## Ref 方法
+### ref 方法
 
 组件通过 `actRef` 或 `ref` 暴露以下方法：
 

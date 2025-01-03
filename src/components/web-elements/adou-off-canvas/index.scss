@@ -40,12 +40,15 @@
             &.offcanvas-start {
                 transform: translateX(-100%);
             }
+
             &.offcanvas-end {
                 transform: translateX(100%);
             }
+
             &.offcanvas-top {
                 transform: translateY(-100%);
             }
+
             &.offcanvas-bottom {
                 transform: translateY(100%);
             }

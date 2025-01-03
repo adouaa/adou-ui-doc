@@ -9,6 +9,10 @@ import React, {
 import "./index.scss";
 
 export interface InputProps {
+  title?: string;
+  wrap?: boolean;
+  wrapperClassName?: string;
+  backgroundColor?: string;
   inputStyle?: React.CSSProperties;
   prefix?: any; // 前缀
   suffix?: any; // 后缀
@@ -40,13 +44,13 @@ export interface InputProps {
   type?: "text" | "datetime-local" | "date" | "time" | "number";
   defaultValue?: any;
   size?: "lg" | "default" | "sm";
-  wrapperClassName?: string;
+  externalClassName?: string;
   prefixContent?: any;
   suffixContent?: any;
   suffixContentType?: string;
   placeholder?: string;
   style?: React.CSSProperties;
-  readOnly?: boolean;
+  disabled?: boolean;
   transparent?: boolean;
   children?: any;
   onClick?: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
@@ -65,6 +69,10 @@ export interface InputRef {
 
 const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
   {
+    title,
+    wrap,
+    wrapperClassName,
+    backgroundColor,
     inputStyle,
     prefix,
     suffix,
@@ -85,7 +93,7 @@ const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
     errMsg,
     labelWidth,
     commonSuffixIcon,
-    width,
+    width = "100%",
     label,
     layout = "horizontal",
     labelColor,
@@ -93,13 +101,13 @@ const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
     type = "text",
     defaultValue,
     size,
-    wrapperClassName,
+    externalClassName,
     prefixContent,
     suffixContent,
     suffixContentType = "button",
     placeholder,
     style,
-    readOnly,
+    disabled,
     transparent,
     children,
     onClick,
@@ -133,10 +141,10 @@ const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
     ...args: any
   ) => {
     e.stopPropagation();
-    if (varient === "filled" && inputFormContentRef.current) {
+    if (varient === "filled" && inputFormContentRef.current && !disabled) {
       inputFormContentRef.current.style.backgroundColor = "";
+      setIsFocus(true);
     }
-    setIsFocus(true);
     onFocus && onFocus(e);
   };
 
@@ -213,10 +221,32 @@ const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
     }
   };
 
+  const judgeBgColor = () => {
+    if (disabled) {
+      return "#eee";
+    } else if (varient === "filled") {
+      return "#f0f0f0";
+    } else if (backgroundColor) {
+      return backgroundColor;
+    } else {
+      return "transparent";
+    }
+  };
+
+  const judgeBorder = () => {
+    if (varient === "borderless") {
+      return "border-0";
+    } else if (varient === "filled" && !addonAfter && !addonBefore) {
+      return "border-0";
+    } else {
+      return "";
+    }
+  };
+
   const commonElement = (
     <>
       <input
-        className={`border-0 flex-fill ${
+        className={`input border-0 flex-fill ${
           textEnd || type === "number" ? "text-end" : ""
         } ${
           suffixContent && suffixContentType === "button"
@@ -239,13 +269,15 @@ const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
             borderBottomRightRadius: 0,
           }),
           height: size === "lg" ? "48px" : size === "sm" ? "32px" : "40px",
-
+          backgroundColor: judgeBgColor(),
+          cursor: disabled ? "not-allowed" : "auto",
+          borderRadius: "0.375rem", // 和父组件的 borderRadius 保持一致
           ...inputStyle,
         }}
         step={1}
         name={name}
         value={value}
-        readOnly={readOnly}
+        readOnly={disabled}
         placeholder={placeholder}
         onChange={handleChange}
         onBlur={(e) => handleBlur(e)}
@@ -255,7 +287,7 @@ const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
       />
       {suffix && <div className="suffix-box">{suffix}</div>}
 
-      {clearable && isEnter && value ? (
+      {clearable && true && value ? (
         <span
           className="adou-input-clear-icon-box fade-enter me-1"
           style={{
@@ -307,23 +339,26 @@ const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
 
   return (
     <div
+      title={title || label}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`adou-input-wrapper position-relative ${wrapperClassName}`}
+      className={`adou-input-wrapper position-relative ${
+        wrapperClassName ? wrapperClassName : ""
+      }`}
       style={{
         ...wrapperStyle,
         ...(wrapperWidth ? { width: wrapperWidth } : { flex: 1 }),
+        cursor: disabled ? "not-allowed" : "auto",
       }}
     >
-      {!label ? (
-        <div className={`adou-input ${size === "sm" ? "" : ""}`}>
+      {!label && (addonAfter || addonBefore) ? (
+        <div className={`adou-input`}>
           <div
             className="input-group"
-            style={
-              {
-                // height: size === 'lg' ? '48px' : size === 'sm' ? '32px' : '40px',
-              }
-            }
+            style={{
+              flexWrap: wrap ? "wrap" : "nowrap",
+              // height: size === 'lg' ? '48px' : size === 'sm' ? '32px' : '40px',
+            }}
           >
             {addonBefore && (
               <span
@@ -336,19 +371,24 @@ const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
             <div
               style={{
                 ...(varient === "filled" && {
-                  backgroundColor: "#f0f0f0",
                   border: addonBefore || addonAfter ? "" : "none",
                 }),
                 ...formStyle,
+                backgroundColor: judgeBgColor(),
+                border: varient === "outlined" ? "1px solid #ced4da" : "",
               }}
               ref={inputFormContentRef}
               tabIndex={1}
-              className={`adou-input-form-content px-2 d-flex flex-fill align-items-center ${
+              className={`adou-input-form-content d-flex flex-fill align-items-center ${
                 isFocus ? "adou-form-control-focus" : ""
-              }`}
+              } ${type !== "number" ? "px-2" : ""}`}
             >
               {prefix && <div className="prefix-box">{prefix}</div>}
-              <div className="input-box flex-fill d-flex px-2 align-items-center">
+              <div
+                className={`input-box flex-fill d-flex  align-items-center ${
+                  type !== "number" ? "px-2" : ""
+                }`}
+              >
                 {commonElement}
               </div>
             </div>
@@ -368,7 +408,10 @@ const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
           {label && (
             <span
               className={`pe-3 ${layout === "vertical" ? "pb-1" : ""}`}
-              style={{ width: labelWidth }}
+              style={{
+                width: labelWidth || 22 * label.length,
+                whiteSpace: "nowrap",
+              }}
             >
               {label}
             </span>
@@ -381,21 +424,21 @@ const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
                 backgroundColor: "#f0f0f0",
                 border: "none",
               }),
+              border: varient === "outlined" ? "1px solid #ced4da" : "",
+              backgroundColor: judgeBgColor(),
               ...formStyle,
             }}
             ref={inputFormContentRef}
-            className={`adou-input-form-content flex-fill d-flex px-2 align-items-center ${
+            className={`adou-input-form-content flex-fill d-flex align-items-center ${
               isFocus ? "adou-form-control-focus" : ""
-            } ${
-              varient === "borderless"
-                ? "border-0"
-                : varient === "filled" && !addonAfter && !addonBefore
-                ? "border-0"
-                : ""
-            }`}
+            } ${judgeBorder()} ${type !== "number" ? "px-2" : ""}`}
           >
             {prefix && <div className="prefix-box">{prefix}</div>}
-            <div className="input-box flex-fill d-flex px-2 align-items-center">
+            <div
+              className={`input-box flex-fill d-flex align-items-center ${
+                type !== "number" ? "px-2" : ""
+              }`}
+            >
               {commonElement}
             </div>
           </div>
@@ -405,10 +448,6 @@ const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
   );
 };
 
-// 对于使用 forwardRef 包装的组件，displayName 需要在 forwardRef 调用之后设置
-// 上述代码中，Input 组件是通过 forwardRef 包装的，因此需要在 forwardRef 调用之后设置 displayName
+Input.displayName = "Input";
 
-const ForwardedInput = forwardRef(Input);
-ForwardedInput.displayName = "Input";
-
-export default ForwardedInput;
+export default forwardRef(Input);
