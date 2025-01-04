@@ -1,0 +1,27 @@
+.table-cell-wrapper {
+    box-sizing: border-box;
+
+    .collapse-icon {
+        transition: transform .3s ease; // 旋转动画
+        cursor: pointer;
+        z-index: 1;
+        // margin-bottom: 6px;
+    }
+
+    .table-cell-folder-rotate-down {
+        transform: rotate(90deg);
+    }
+
+    .collapse-icon:not(.rotate-down) {}
+
+    .text-in-one-line {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .table-cell-value-left {
+        flex: 1;
+        text-align-last: left;
+    }
+}

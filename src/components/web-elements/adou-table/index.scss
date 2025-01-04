@@ -1,0 +1,124 @@
+.table-wrapper {
+    // Firefox 滚动条样式
+    scrollbar-width: thin; // 设置滚动条宽度为 thin
+    scrollbar-color: #ccc #f5f5f5; // 设置滚动条颜色
+
+    .header-content {
+
+        /* styles.css */
+        /* styles.scss */
+        .header-icon {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: auto;
+            /* 宽度自适应 */
+
+            .icon {
+                width: 0;
+                /* 箭头的宽度 */
+                height: 0;
+                /* 箭头的高度 */
+                margin: 1.6px 0;
+                /* 调整上下间距 */
+                border-left: 6px solid transparent;
+                /* 箭头的左边 */
+                border-right: 6px solid transparent;
+                /* 箭头的右边 */
+                cursor: pointer;
+                transition: all 0.3s ease;
+                /* 添加过渡效果 */
+                border-radius: 3px;
+
+                &.sort-up {
+                    // border-bottom: 7px solid #000; /* 向上的箭头 */
+                }
+
+                &.sort-down {
+                    // border-top: 7px solid #000; /* 向下的箭头 */
+                }
+
+                &.sort-up:hover,
+                &.sort-down:hover {
+                    transform: scale(1.2);
+                }
+            }
+        }
+
+
+    }
+
+    // Webkit 滚动条样式
+    &::-webkit-scrollbar {
+        width: 8px; // 设置垂直滚动条宽度
+        height: 8px; // 设置水平滚动条宽度
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f5f5f5; // 设置滚动条轨道颜色
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #ccc; // 设置滚动条滑块颜色
+        border-radius: 4px; // 设置滚动条滑块圆角
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #aaa; // 设置滚动条滑块悬停颜色
+    }
+
+
+
+    .collapse-table-td {
+        display: inline-block;
+        // display: flex;
+        justify-content: center;
+        align-items: center;
+        // line-height: 0.8;
+    }
+
+    // 添加展开的动画
+    tbody>tr {
+        transition: max-height 0.3s ease-in-out;
+    }
+
+    /* 默认情况下，表格行被隐藏 */
+    .collapse-tr {
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        opacity: 0;
+        transform: scaleY(0);
+        /* 使用 scaleY 来隐藏 */
+        transform-origin: top;
+        /* 让缩放从顶部开始 */
+        overflow: hidden;
+    }
+
+    /* 当表格行显示时 */
+    .collapse-tr.show {
+        opacity: 1;
+        transform: scaleY(1);
+        /* 还原到原始高度 */
+    }
+
+    .tr-checked {
+        background-color: #cce2fa !important;
+    }
+
+    .tr-content {
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #e7ebee;
+        }
+    }
+}
+
+.ellipsis-1 {
+    white-space: nowrap;
+    /* 不换行 */
+    overflow: hidden;
+    /* 隐藏超出部分 */
+    text-overflow: ellipsis;
+    /* 使用省略号表示超出部分 */
+}

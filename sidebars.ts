@@ -64,6 +64,11 @@ const sidebars: SidebarsConfig = {
         "web-elements/off-canvas",
       ],
     },
+    {
+      type: "category",
+      label: "hooks",
+      items: ["hooks/useNotification", "hooks/useLoading", "hooks/useToast"],
+    },
   ],
 
   // But you can create a sidebar manually

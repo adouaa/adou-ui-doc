@@ -1,0 +1,71 @@
+.adou-notification-container {
+    position: fixed;
+    top: 20px;
+    right: 0px;
+    z-index: 1000;
+
+    .adou-notification {
+        width: 320px;
+        position: relative;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        transition: all 0.3s ease;
+        // opacity: 0;
+        transform: translateX(100%);
+
+        &-appearing {
+            // opacity: 1;
+            transform: translateX(-20px);
+        }
+
+        &-disappearing {
+            opacity: 0;
+            transform: translateX(100%) !important;
+        }
+
+        &:hover {
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+            // transform: translate(-20px, -2px);
+        }
+
+        &-header {
+            display: flex;
+            align-items: start;
+            justify-content: space-between;
+            margin-bottom: 10px;
+
+            &-title {
+                font-size: 18px;
+                font-weight: 600;
+                color: #333;
+                display: flex;
+
+                &-icon {
+                    margin-right: 8px;
+                }
+            }
+
+            &-close {
+                cursor: pointer;
+                font-size: 16px;
+                color: #999;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    color: #ff4d4f;
+                    transform: scale(1.2);
+                }
+            }
+        }
+
+        &-content {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+    }
+}

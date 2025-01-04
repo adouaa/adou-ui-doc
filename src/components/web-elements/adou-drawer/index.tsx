@@ -8,7 +8,7 @@ import {
 } from "react";
 import React from "react";
 
-interface OffCanvasProps {
+interface DrawerProps {
   actRef?: any;
   clickOutside?: boolean;
   children?: React.ReactNode;
@@ -28,7 +28,7 @@ interface OffCanvasProps {
   closeOnEsc?: boolean;
 }
 
-const OffCanvas = forwardRef<any, OffCanvasProps>(
+const Drawer = forwardRef<any, DrawerProps>(
   (
     {
       actRef,
@@ -138,9 +138,9 @@ const OffCanvas = forwardRef<any, OffCanvasProps>(
     }, [show, closeOnEsc]);
 
     return (
-      <div className="offcanvas-wrapper">
+      <div className="drawer-wrapper">
         {trigger && (
-          <div onClick={toggleOffcanvas} className="offcanvas-trigger">
+          <div onClick={toggleOffcanvas} className="drawer-trigger">
             {trigger}
           </div>
         )}
@@ -179,4 +179,6 @@ const OffCanvas = forwardRef<any, OffCanvasProps>(
   }
 );
 
-export default OffCanvas;
+Drawer.displayName = "Drawer";
+
+export default Drawer;

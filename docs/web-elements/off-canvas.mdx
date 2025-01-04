@@ -1,15 +1,15 @@
 ---
-title: OffCanvas 抽屉组件
+title: Drawer 抽屉组件
 ---
 
 import Card from "@site/src/components/web-elements/adou-card";
-import Basic from "@site/src/pages/web-elements/off-canvas/Basic"
-import Placement from "@site/src/pages/web-elements/off-canvas/Placement"
-import CustomTrigger from "@site/src/pages/web-elements/off-canvas/CustomTrigger"
-import NoClickOutside from "@site/src/pages/web-elements/off-canvas/NoClickOutside"
-import CustomContent from "@site/src/pages/web-elements/off-canvas/CustomContent"
+import Basic from "@site/src/pages/web-elements/drawer/Basic"
+import Placement from "@site/src/pages/web-elements/drawer/Placement"
+import CustomTrigger from "@site/src/pages/web-elements/drawer/CustomTrigger"
+import NoClickOutside from "@site/src/pages/web-elements/drawer/NoClickOutside"
+import CustomContent from "@site/src/pages/web-elements/drawer/CustomContent"
 
-`OffCanvas` 是一个可以从屏幕边缘滑出的抽屉组件，支持 **多个方向、自定义触发器、遮罩层、键盘ESC关闭** 等特性。常用于展示临时的、补充的内容，如导航菜单、筛选面板等。
+`Drawer` 是一个可以从屏幕边缘滑出的抽屉组件，支持 **多个方向、自定义触发器、遮罩层、键盘ESC关闭** 等特性。常用于展示临时的、补充的内容，如导航菜单、筛选面板等。
 
 ## 1. 基本使用
 
@@ -23,10 +23,10 @@ import CustomContent from "@site/src/pages/web-elements/off-canvas/CustomContent
 <summary>点击查看代码</summary>
 ```jsx
 import React from "react";
-import OffCanvas from "@site/src/components/web-elements/adou-off-canvas";
+import Drawer from "@site/src/components/web-elements/adou-off-canvas";
 const Basic = () => {
   return (
-    <OffCanvas
+    <Drawer
       title="基础示例"
       trigger={<button className="btn btn-primary">打开抽屉</button>}
     >
@@ -34,7 +34,7 @@ const Basic = () => {
         <p>这是一个基础的抽屉示例</p>
         <p>点击遮罩层或关闭按钮可以关闭抽屉</p>
       </div>
-    </OffCanvas>
+    </Drawer>
   );
 };
 export default Basic;
@@ -54,25 +54,25 @@ export default Basic;
 <summary>点击查看代码</summary>
 ```jsx
 import React from "react";
-import OffCanvas from "@site/src/components/web-elements/adou-off-canvas";
+import Drawer from "@site/src/components/web-elements/adou-off-canvas";
 const Placement = () => {
   return (
     <div className="d-flex gap-2">
-      <OffCanvas
+      <Drawer
         placement="start"
         title="左侧抽屉"
         trigger={<button className="btn btn-primary">从左侧打开</button>}
       >
         <p>从左侧滑出的抽屉</p>
-      </OffCanvas>
-      <OffCanvas
+      </Drawer>
+      <Drawer
         placement="top"
         height="300px"
         title="顶部抽屉"
         trigger={<button className="btn btn-primary">从顶部打开</button>}
       >
         <p>从顶部滑出的抽屉</p>
-      </OffCanvas>
+      </Drawer>
     </div>
   );
 };
@@ -93,12 +93,12 @@ export default Placement;
 <summary>点击查看代码</summary>
 ```jsx
 import React, { useRef } from "react";
-import OffCanvas from "@site/src/components/web-elements/adou-off-canvas";
+import Drawer from "@site/src/components/web-elements/adou-off-canvas";
 const CustomTrigger = () => {
   const offCanvasRef = useRef<any>();
   return (
     <div>
-      <OffCanvas
+      <Drawer
         actRef={offCanvasRef}
         title="自定义触发器"
         trigger={
@@ -109,7 +109,7 @@ const CustomTrigger = () => {
         }
       >
         <p>使用自定义的触发器打开抽屉</p>
-      </OffCanvas>
+      </Drawer>
       <button
         className="btn btn-link"
         onClick={() => offCanvasRef.current.open()}
@@ -135,11 +135,11 @@ export default CustomTrigger;
 <details className="mt-3">
 <summary>点击查看代码</summary>
 ```jsx
-import OffCanvas from "@site/src/components/web-elements/adou-off-canvas";
+import Drawer from "@site/src/components/web-elements/adou-off-canvas";
 import React from "react";
 const NoClickOutside = () => {
   return (
-    <OffCanvas
+    <Drawer
       clickOutside={false}
       maskClosable={false}
       trigger={<button className="btn btn-primary">打开抽屉</button>}
@@ -148,7 +148,7 @@ const NoClickOutside = () => {
         <h5>禁用点击外部关闭</h5>
         <p>只能通过关闭按钮关闭抽屉</p>
       </div>
-    </OffCanvas>
+    </Drawer>
   );
 };
 export default NoClickOutside;
@@ -167,11 +167,11 @@ export default NoClickOutside;
 <details className="mt-3">
 <summary>点击查看代码</summary>
 ```jsx
-import OffCanvas from "@site/src/components/web-elements/adou-off-canvas";
+import Drawer from "@site/src/components/web-elements/adou-off-canvas";
 import React from "react";
 const CustomContent = () => {
   return (
-    <OffCanvas trigger={<button className="btn btn-primary">打开抽屉</button>}>
+    <Drawer trigger={<button className="btn btn-primary">打开抽屉</button>}>
       <div className="p-3">
         <h5>自定义内容</h5>
         <form>
@@ -188,7 +188,7 @@ const CustomContent = () => {
           </button>
         </form>
       </div>
-    </OffCanvas>
+    </Drawer>
   );
 };
 export default CustomContent;

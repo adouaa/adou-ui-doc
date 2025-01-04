@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
-import OffCanvas from "@site/src/components/web-elements/adou-off-canvas";
+import Drawer from "@site/src/components/web-elements/adou-drawer";
 const CustomTrigger = () => {
   const offCanvasRef = useRef<any>();
   return (
     <div>
-      <OffCanvas
+      <Drawer
         actRef={offCanvasRef}
         title="自定义触发器"
         trigger={
@@ -15,7 +15,7 @@ const CustomTrigger = () => {
         }
       >
         <p>使用自定义的触发器打开抽屉</p>
-      </OffCanvas>
+      </Drawer>
       <button
         className="btn btn-link"
         onClick={() => offCanvasRef.current.open()}

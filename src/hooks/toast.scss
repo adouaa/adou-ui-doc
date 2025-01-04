@@ -1,0 +1,78 @@
+$toast-success-color: #4caf50;
+$toast-error-color: #f44336;
+$toast-warning-color: #ff9800;
+
+.adou-toast-container {
+    position: fixed;
+    top: 20px;
+    left: 50%; // 水平中心
+    transform: translate(-50%, 0%); // 将容器移动到中心
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .adou-toast {
+        width: 300px;
+        position: relative;
+        padding: 15px;
+        padding-right: 20px;
+        margin: 10px 0;
+        border-radius: 5px;
+        color: white;
+        opacity: 0;
+        // 仅向下移动，不缩小 -- 配合 &.appearing的transform: translateY(0);不能删除哦
+        transform: translateY(-20px);
+        transition: transform 0.5s ease, opacity 0.5s ease;
+
+        &-success {
+            background-color: $toast-success-color;
+        }
+
+        &-error {
+            background-color: $toast-error-color;
+        }
+
+        &-warning {
+            background-color: $toast-warning-color;
+        }
+
+        &.appearing {
+            opacity: 1;
+            // 仅向下移动，不缩小 -- 配合 .adou-toast的transform: translateY(-20px); 不能删除哦
+            transform: translateY(0);
+        }
+
+        &.disappearing {
+            opacity: 0;
+            transform: translateY(-20px) scaleX(0.9); // 向上移动并缩小宽度
+        }
+
+        &-timer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.7);
+            transition: width 0.1s linear; // 平滑缩短动画
+        }
+
+        &-close {
+            position: absolute;
+            top: -5px;
+            right: 1px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: color 0.3s;
+
+            &:hover {
+                color: #ccc;
+            }
+        }
+    }
+}

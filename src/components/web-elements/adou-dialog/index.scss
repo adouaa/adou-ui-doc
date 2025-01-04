@@ -11,7 +11,7 @@
     align-items: center;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
 
     &.open {
         opacity: 1;
@@ -29,7 +29,7 @@
     // z-index: 999;
     transform: scale(0.9);
     opacity: 0;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
 
     &.open {
         transform: scale(1);
@@ -53,7 +53,6 @@
     color: #b0aaaa;
     background: none;
     border: none;
-    font-size: 36px;
     cursor: pointer;
     outline: none;
 }
@@ -73,6 +72,6 @@
 
     &:hover {
         color: red;
-        transform: scale(1.2);
+        transform: scale(1.3);
     }
 }

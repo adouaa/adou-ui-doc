@@ -1,0 +1,183 @@
+---
+title: useNotification 通知提醒
+---
+
+import Card from "@site/src/components/web-elements/adou-card";
+import Basic from "@site/src/pages/hooks/useNotification/Basic"
+import CustomDuration from "@site/src/pages/hooks/useNotification/CustomDuration"
+import CustomIcon from "@site/src/pages/hooks/useNotification/CustomIcon"
+
+
+`useNotification` 是一个用于显示全局通知提醒的 React Hook，支持 **四种类型**、**自定义时长**、**自定义图标** 等功能。
+
+## 1. 基本使用
+
+最基本的通知提醒，支持 `success`、`warning`、`info`、`danger` 四种类型。
+
+**效果示例**：
+
+<Card>
+<Basic></Basic>
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React, { useContext } from "react";
+import { NotificationContext } from "@site/src/components/web-elements/context/adou-notification/NotificationContext";
+import Button from "@site/src/components/adou-button";
+
+const Basic = () => {
+  const notification = useContext(NotificationContext);
+  const showNotification = (type) => {
+    console.log("notification: ", NotificationContext);
+    notification?.open({
+      title: type.charAt(0).toUpperCase() + type.slice(1),
+      message: ` 这是一条${type}通知`,
+      type: type,
+    });
+  };
+  return (
+    <div className="d-flex gap-2">
+      <Button onClick={() => showNotification("success")}>成功通知</Button>
+      <Button onClick={() => showNotification("warning")}>警告通知</Button>
+      <Button onClick={() => showNotification("info")}>信息通知</Button>
+      <Button onClick={() => showNotification("danger")}>错误通知</Button>
+    </div>
+  );
+};
+export default Basic;
+```
+</details>
+</Card>
+
+## 2. 自定义显示时长
+
+通过设置 `duration` 属性可以自定义通知显示的时长。
+
+**效果示例**：
+
+<Card>
+<CustomDuration />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React, { useContext } from "react";
+import Button from "@site/src/components/adou-button";
+import { NotificationContext } from "@site/src/components/web-elements/context/adou-notification/NotificationContext";
+const CustomDuration = () => {
+  const notification = useContext(NotificationContext);
+  return (
+    <div className="d-flex gap-2">
+      <Button
+        onClick={() =>
+          notification?.open({
+            title: "短暂通知",
+            message: "这条通知将在 1 秒后消失",
+            type: "info",
+            duration: 1000,
+          })
+        }
+      >
+        显示 1s
+      </Button>
+      <Button
+        onClick={() =>
+          notification?.open({
+            title: "较长通知",
+            message: "这条通知将在 5 秒后消失",
+            type: "info",
+            duration: 5000,
+          })
+        }
+      >
+        显示 5s
+      </Button>
+    </div>
+  );
+};
+export default CustomDuration;
+```
+</details>
+</Card>
+
+## 3. 自定义图标
+
+通过 `customTitleIcon` 属性可以自定义通知的图标。
+
+**效果示例**：
+
+<Card>
+<CustomIcon />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React, { useContext } from "react";
+import { NotificationContext } from "@site/src/components/web-elements/context/adou-notification/NotificationContext";
+import Button from "@site/src/components/adou-button";
+
+const CustomIcon = () => {
+  const notification = useContext(NotificationContext);
+  return (
+    <Button
+      onClick={() =>
+        notification?.open({
+          title: "自定义图标",
+          message: "这是一条带有自定义图标的通知",
+          type: "info",
+          customTitleIcon: <i className="fa-solid fa-star text-warning"></i>,
+        })
+      }
+    >
+      显示自定义图标通知
+    </Button>
+  );
+};
+export default CustomIcon;
+```
+</details>
+</Card>
+
+## 属性
+
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| title | 通知标题 | `React.ReactNode` | - |
+| message | 通知内容 | `React.ReactNode` | - |
+| type | 通知类型 | `'success' \| 'warning' \| 'info' \| 'danger'` | `'info'` |
+| duration | 显示时长（毫秒） | `number` | `3000` |
+| customTitleIcon | 自定义图标 | `React.ReactNode` | - |
+
+## 特性
+
+1. **全局单例**：
+   - 采用单例模式，全局共享一个通知实例
+   - 自动管理通知队列
+
+2. **动画效果**：
+   - 显示/隐藏时有平滑的过渡动画
+   - 支持多个通知同时显示和堆叠
+
+3. **交互优化**：
+   - 鼠标悬停时暂停倒计时
+   - 移出后继续倒计时
+   - 支持手动关闭
+
+4. **自定义选项**：
+   - 支持四种预设类型
+   - 可自定义图标
+   - 可自定义显示时长
+
+## 注意事项
+
+1. **样式依赖**：
+   - 确保已引入相关的样式文件
+   - 需要 Font Awesome 图标支持
+
+2. **使用建议**：
+   - 建议在较高层级的组件中使用
+   - 注意控制通知内容的长度
+   - 合理设置显示时长
+
+3. **性能考虑**：
+   - 会在首次使用时创建 DOM 节点
+   - 自动管理定时器的清理
+   - 支持并发的通知显示

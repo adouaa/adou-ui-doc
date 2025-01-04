@@ -1,8 +1,8 @@
-import OffCanvas from "@site/src/components/web-elements/adou-off-canvas";
+import Drawer from "@site/src/components/web-elements/adou-drawer";
 import React from "react";
 const CustomContent = () => {
   return (
-    <OffCanvas trigger={<button className="btn btn-primary">打开抽屉</button>}>
+    <Drawer trigger={<button className="btn btn-primary">打开抽屉</button>}>
       <div className="p-3">
         <h5>自定义内容</h5>
         <form>
@@ -19,7 +19,7 @@ const CustomContent = () => {
           </button>
         </form>
       </div>
-    </OffCanvas>
+    </Drawer>
   );
 };
 export default CustomContent;

@@ -1,0 +1,195 @@
+---
+title: useLoading 加载状态
+---
+
+import Card from "@site/src/components/web-elements/adou-card";
+import Basic from "@site/src/pages/hooks/useLoading/Basic"
+import AsyncOperation from "@site/src/pages/hooks/useLoading/AsyncOperation"
+import MultipleLoading from "@site/src/pages/hooks/useLoading/MultipleLoading"
+import Custom from "@site/src/pages/hooks/useLoading/Custom"
+
+`useLoading` 是一个用于管理全局加载状态的 React Hook。它提供了一个简单的方式来显示和隐藏加载状态，支持多个并发加载请求的管理。
+
+## 1. 基本使用
+
+最基本的加载状态控制。
+
+**效果示例**：
+
+<Card>
+<Basic />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import useLoading from "@site/src/hooks/useLoading";
+import Button from "@site/src/components/adou-button";
+
+const Basic = () => {
+  const { showLoading, hideLoading } = useLoading();
+  const handleClick = () => {
+    showLoading();
+    setTimeout(hideLoading, 2000);
+  };
+  return <Button onClick={handleClick}>显示加载状态 2 秒</Button>;
+};
+
+export default Basic;
+```
+</details>
+</Card>
+
+## 2. 异步操作
+
+在异步操作中使用加载状态。
+
+**效果示例**：
+
+<Card>
+<AsyncOperation />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import useLoading from "@site/src/hooks/useLoading";
+import Button from "@site/src/components/adou-button";
+
+const AsyncOperation = () => {
+  const { showLoading, hideLoading } = useLoading();
+  const handleAsyncOperation = async () => {
+    showLoading();
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // 模拟异步操作
+    } finally {
+      hideLoading();
+    }
+  };
+  return <Button onClick={handleAsyncOperation}>执行异步操作</Button>;
+};
+
+export default AsyncOperation;
+```
+</details>
+</Card>
+
+## 3. 并发加载
+
+支持多个并发的加载请求，只有当所有请求都完成时才会隐藏加载状态。
+
+**效果示例**：
+
+<Card>
+<MultipleLoading />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import useLoading from "@site/src/hooks/useLoading";
+import Button from "@site/src/components/adou-button";
+
+const MultipleLoading = () => {
+  const { showLoading, hideLoading } = useLoading();
+  const simulateMultipleRequests = () => {
+    showLoading();
+    setTimeout(() => {
+      hideLoading();
+      // 第一个请求完成
+    }, 1000);
+    showLoading();
+    setTimeout(() => {
+      hideLoading();
+      // 第二个请求完成
+    }, 2000);
+  };
+  return <Button onClick={simulateMultipleRequests}>模拟多个请求</Button>;
+};
+
+export default MultipleLoading;
+```
+</details>
+</Card>
+
+## 4. 自定义内容
+
+通过为 `showLoading` 函数传入 `icon` 和 `text` 可以自定义展示的内容。
+
+**效果示例**：
+
+<Card>
+<Custom />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import useLoading from "@site/src/hooks/useLoading";
+import Button from "@site/src/components/adou-button";
+
+const Custom = () => {
+  const { showLoading, hideLoading } = useLoading();
+  const handleClick = () => {
+    showLoading(
+      <div className="spinner-grow text-primary" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>,
+      "加载中，请耐心等待......"
+    );
+    setTimeout(hideLoading, 2000);
+  };
+  return <Button onClick={handleClick}>显示加载状态 2 秒</Button>;
+};
+
+export default Custom;
+```
+</details>
+</Card>
+
+## 使用方法
+
+直接在组件中导入并使用 `useLoading` hook：
+
+
+
+## 属性
+
+### 返回值
+
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| loading | 当前是否处于加载状态 | `boolean` | `false` |
+| showLoading | 显示加载状态 | `() => void` | - |
+| hideLoading | 隐藏加载状态 | `() => void` | - |
+
+## 特性
+
+1. **全局单例**：
+   - 采用单例模式，全局共享一个加载状态
+   - 自动管理 DOM 节点的创建和清理
+
+2. **并发处理**：
+   - 支持多个并发的加载请求
+   - 使用计数器确保所有请求完成才隐藏
+
+3. **性能优化**：
+   - 懒加载创建 DOM 节点
+   - 自动管理组件的挂载和卸载
+
+4. **使用便捷**：
+   - 简单的 API 设计
+   - 自动处理异常情况
+
+## 注意事项
+
+1. **样式依赖**：
+   - 确保已引入 loading.scss 样式文件
+   - 可以自定义加载动画样式
+
+2. **使用建议**：
+   - 推荐在异步操作中使用
+   - 注意正确配对 show/hide 的调用
+   - 建议使用 try/finally 确保一定会调用 hide
+
+3. **性能考虑**：
+   - 首次调用时会创建 DOM 节点
+   - 多个组件共享同一个加载状态
+   - 支持并发的加载请求管理
