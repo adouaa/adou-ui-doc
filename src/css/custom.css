@@ -123,3 +123,7 @@
 .navbar__title.text--truncate {
   text-decoration: none;
 }
+
+.table>:not(caption)>*>* {
+  background-color: transparent !important;
+}

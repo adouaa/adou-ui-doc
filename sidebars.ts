@@ -62,6 +62,7 @@ const sidebars: SidebarsConfig = {
         "web-elements/resizeable-sliderbar",
         "web-elements/random-arrange",
         "web-elements/off-canvas",
+        "web-elements/table",
       ],
     },
     {

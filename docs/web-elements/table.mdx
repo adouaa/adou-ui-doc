@@ -1,0 +1,305 @@
+---
+title: Table 表格
+---
+
+import Card from "@site/src/components/web-elements/adou-card";
+import Basic from "@site/src/pages/web-elements/table/Basic"
+import ClickChecked from "@site/src/pages/web-elements/table/ClickChecked"
+import TableBGC from "@site/src/pages/web-elements/table/TableBGC"
+import Checked from "@site/src/pages/web-elements/table/Checked"
+import ShowIndex from "@site/src/pages/web-elements/table/ShowIndex"
+import Align from "@site/src/pages/web-elements/table/Align"
+
+`Table` 组件用于展示数据表格，支持多种功能，如 **排序、选择、折叠、树形、响应式布局** 等。
+
+* 注意：在 `Docusaurus` 框架中，`table` 元素自动会有 `边框` 和 `斑马纹`，**无法去除** 。但是在 `Table` 组件中，可以通过对应属性去控制这些样式。
+
+## 1. 基本使用
+
+**效果示例**：
+<Card>
+<Basic />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Table, { TableCell } from "@site/src/components/web-elements/adou-table";
+import { data, columns } from "./basicData";
+
+interface BasicProps {}
+
+const Basic = ({}: BasicProps) => {
+  return (
+    <div className="basic-wrapper">
+      <Table data={data} columns={columns}>
+        {columns.map((item: any) => (
+          <TableCell key={item.prop} {...item}></TableCell>
+        ))}
+      </Table>
+    </div>
+  );
+};
+
+export default Basic;
+
+```
+</details>
+</Card>
+
+## 2. 点击选中
+
+
+如果想点击某项数据有选中的样式，可以给 `Table` 组件添加 `clickChecked` 属性，可以配合 `onRowClick` 属性传入回调函数，回调函数的参数为当前点击的行数据。**默认单选**
+
+**效果示例**：
+
+<Card>
+<ClickChecked />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Table, { TableCell } from "@site/src/components/web-elements/adou-table";
+import { data, columns } from "./basicData";
+
+interface ClickedCheckedProps {}
+
+const ClickedChecked = ({}: ClickedCheckedProps) => {
+  return (
+    <div className="clicked-checked-wrapper">
+      <Table
+        onRowClick={(row: any) => {
+          alert(`表格的数据：${JSON.stringify(row)}`);
+        }}
+        id="id"
+        clickChecked
+        data={data}
+        columns={columns}
+      >
+        {columns.map((item: any) => (
+          <TableCell key={item.prop} {...item}></TableCell>
+        ))}
+      </Table>
+    </div>
+  );
+};
+
+export default ClickedChecked;
+```
+</details>
+</Card>
+
+## 3. 表格背景色
+
+通过 `tableBGC` 属性可以控制表格的背景色。
+
+**效果示例**：
+
+<Card>
+<TableBGC />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Table, { TableCell } from "@site/src/components/web-elements/adou-table";
+import { data, columns } from "./basicData";
+
+interface TableBGCProps {}
+
+const TableBGC = ({}: TableBGCProps) => {
+  return (
+    <div className="table-bgc-wrapper">
+      <Table tableBGC={"beige"} data={data} columns={columns}>
+        {columns.map((item: any) => (
+          <TableCell key={item.prop} {...item}></TableCell>
+        ))}
+      </Table>
+    </div>
+  );
+};
+
+export default TableBGC;
+```
+</details>
+</Card>
+
+## 4. 选中行
+
+* 传入 `activeId` 可以默认选中某一行。<br />
+* 传入 `defaultChecked(数组)` 可以默认选中某几行。<br />
+* 传入 `checkAll` 可以默认选中全部行。
+
+**效果示例**：
+
+<Card>
+<Checked />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Table, { TableCell } from "@site/src/components/web-elements/adou-table";
+import { data, columns } from "./basicData";
+
+interface CheckedIdProps {}
+
+const Checked = ({}: CheckedIdProps) => {
+  return (
+    <>
+      <h5>通过 activeId 选中单行：</h5>
+      <div className="checked-wrapper">
+        <Table activeId={"team002"} data={data} columns={columns}>
+          {columns.map((item: any) => (
+            <TableCell key={item.prop} {...item}></TableCell>
+          ))}
+        </Table>
+      </div>
+      <hr />
+      <h5>通过 defaultChecked 选中某几行：</h5>
+      <div className="checked-wrapper">
+        <Table
+          defaultCheckedList={["team001", "team003", "team004"]}
+          data={data}
+          columns={columns}
+        >
+          {columns.map((item: any) => (
+            <TableCell key={item.prop} {...item}></TableCell>
+          ))}
+        </Table>
+      </div>
+      <h5>通过 checkAll 选中所有行：</h5>
+      <div className="checked-wrapper">
+        <Table checkAll data={data} columns={columns}>
+          {columns.map((item: any) => (
+            <TableCell key={item.prop} {...item}></TableCell>
+          ))}
+        </Table>
+      </div>
+    </>
+  );
+};
+
+export default Checked;
+
+```
+</details>
+</Card>
+
+## 5. 索引
+
+组件默认不展示索引，通过传入 `showIndex` 属性可以展示索引
+
+**效果示例**：
+
+<Card>
+<ShowIndex />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Table, { TableCell } from "@site/src/components/web-elements/adou-table";
+import { data, columns } from "./basicData";
+
+interface ShowIndexProps {}
+
+const ShowIndex = ({}: ShowIndexProps) => {
+  return (
+    <div className="show-index-wrapper">
+      <Table showIndex data={data} columns={columns}>
+        {columns.map((item: any) => (
+          <TableCell key={item.prop} {...item}></TableCell>
+        ))}
+      </Table>
+    </div>
+  );
+};
+
+export default ShowIndex;
+
+```
+</details>
+</Card>
+
+## 6. 文字位置
+
+* 组件默认 `表头` 和 `单元格` **文字居中** ，通过传入 `align` 属性可以控制文字位置。<br />
+* 优先级：`单元格` > `全局`，即传给 `TableCell` 的 `align` 属性 优先于 传给 `Table` 的 `align` 属性。<br />
+* 注意：`表头` 和 `单元格` **文本对齐方式是一致的**。
+
+**效果示例**：
+
+<Card>
+<Align />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Table, { TableCell } from "@site/src/components/web-elements/adou-table";
+import { data, columns } from "./basicData";
+
+interface ShowIndexProps {}
+
+const ShowIndex = ({}: ShowIndexProps) => {
+  return (
+    <div className="show-index-wrapper">
+      <Table showIndex data={data} columns={columns}>
+        {columns.map((item: any) => (
+          <TableCell key={item.prop} {...item}></TableCell>
+        ))}
+      </Table>
+    </div>
+  );
+};
+
+export default ShowIndex;
+
+```
+</details>
+</Card>
+
+## 属性
+
+| 属性名              | 类型                              | 默认值   | 描述                                                                 |
+| ------------------- | --------------------------------- | -------- | -------------------------------------------------------------------- |
+| tdPadding           | `string`                         | `"px-2 py-3"` | 单元格的内边距。                                                   |
+| clickChecked        | `boolean`                         | 无       | 是否允许点击选中行。                                                 |
+| showHeader          | `boolean`                         | `true`   | 是否显示表头。                                                       |
+| defaultChecked      | `any`                             | 无       | 默认选中的行。                                                       |
+| headerFontWeight    | `"normal" \| "bold"`             | `"normal"` | 表头字体的粗细。                                                   |
+| width               | `any`                             | 无       | 控制表格的宽度。                                                     |
+| tableBgc            | `any`                             | 无       | 表格的背景色。                                                       |
+| tableRef            | `React.Ref`                      | 无       | 表格的引用对象，用于访问内部方法。                                   |
+| activeId            | `number \| string`               | 无       | 高亮显示选中的行。                                                   |
+| maxWidth            | `any`                             | 无       | 表格的最大宽度。                                                     |
+| showIndex           | `boolean`                         | `false`  | 是否显示索引列。                                                   |
+| multiple            | `boolean`                         | `false`  | 是否支持多选。                                                       |
+| id                  | `string`                         | `"id"`   | 数据项的唯一标识字段。                                             |
+| trPointer           | `boolean`                         | `true`   | 行是否显示为指针样式。                                             |
+| textPosition        | `"center" \| "start" \| "end" \| "justify"` | 无 | 单元格文本对齐方式。                                               |
+| collection          | `boolean`                         | 无       | 是否显示复选框列。                                                 |
+| collapse            | `boolean`                         | 无       | 是否支持折叠功能。                                                 |
+| expandAll           | `boolean`                         | `false`  | 是否默认展开所有行。                                               |
+| eidtable            | `boolean`                         | `false`  | 是否支持单元格编辑。                                               |
+| size                | `"lg" \| "sm"`                   | `"lg"`   | 表格大小。                                                         |
+| data                | `any`                             | 无       | 表格数据。                                                         |
+| headers             | `any`                             | 无       | 表头配置。                                                         |
+| propsData           | `any`                             | 无       | 额外的属性数据。                                                   |
+| tableHover          | `boolean`                         | `true`   | 是否启用行悬停效果。                                             |
+| tableStriped        | `boolean`                         | `false`  | 是否启用条纹效果。                                               |
+| tableBorderd        | `boolean`                         | `false`  | 是否显示边框。                                                   |
+| tableBorderless     | `boolean`                         | `false`  | 是否无边框。                                                     |
+| headColor           | `"light" \| "dark"`              | `"null"` | 表头颜色。                                                       |
+| align               | `"top" \| "middle" \| "bottom"`  | 无       | 单元格垂直对齐方式。                                             |
+| captionContent      | `any`                             | 无       | 表格标题内容。                                                   |
+| captionPosition      | `"top" \| "bottom"`              | `"top"`  | 表格标题位置。                                                   |
+| tableResponsive     | `"sm" \| "md" \| "lg" \| "xl" \| "xxl"` | `"xxl"` | 表格响应式布局。                                               |
+| children            | `any`                             | 无       | 子组件。                                                           |
+| headSticky          | `boolean`                         | `true`   | 表头是否固定。                                                     |
+| headTextColor       | `string`                          | `"black"`| 表头文本颜色。                                                     |
+| headBGC             | `any`                             | 无       | 表头背景色。                                                       |
+| divider             | `boolean`                         | 无       | 是否显示分隔线。                                                   |
+| maxHeight           | `string`                          | `"500px"`| 表格的最大高度。                                                   |
+| minHeight           | `string`                          | `"0px"`  | 表格的最小高度。                                                   |
+| onEditOK           | `(data: any) => void`            | 无       | 编辑确认的回调函数。                                               |
+| onRowDoubleClick    | `(row: any) => void`             | 无       | 行双击事件的回调函数。                                             |
+| onClearSelected     | `() => void`                     | 无       | 清除选中行的回调函数。                                             |
+| onRowClick          | `(row: any) => void`             | 无       | 行点击事件的回调函数。                                             |
