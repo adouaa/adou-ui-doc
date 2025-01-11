@@ -63,6 +63,8 @@ const sidebars: SidebarsConfig = {
         "web-elements/random-arrange",
         "web-elements/off-canvas",
         "web-elements/table",
+        "web-elements/tabs",
+        "web-elements/time-line",
       ],
     },
     {

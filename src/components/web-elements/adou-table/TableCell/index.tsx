@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
+import "./index.scss";
 
 interface TableCellProps {
   parentId?: any;
-  tooltip?: boolean;
+  showTip?: boolean;
   sortable?: boolean;
   collapse?: boolean;
   isParent?: boolean;
@@ -28,7 +29,7 @@ interface TableCellProps {
 const TableCell = (props: TableCellProps) => {
   const {
     parentId,
-    tooltip,
+    showTip,
     sortable,
     collapse,
     isParent,
@@ -92,13 +93,16 @@ const TableCell = (props: TableCellProps) => {
   }, [value]);
 
   return (
-    <div className="table-cell d-flex" style={{ width: "100%" }}>
+    <div
+      className={`table-cell d-flex ${judgeTdAlign()}`}
+      style={{ width: "100%" }}
+    >
       {render ? (
         render(editedValue, rowData, rowIndex, prop, colIndex)
       ) : (
         <div
           className="table-cell-wrapper"
-          style={{ display: "inline-block", overflow: "hidden", width: "100%" }}
+          style={{ display: "inline-block", width: "100%" }}
           onDoubleClick={handleDoubleClick}
           ref={wrapperRef}
         >
@@ -127,7 +131,15 @@ const TableCell = (props: TableCellProps) => {
                 ) : parentId && colIndex === 0 ? (
                   <span className="ps-3"></span>
                 ) : null}
-                <div style={{ maxWidth }} className="ellipsis-1 ">
+                <div
+                  style={{
+                    maxWidth:
+                      showTip && parseFloat(maxWidth) > parseFloat(width) - 20
+                        ? parseFloat(width) - 20 + "px"
+                        : maxWidth,
+                  }}
+                  className="ellipsis-1 "
+                >
                   {editedValue}
                 </div>
               </div>

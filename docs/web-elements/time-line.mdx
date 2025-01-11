@@ -1,0 +1,231 @@
+---
+title: TimeLine 时间轴
+---
+
+import Card from "@site/src/components/web-elements/adou-card";
+import Basic from "@site/src/pages/web-elements/time-line/Basic"
+import Horizontal from "@site/src/pages/web-elements/time-line/Horizontal"
+import CustomRender from "@site/src/pages/web-elements/time-line/CustomRender"
+import CustomIcon from "@site/src/pages/web-elements/time-line/CustomIcon"
+
+`TimeLine` 组件用于展示时间流或步骤流程。
+
+## 1. 基本使用
+
+最基础的垂直时间轴。
+
+<Card>
+<Basic />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import TimeLine, {
+  TimeLineItem,
+} from "@site/src/components/web-elements/adou-time-line";
+
+const events = [
+  {
+    id: 1,
+    title: "事件1",
+    date: "2024-01-01",
+    isFinish: true,
+    description: "这是事件1的描述",
+  },
+  { id: 2, title: "事件2", date: "2024-01-02" },
+  { id: 3, title: "事件3", date: "2024-01-03" },
+];
+
+const Basic = () => {
+  return (
+    <TimeLine events={events}>
+      {events.map((event) => (
+        <TimeLineItem key={event.id} />
+      ))}
+    </TimeLine>
+  );
+};
+
+export default Basic;
+
+```
+</details>
+</Card>
+
+## 2. 水平时间轴
+
+通过设置 `vertical={false}` 可以展示水平方向的时间轴。
+
+<Card>
+<Horizontal />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import TimeLine, {
+  TimeLineItem,
+} from "@site/src/components/web-elements/adou-time-line";
+import React from "react";
+
+const events = [
+  { id: 1, title: "步骤1", isFinish: true, date: "2022-01-01 12:00:00" },
+  { id: 2, title: "步骤2", isFinish: true, date: "2022-01-01 12:00:00" },
+  { id: 3, title: "步骤3", date: "2022-01-01 12:00:00" },
+];
+const Horizontal = () => {
+  return (
+    <TimeLine events={events} vertical={false}>
+      {events.map((event) => (
+        <TimeLineItem key={event.id} />
+      ))}
+    </TimeLine>
+  );
+};
+
+export default Horizontal;
+
+```
+</details>
+</Card>
+
+## 3. 自定义图标
+
+通过 `checkedIcon` 和 `unCheckedIcon` 分别可以控制 **完成** 和 **未完成** 状态下的图标。
+
+<Card>
+<CustomIcon />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import TimeLine, {
+  TimeLineItem,
+} from "@site/src/components/web-elements/adou-time-line";
+
+const events = [
+  {
+    id: 1,
+    title: "Event 1",
+    description: "Description for event 1",
+    date: "2023-01-01",
+    isFinish: true,
+  },
+  {
+    id: 2,
+    title: "Event 2",
+    description: "Description for event 2",
+    date: "2023-02-01",
+    unCheckedIcon: "fa-solid fa-xmark text-danger",
+  },
+  {
+    id: 3,
+    title: "Event 3",
+    description: "Description for event 3",
+    date: "2023-03-01",
+  },
+];
+
+const CustomIcon = () => {
+  return (
+    <TimeLine events={events}>
+      {events.map((event) => (
+        <TimeLineItem key={event.id} />
+      ))}
+    </TimeLine>
+  );
+};
+export default CustomIcon;
+
+```
+</details>
+</Card>
+
+## 4. 自定义渲染
+
+通过 `render` 函数可以自定义每个时间节点的渲染内容。
+
+<Card>
+<CustomRender />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import TimeLine, {
+  TimeLineItem,
+} from "@site/src/components/web-elements/adou-time-line";
+import React from "react";
+
+const events = [
+  {
+    date: "2024-01-11 23:47",
+    id: 1,
+    title: "bug修复",
+    content: "修复了若干bug",
+    isFinish: true,
+  },
+  {
+    date: "2024-01-11 15:47",
+    id: 1,
+    title: "发布版本",
+    content: "发布 v1.0.0 版本",
+    isFinish: true,
+    render: (data) => (
+      <>
+        <div className="custom-timeline-item pb-1">
+          <div className="title d-flex align-items-center">
+            <div className="text text-danger me-2">{data.title}</div>
+            <div className={`fa-regular fa-thumbs-up text-danger`}></div>
+          </div>
+          <div className="content-text">{data.content}</div>
+        </div>
+      </>
+    ),
+  },
+  // ... 其他事件
+];
+const CustomRender = () => {
+  return (
+    <TimeLine events={events}>
+      {events.map((event) => (
+        <TimeLineItem
+          key={event.id}
+          render={(data) => (
+            <div className="custom-timeline-item pb-2">
+              <div className={`dot ${data.type}`}></div>
+              <div>{data.title}</div>
+              <div>{data.content}</div>
+            </div>
+          )}
+        />
+      ))}
+    </TimeLine>
+  );
+};
+
+export default CustomRender;
+```
+</details>
+</Card>
+
+## 属性
+
+### TimeLine 属性
+
+| 属性名 | 类型 | 默认值 | 描述 |
+|---|---|---|---|
+| events | `any[]` | - | 时间轴数据源。 |
+| vertical | `boolean` | `true` | 是否垂直展示。 |
+| children | `ReactNode` | - | 子组件。 |
+
+### TimeLineItem 属性
+
+| 属性名 | 类型 | 默认值 | 描述 |
+|---|---|---|---|
+| data | `any` | - | 当前节点的数据。 |
+| vertical | `boolean` | `true` | 是否垂直展示。 |
+| isLasted | `boolean` | - | 是否为最后一个节点。 |
+| render | `(data: any, width: number, height: number, isLasted: boolean) => ReactNode` | - | 自定义渲染函数。 |
+
+### render 函数参数
+
+| 参数名 | 类型 | 描述 |
+|---|---|---|
+| data | `any` | 当前节点的数据对象。 |

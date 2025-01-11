@@ -47,17 +47,21 @@ const data = [
 ];
 
 const columns = [
-  { label: "团队 ID", prop: "id", width: "120px" },
+  { title: "团队 ID", prop: "id", width: "120px" },
   {
-    label: "团队名称",
+    title: "团队名称",
     prop: "teamName",
     width: "150px",
   },
-  { label: "负责人", prop: "leader", width: "120px" },
-  { label: "联系邮箱", prop: "contactEmail", width: "200px" },
-  { label: "团队人数", prop: "memberCount", width: "120px" },
+  { title: "负责人", prop: "leader", width: "120px" },
   {
-    label: "成立年限",
+    title: "联系邮箱",
+    prop: "contactEmail",
+    width: "250px",
+  },
+  { title: "团队人数", prop: "memberCount", width: "120px" },
+  {
+    title: "成立年限",
     prop: "yearsSinceEstablishment",
     width: "120px",
   },

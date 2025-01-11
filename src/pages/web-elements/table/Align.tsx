@@ -30,7 +30,7 @@ const Align = ({}: AlignProps) => {
   return (
     <div className="align-wrapper">
       <h5>全局居左</h5>
-      <Table tableWidth={"500px"} align="start" data={data} columns={columns}>
+      <Table align="start" data={data} columns={columns}>
         {columns.map((item: any) => (
           <TableCell key={item.prop} {...item}></TableCell>
         ))}
