@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import React from "react";
 
 interface TimeLineItemProps {
-  showDate?: boolean;
   data?: any;
   vertical?: boolean;
   render?: any;
@@ -10,7 +9,6 @@ interface TimeLineItemProps {
 }
 
 const TimeLineItem = ({
-  showDate = true,
   data,
   render,
   vertical,

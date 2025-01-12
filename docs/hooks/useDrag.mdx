@@ -1,0 +1,90 @@
+---
+title: useDrag 拖拽钩子
+---
+
+import Card from "@site/src/components/web-elements/adou-card";
+import Basic from "@site/src/pages/hooks/useDrag/Basic"
+import Dialog from "@site/src/pages/hooks/useDrag/Dialog"
+import CustomStyle from "@site/src/pages/hooks/useDrag/CustomStyle"
+
+`useDrag` 是一个用于实现元素拖拽功能的 React Hook。它提供了简单的方式来实现元素的拖拽移动，支持普通元素和对话框两种模式。
+
+## 1. 基本使用
+
+最基本的元素拖拽功能。
+
+**效果示例**：
+
+<Basic />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+</details>
+
+## 2. 对话框拖拽
+
+用于实现对话框的拖拽功能。
+
+**效果示例**：
+
+<Card>
+<Dialog />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+</details>
+</Card>
+
+## 3. 自定义样式
+
+关闭自动样式设置，手动控制拖拽元素的样式。
+
+**效果示例**：
+
+<CustomStyle />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+</details>
+
+## 参数
+
+| 参数名 | 类型 | 默认值 | 描述 |
+|---|---|---|---|
+| triggerRef | `RefObject` | - | 触发拖拽的元素引用。 |
+| elementRef | `RefObject` | - | 被拖拽的元素引用。 |
+| isDialog | `boolean` | `false` | 是否为对话框模式。 |
+| autoStyle | `boolean` | `true` | 是否自动设置样式。 |
+| initialPosition | `{ x: number, y: number }` | `{ x: 0, y: 0 }` | 初始位置。 |
+
+## 返回值
+
+| 属性名 | 类型 | 描述 |
+|---|---|---|
+| position | `{ x: number, y: number }` | 当前位置坐标。 |
+| handleMouseDown | `(e: MouseEvent) => void` | 鼠标按下事件处理函数。 |
+
+## 特性
+
+1. **两种模式**：
+   - 支持普通元素拖拽
+   - 支持对话框拖拽
+
+2. **样式控制**：
+   - 可选择自动样式设置
+   - 支持手动样式控制
+
+3. **位置管理**：
+   - 自动计算相对位置
+   - 支持设置初始位置
+
+## 注意事项
+
+1. **引用设置**：
+   - 必须为触发元素和目标元素设置 ref
+   - triggerRef 和 elementRef 可以是同一个元素
+
+2. **样式建议**：
+   - 使用 autoStyle 时，确保元素可以使用相对定位
+   - 关闭 autoStyle 时，需要手动处理位置样式
+
+3. **性能考虑**：
+   - 拖拽过程中会持续触发状态更新
+   - 建议使用防抖或节流优化频繁更新

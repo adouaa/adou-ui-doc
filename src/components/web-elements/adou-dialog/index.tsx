@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
-import useDrag from "@site/src/common/hooks/useDrag";
+import useDrag from "@site/src/hooks/useDrag";
 import useClickOutside from "@site/src/hooks/useClickOutside";
 import Button from "../../adou-button";
 
 interface DialogProps {
-  draggable?: boolean;
-  confirmLoading?: boolean;
+  draggble?: boolean; // 是否可拖拽
+  confirmBtnLoading?: boolean; // 确定按钮loading
   needDestroy?: boolean; // 是否需要销毁
   maxY?: boolean;
   maxX?: boolean;
@@ -34,8 +34,8 @@ interface DialogProps {
   onConfirm?: () => void;
 }
 const Dialog: React.FC<DialogProps> = ({
-  draggable,
-  confirmLoading,
+  draggble,
+  confirmBtnLoading,
   needDestroy = false,
   maxY,
   maxX,
@@ -54,7 +54,7 @@ const Dialog: React.FC<DialogProps> = ({
   children = null,
   type = "",
   maxHeight = "400px",
-  width = type === "tip" ? "420px" : "600px",
+  width = "600px",
   height,
   maxWidth,
   onCancel,
@@ -62,13 +62,19 @@ const Dialog: React.FC<DialogProps> = ({
   onConfirm = () => {},
 }) => {
   const dialogRef = useRef<any>(null);
+  const triggerRef = useRef<any>(null);
   const [show, setShow] = useState(false);
   const [destroied, setDestroied] = useState<boolean>(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [initialPosition, setInitialPosition] = useState({ x: 0, y: 0 });
   const [firstOpen, setFirstOpen] = useState<boolean>(false);
 
-  const { position, handleMouseDown } = useDrag(dialogRef, true, false);
+  const { position, handleMouseDown } = useDrag(
+    triggerRef,
+    dialogRef,
+    draggble && !max,
+    false
+  );
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
@@ -76,11 +82,6 @@ const Dialog: React.FC<DialogProps> = ({
     } else if (event.key === "Escape") {
       onClose && onClose();
     }
-  };
-
-  const handleClose = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    onClose && onClose();
   };
 
   useEffect(() => {
@@ -136,7 +137,7 @@ const Dialog: React.FC<DialogProps> = ({
     }
   }, [isOpen, type]);
 
-  useClickOutside([dialogRef], clickOutside && onClose);
+  useClickOutside(dialogRef, clickOutside && onClose);
 
   return (
     <>
@@ -157,18 +158,21 @@ const Dialog: React.FC<DialogProps> = ({
                   width: max || maxX ? "100vw" : width || maxWidth,
                 }}
               >
-                <div
-                  className="dialog-header p-2 ps-3"
-                  {...(draggable && {
-                    onMouseDown: handleMouseDown,
-                  })}
-                  style={{ cursor: draggable ? "move" : "default" }}
-                >
-                  <span className="fs-5">{title}</span>
+                <div className="dialog-header px-2 ps-3">
+                  <span className="dialog-header-title fs-5">{title}</span>
+                  <div
+                    ref={triggerRef}
+                    className="header-placeholder flex-fill"
+                    onMouseDown={draggble && !max ? handleMouseDown : undefined}
+                    style={{
+                      cursor: draggble && !max ? "move" : "default",
+                      height: "56.8px",
+                    }}
+                  ></div>
                   {showClose && (
                     <button
                       className="dialog-close hover-scale"
-                      onClick={handleClose}
+                      onClick={onClose}
                     >
                       &times;
                     </button>
@@ -177,22 +181,18 @@ const Dialog: React.FC<DialogProps> = ({
                 <div
                   className="dialog-content"
                   style={{
-                    maxHeight: max || maxY ? "79.5vh" : height || maxHeight,
-                    height: max || maxY ? "79.5vh" : height,
+                    maxHeight:
+                      max || maxY ? "calc(100vh - 8rem)" : height || maxHeight,
+                    height: max || maxY ? "calc(100vh - 8rem)" : height,
                   }}
                 >
-                  {children || "默认对话框内容"}
+                  {children}
                 </div>
-                <div
-                  className={`dialog-footer d-flex justify-content-end ${
-                    type === "tip" ? "p-2" : "p-3"
-                  }`}
-                >
+                <div className="dialog-footer d-flex justify-content-end p-3">
                   {showCancel && (
                     <Button
-                      type="secondary"
                       externalClassName={`me-2 btn-${cancelBtnClass}`}
-                      size={`${type === "tip" ? "sm" : "md"}`}
+                      size="md"
                       onClick={onCancel ?? onClose}
                     >
                       {cancelText}
@@ -200,11 +200,10 @@ const Dialog: React.FC<DialogProps> = ({
                   )}
                   {showConfirm && (
                     <Button
-                      type="primary"
-                      loading={confirmLoading}
+                      loading={confirmBtnLoading}
                       disabled={!canConfirm}
                       externalClassName={`btn-${confirmBtnClass}`}
-                      size={`${type === "tip" ? "sm" : "md"}`}
+                      size="md"
                       onClick={onConfirm}
                     >
                       {confirmText}

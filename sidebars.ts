@@ -70,7 +70,12 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "hooks",
-      items: ["hooks/useNotification", "hooks/useLoading", "hooks/useToast"],
+      items: [
+        "hooks/useNotification",
+        "hooks/useLoading",
+        "hooks/useToast",
+        "hooks/useDrag",
+      ],
     },
   ],
 
