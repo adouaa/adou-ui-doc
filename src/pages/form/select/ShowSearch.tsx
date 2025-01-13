@@ -1,5 +1,6 @@
 import React from "react";
 import Select from "@site/src/components/adou-new-form/adou-select";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 const ShowSearchExample = () => {
   const options = [
     {
@@ -33,7 +34,9 @@ const ShowSearchExample = () => {
   ];
   return (
     <div className="show-search-wrapper">
-      <Select showSearch placeholder="请选择" options={options} />
+      <BrowserOnly fallback={<div>Loading...</div>}>
+        {() => <Select showSearch placeholder="请选择" options={options} />}
+      </BrowserOnly>
     </div>
   );
 };

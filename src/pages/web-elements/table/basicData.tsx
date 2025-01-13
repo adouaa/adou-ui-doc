@@ -68,3 +68,5 @@ const columns = [
 ];
 
 export { data, columns };
+
+export default () => <div></div>;

@@ -10,3 +10,5 @@ export const data = [
   { label: "Item 9", value: "9" },
   { label: "Item 10", value: "10" },
 ];
+
+export default () => <div></div>;

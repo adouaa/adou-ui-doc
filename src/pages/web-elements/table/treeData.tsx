@@ -88,3 +88,5 @@ export const columns = [
     width: "180px",
   },
 ];
+
+export default () => <div></div>;

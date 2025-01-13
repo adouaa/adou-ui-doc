@@ -1,5 +1,6 @@
 import React from "react";
 import Select from "@site/src/components/adou-new-form/adou-select";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 const PlaceholderExample = () => {
   const options = [
     { label: "Option 1", value: "1" },
@@ -8,7 +9,11 @@ const PlaceholderExample = () => {
   ];
   return (
     <div className="placeholder-select-wrapper">
-      <Select mode="tags" placeholder="请选择你的选项~" options={options} />
+      <BrowserOnly fallback={<div>Loading...</div>}>
+        {() => (
+          <Select mode="tags" placeholder="请选择你的选项~" options={options} />
+        )}
+      </BrowserOnly>
     </div>
   );
 };

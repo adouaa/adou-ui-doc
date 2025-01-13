@@ -38,7 +38,7 @@ const sidebars: SidebarsConfig = {
       type: "category",
       label: "Form 表单",
       items: [
-        "form/cascader",
+        // "form/cascader",
         "form/checkbox",
         "form/input",
         "form/select",

@@ -1,6 +1,6 @@
 import React from "react";
 import Table, { TableCell } from "@site/src/components/web-elements/adou-table";
-import { data } from "./basicData";
+import { data } from "./basicData.tsx";
 
 interface ShowTipProps {}
 

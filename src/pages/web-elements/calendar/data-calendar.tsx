@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
 import React from "react";
 import Calendar from "@site/src/components/web-elements/adou-calendar";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 
 interface DataCalendarProps {}
 
@@ -14,7 +14,9 @@ const DataCalendar = ({}: DataCalendarProps) => {
 
   return (
     <div className="data-calendar-wrapper">
-      <Calendar data={calendarData}></Calendar>
+      <BrowserOnly fallback={<div>Loading...</div>}>
+        {() => <Calendar data={calendarData}></Calendar>}
+      </BrowserOnly>
     </div>
   );
 };

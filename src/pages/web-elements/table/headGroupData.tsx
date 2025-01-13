@@ -147,3 +147,5 @@ export const columns = [
     ],
   },
 ];
+
+export default () => <div></div>;

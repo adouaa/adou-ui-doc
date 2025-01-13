@@ -18,30 +18,97 @@ import CustomStyle from "@site/src/pages/hooks/useDrag/CustomStyle"
 <Basic />
 <details className="mt-3">
 <summary>点击查看代码</summary>
+```jsx
+import React, { useRef } from "react";
+import useDrag from "@site/src/hooks/useDrag";
+
+const Basic = () => {
+  const elementRef = useRef(null);
+  const triggerRef = useRef(null);
+  const { position, handleMouseDown } = useDrag(elementRef, elementRef);
+  return (
+    <div
+      ref={elementRef}
+      onMouseDown={handleMouseDown}
+      className="draggable-box p-2"
+      style={{ width: "fit-content", background: "red" }}
+    >
+      <div ref={triggerRef} className="drag-handle">
+        拖拽我
+      </div>
+    </div>
+  );
+};
+
+export default Basic;
+
+```
 </details>
 
-## 2. 对话框拖拽
+## 2. 自定义样式
 
-用于实现对话框的拖拽功能。
-
-**效果示例**：
-
-<Card>
-<Dialog />
-<details className="mt-3">
-<summary>点击查看代码</summary>
-</details>
-</Card>
-
-## 3. 自定义样式
-
-关闭自动样式设置，手动控制拖拽元素的样式。
+可以取消自动样式设置， **手动控制拖拽元素的样式** 。例如手动控制拖拽元素只能 **在父组件的内部进行拖拽** 。
 
 **效果示例**：
 
 <CustomStyle />
 <details className="mt-3">
 <summary>点击查看代码</summary>
+```jsx
+import React, { useRef } from "react";
+import useDrag from "@site/src/hooks/useDrag";
+
+const CustomStyle = () => {
+  const elementRef = useRef(null);
+  const triggerRef = useRef(null);
+  const { position, handleMouseDown } = useDrag(
+    triggerRef,
+    elementRef,
+    false,
+    false
+  );
+  return (
+    <div
+      className="wrapper"
+      style={{ backgroundColor: "red", width: "300px", padding: "15px 0" }}
+    >
+      <div
+        className="position-relative"
+        ref={elementRef}
+        style={{
+          top:
+            position.y <= -15
+              ? "-15px"
+              : position.y >= 15
+              ? "15px"
+              : position.y + "px",
+          left:
+            position.x <= 0
+              ? 0
+              : position.x >= 200
+              ? "200px"
+              : position.x + "px",
+          transition: "transform 0.1s",
+          cursor: "move",
+          zIndex: 999,
+        }}
+      >
+        <div
+          className="ps-2"
+          ref={triggerRef}
+          onMouseDown={handleMouseDown}
+          style={{ backgroundColor: "skyblue", width: "100px" }}
+        >
+          拖拽元素
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default CustomStyle;
+
+```
 </details>
 
 ## 参数

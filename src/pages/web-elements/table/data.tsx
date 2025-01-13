@@ -184,3 +184,5 @@ export const columns = [
   { title: "YourEmail", prop: "email", width: "150px", align: "start" }, // 成员邮箱
   { title: "Age", prop: "age", width: "150px", sortable: true }, // 成员年龄
 ];
+
+export default () => <div></div>;

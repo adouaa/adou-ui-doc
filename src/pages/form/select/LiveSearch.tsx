@@ -1,5 +1,6 @@
 import React from "react";
 import Select from "@site/src/components/adou-new-form/adou-select";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 const LiveSearcExample = () => {
   const options = [
     {
@@ -33,7 +34,11 @@ const LiveSearcExample = () => {
   ];
   return (
     <div className="live-search-wrapper">
-      <Select mode="liveSearch" placeholder="请输入" options={options} />
+      <BrowserOnly fallback={<div>Loading...</div>}>
+        {() => (
+          <Select mode="liveSearch" placeholder="请输入" options={options} />
+        )}
+      </BrowserOnly>
     </div>
   );
 };

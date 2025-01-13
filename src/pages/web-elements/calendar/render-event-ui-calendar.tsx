@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import React from "react";
 import Calendar from "@site/src/components/web-elements/adou-calendar";
-import { CalendarDay } from "./type";
+import CalendarDay from "./type";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 
 interface RenderEventUICalendarProps {}
 
@@ -15,15 +16,19 @@ const RenderEventUICalendar = ({}: RenderEventUICalendarProps) => {
 
   return (
     <div className="data-calendar-wrapper">
-      <Calendar
-        wrapperWidth={"100%"}
-        data={calendarData}
-        renderEventUIFn={(dayInfo: CalendarDay) => (
-          <>
-            <h1>{dayInfo.event}</h1>
-          </>
+      <BrowserOnly fallback={<div>Loading...</div>}>
+        {() => (
+          <Calendar
+            wrapperWidth={"100%"}
+            data={calendarData}
+            renderEventUIFn={(dayInfo: CalendarDay) => (
+              <>
+                <h1>{dayInfo.event}</h1>
+              </>
+            )}
+          ></Calendar>
         )}
-      ></Calendar>
+      </BrowserOnly>
     </div>
   );
 };

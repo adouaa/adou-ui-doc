@@ -1,5 +1,6 @@
 import React from "react";
 import Select from "@site/src/components/adou-new-form/adou-select";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 const OptionRenderExample = () => {
   const options = [
     {
@@ -29,7 +30,9 @@ const OptionRenderExample = () => {
   ];
   return (
     <div className="multiple-select-wrapper">
-      <Select placeholder="请选择" options={options} />
+      <BrowserOnly fallback={<div>Loading...</div>}>
+        {() => <Select placeholder="请选择" options={options} />}
+      </BrowserOnly>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import React from "react";
 import Calendar from "@site/src/components/web-elements/adou-calendar";
 import AdouInput from "@site/src/components/adou-new-form/adou-Input";
 import Dialog from "@site/src/components/web-elements/adou-dialog";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 
 interface DoubleClickCalendarProps {}
 
@@ -56,29 +57,34 @@ const DoubleClickCalendar = ({}: DoubleClickCalendarProps) => {
 
   return (
     <div className="data-calendar-wrapper">
-      <Calendar
-        data={calendarData}
-        onDoubleClick={handleDoubleClick}
-      ></Calendar>
-
-      {/* 事件弹窗 */}
-      <Dialog
-        show={modalShow}
-        onCancel={handleCloseModal}
-        onClose={handleCloseModal}
-        onConfirm={handleCofirmModal}
-      >
-        {
+      <BrowserOnly fallback={<div>Loading...</div>}>
+        {() => (
           <>
-            <AdouInput
-              defaultValue={dayInfo.event}
-              label="事件名称"
-              name="event"
-              onChange={handleEventChange}
-            ></AdouInput>
+            <Calendar
+              data={calendarData}
+              onDoubleClick={handleDoubleClick}
+            ></Calendar>
+
+            <Dialog
+              show={modalShow}
+              onCancel={handleCloseModal}
+              onClose={handleCloseModal}
+              onConfirm={handleCofirmModal}
+            >
+              {
+                <>
+                  <AdouInput
+                    defaultValue={dayInfo.event}
+                    label="事件名称"
+                    name="event"
+                    onChange={handleEventChange}
+                  ></AdouInput>
+                </>
+              }
+            </Dialog>
           </>
-        }
-      </Dialog>
+        )}
+      </BrowserOnly>
     </div>
   );
 };

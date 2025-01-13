@@ -1,6 +1,6 @@
 import React from "react";
 import Table, { TableCell } from "@site/src/components/web-elements/adou-table";
-import { data, columns } from "./basicData";
+import { data, columns } from "./basicData.tsx";
 
 interface SelectProps {}
 

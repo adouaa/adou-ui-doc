@@ -1,5 +1,6 @@
 import React from "react";
 import Select from "@site/src/components/adou-new-form/adou-select";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 const TagsExample = () => {
   const options = [
     {
@@ -33,15 +34,20 @@ const TagsExample = () => {
   ];
   return (
     <div className="tags-wrapper">
-      <Select
-        defaultValue={[
-          { value: "john_smith", label: "John Smith" },
-          "emma_watson",
-        ]}
-        mode="tags"
-        placeholder="请输入"
-        options={options}
-      />
+      <BrowserOnly fallback={<div>Loading...</div>}>
+        {() => (
+         <Select
+         defaultValue={[
+           { value: "john_smith", label: "John Smith" },
+           "emma_watson",
+         ]}
+         mode="tags"
+         placeholder="请输入"
+         options={options}
+       />
+        )}
+      </BrowserOnly>
+      
     </div>
   );
 };

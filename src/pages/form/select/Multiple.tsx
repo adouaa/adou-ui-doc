@@ -1,5 +1,6 @@
 import React from "react";
 import Select from "@site/src/components/adou-new-form/adou-select";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 const MultipleExample = () => {
   const options = [
     {
@@ -33,15 +34,19 @@ const MultipleExample = () => {
   ];
   return (
     <div className="multiple-wrapper">
-      <Select
-        defaultValue={[
-          { value: "ava_wilson", label: "ava_wilson" },
-          "james_davis",
-        ]}
-        multiple
-        placeholder="请选择"
-        options={options}
-      />
+      <BrowserOnly fallback={<div>Loading...</div>}>
+        {() => (
+          <Select
+            defaultValue={[
+              { value: "ava_wilson", label: "ava_wilson" },
+              "james_davis",
+            ]}
+            multiple
+            placeholder="请选择"
+            options={options}
+          />
+        )}
+      </BrowserOnly>
     </div>
   );
 };

@@ -25,10 +25,12 @@ function HomepageHeader() {
         </p>
         <div className={styles.buttons}>
           <Link
+            style={{ textDecoration: "none" }}
             className="button button--secondary button--lg"
-            to="/docs/form/button"
+            to="/docs/web-elements/button"
           >
-            Docusaurus Tutorial - 5min213242343454 ⏱️
+            <span>去教程</span>
+            <i className="ms-2 fa-solid fa-arrows-turn-right"></i>
           </Link>
         </div>
       </div>
