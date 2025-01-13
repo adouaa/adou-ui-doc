@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyma_16_doc=self.webpackChunkyma_16_doc||[]).push([[325],{8792:(s,a,c)=>{c.r(a),c.d(a,{default:()=>d});var e=c(4848);const d=()=>(0,e.jsx)("div",{})}}]);
