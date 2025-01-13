@@ -26,7 +26,7 @@ interface buttonProps {
   spinerType?: "border" | "grow";
   spinerColor?: ThemeType;
   fontSize?: string;
-  onClickOK?: () => void;
+  onClick?: () => void;
 }
 const Button: React.FC<buttonProps> = (props: buttonProps) => {
   const {
@@ -44,11 +44,11 @@ const Button: React.FC<buttonProps> = (props: buttonProps) => {
     textColor,
     disabled,
     outlineColor,
-    onClickOK,
+    onClick,
   } = props;
 
   const handleOnClick = () => {
-    onClickOK && onClickOK();
+    onClick && onClick();
   };
 
   const renderPrefixIcon = () => {

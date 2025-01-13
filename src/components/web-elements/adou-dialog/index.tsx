@@ -186,7 +186,7 @@ const Dialog: React.FC<DialogProps> = ({
                     height: max || maxY ? "calc(100vh - 8rem)" : height,
                   }}
                 >
-                  {children}
+                  {children || "弹窗默认内容..."}
                 </div>
                 <div className="dialog-footer d-flex justify-content-end p-3">
                   {showCancel && (
