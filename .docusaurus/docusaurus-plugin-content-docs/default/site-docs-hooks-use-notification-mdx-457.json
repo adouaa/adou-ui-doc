@@ -1,0 +1,25 @@
+{
+  "id": "hooks/useNotification",
+  "title": "useNotification 通知提醒",
+  "description": "useNotification 是一个用于显示全局通知提醒的 React Hook，支持 四种类型、自定义时长、自定义图标 等功能。",
+  "source": "@site/docs/hooks/useNotification.mdx",
+  "sourceDirName": "hooks",
+  "slug": "/hooks/useNotification",
+  "permalink": "/adou-ui-doc/docs/hooks/useNotification",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "useNotification 通知提醒"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "TimeLine 时间轴",
+    "permalink": "/adou-ui-doc/docs/web-elements/time-line"
+  },
+  "next": {
+    "title": "useLoading 加载状态",
+    "permalink": "/adou-ui-doc/docs/hooks/useLoading"
+  }
+}

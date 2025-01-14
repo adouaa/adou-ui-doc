@@ -1,0 +1,25 @@
+{
+  "id": "web-elements/tabs",
+  "title": "Tabs 标签页",
+  "description": "Tabs 组件用于在不同的内容区域之间进行切换。",
+  "source": "@site/docs/web-elements/tabs.mdx",
+  "sourceDirName": "web-elements",
+  "slug": "/web-elements/tabs",
+  "permalink": "/adou-ui-doc/docs/web-elements/tabs",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Tabs 标签页"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Table 表格",
+    "permalink": "/adou-ui-doc/docs/web-elements/table"
+  },
+  "next": {
+    "title": "TimeLine 时间轴",
+    "permalink": "/adou-ui-doc/docs/web-elements/time-line"
+  }
+}

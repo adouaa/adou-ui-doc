@@ -1,0 +1,25 @@
+{
+  "id": "web-elements/off-canvas",
+  "title": "Drawer 抽屉组件",
+  "description": "Drawer 是一个可以从屏幕边缘滑出的抽屉组件，支持 多个方向、自定义触发器、遮罩层、键盘ESC关闭 等特性。常用于展示临时的、补充的内容，如导航菜单、筛选面板等。",
+  "source": "@site/docs/web-elements/off-canvas.mdx",
+  "sourceDirName": "web-elements",
+  "slug": "/web-elements/off-canvas",
+  "permalink": "/adou-ui-doc/docs/web-elements/off-canvas",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Drawer 抽屉组件"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "RandomArrange 随机排列组件",
+    "permalink": "/adou-ui-doc/docs/web-elements/random-arrange"
+  },
+  "next": {
+    "title": "Table 表格",
+    "permalink": "/adou-ui-doc/docs/web-elements/table"
+  }
+}

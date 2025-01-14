@@ -1,0 +1,25 @@
+{
+  "id": "web-elements/button",
+  "title": "Button 按钮",
+  "description": "Button 组件是一个自定义的 React 按钮组件，它提供了丰富的可定制属性，允许你根据不同的需求创建各种样式和功能的按钮。",
+  "source": "@site/docs/web-elements/button.mdx",
+  "sourceDirName": "web-elements",
+  "slug": "/web-elements/button",
+  "permalink": "/adou-ui-doc/docs/web-elements/button",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Button 按钮"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Hint 友情提示",
+    "permalink": "/adou-ui-doc/docs/form/hint"
+  },
+  "next": {
+    "title": "Calendar 日历",
+    "permalink": "/adou-ui-doc/docs/web-elements/calendar"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "web-elements/horizontal-scroll-view",
+  "title": "水平滚动",
+  "description": "HorizonScrollView 是一个水平滚动视图组件，支持左右滚动按钮，适用于需要水平滚动的内容展示。。",
+  "source": "@site/docs/web-elements/horizontal-scroll-view.mdx",
+  "sourceDirName": "web-elements",
+  "slug": "/web-elements/horizontal-scroll-view",
+  "permalink": "/adou-ui-doc/docs/web-elements/horizontal-scroll-view",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "水平滚动"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Dialog 对话框",
+    "permalink": "/adou-ui-doc/docs/web-elements/dialog"
+  },
+  "next": {
+    "title": "List 树形",
+    "permalink": "/adou-ui-doc/docs/web-elements/list"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "web-elements/table",
+  "title": "Table 表格",
+  "description": "Table 组件用于展示数据表格，支持多种功能，如 排序、选择、折叠、树形、组合表头、响应式布局 等。",
+  "source": "@site/docs/web-elements/table.mdx",
+  "sourceDirName": "web-elements",
+  "slug": "/web-elements/table",
+  "permalink": "/adou-ui-doc/docs/web-elements/table",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Table 表格"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Drawer 抽屉组件",
+    "permalink": "/adou-ui-doc/docs/web-elements/off-canvas"
+  },
+  "next": {
+    "title": "Tabs 标签页",
+    "permalink": "/adou-ui-doc/docs/web-elements/tabs"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "web-elements/list-group",
+  "title": "List Group 列表",
+  "description": "ListGroup 组件用于展示一个可分列的列表，支持单击和双击事件、默认选中、动态渲染等功能。",
+  "source": "@site/docs/web-elements/list-group.mdx",
+  "sourceDirName": "web-elements",
+  "slug": "/web-elements/list-group",
+  "permalink": "/adou-ui-doc/docs/web-elements/list-group",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "List Group 列表"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "List 树形",
+    "permalink": "/adou-ui-doc/docs/web-elements/list"
+  },
+  "next": {
+    "title": "Popover 气泡卡片",
+    "permalink": "/adou-ui-doc/docs/web-elements/popover"
+  }
+}

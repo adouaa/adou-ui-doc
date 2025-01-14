@@ -1,0 +1,25 @@
+{
+  "id": "form/下拉选择框",
+  "title": "Select",
+  "description": "1. 基本使用",
+  "source": "@site/docs/form/下拉选择框.mdx",
+  "sourceDirName": "form",
+  "slug": "/form/下拉选择框",
+  "permalink": "/docs/form/下拉选择框",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Select"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Input",
+    "permalink": "/docs/form/input"
+  },
+  "next": {
+    "title": "Button",
+    "permalink": "/docs/web-elements/button"
+  }
+}

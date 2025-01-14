@@ -1,0 +1,25 @@
+{
+  "id": "web-elements/resizeable-sliderbar",
+  "title": "ResizableSidebar 可伸缩侧边栏",
+  "description": "ResizableSidebar 是一个 可以调整宽度 的侧边栏组件，支持 拖拽调整大小、展开/收起 等功能。",
+  "source": "@site/docs/web-elements/resizeable-sliderbar.mdx",
+  "sourceDirName": "web-elements",
+  "slug": "/web-elements/resizeable-sliderbar",
+  "permalink": "/adou-ui-doc/docs/web-elements/resizeable-sliderbar",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "ResizableSidebar 可伸缩侧边栏"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Popover 气泡卡片",
+    "permalink": "/adou-ui-doc/docs/web-elements/popover"
+  },
+  "next": {
+    "title": "RandomArrange 随机排列组件",
+    "permalink": "/adou-ui-doc/docs/web-elements/random-arrange"
+  }
+}

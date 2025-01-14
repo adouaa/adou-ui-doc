@@ -1,0 +1,25 @@
+{
+  "id": "form/input",
+  "title": "Input 输入框",
+  "description": "1. 基本使用",
+  "source": "@site/docs/form/input.mdx",
+  "sourceDirName": "form",
+  "slug": "/form/input",
+  "permalink": "/adou-ui-doc/docs/form/input",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Input 输入框"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Checkbox 复选框",
+    "permalink": "/adou-ui-doc/docs/form/checkbox"
+  },
+  "next": {
+    "title": "Select 选择器",
+    "permalink": "/adou-ui-doc/docs/form/select"
+  }
+}

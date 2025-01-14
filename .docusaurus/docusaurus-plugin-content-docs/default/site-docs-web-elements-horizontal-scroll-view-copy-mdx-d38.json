@@ -1,0 +1,14 @@
+{
+  "id": "web-elements/horizontal-scroll-view copy",
+  "title": "水平滚动 组件",
+  "description": "HorizonScrollView 是一个水平滚动视图组件，支持左右滚动按钮，适用于需要水平滚动的内容展示。。",
+  "source": "@site/docs/web-elements/horizontal-scroll-view copy.mdx",
+  "sourceDirName": "web-elements",
+  "slug": "/web-elements/horizontal-scroll-view copy",
+  "permalink": "/docs/web-elements/horizontal-scroll-view copy",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

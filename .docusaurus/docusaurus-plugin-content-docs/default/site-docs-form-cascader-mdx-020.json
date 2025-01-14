@@ -1,0 +1,16 @@
+{
+  "id": "form/cascader",
+  "title": "Cascader 级联选择器",
+  "description": "注意：该组件还未使用，等使用后再进行文档完善~*",
+  "source": "@site/docs/form/cascader.mdx",
+  "sourceDirName": "form",
+  "slug": "/form/cascader",
+  "permalink": "/adou-ui-doc/docs/form/cascader",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Cascader 级联选择器"
+  }
+}

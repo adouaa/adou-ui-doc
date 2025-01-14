@@ -1,0 +1,25 @@
+{
+  "id": "web-elements/card",
+  "title": "Card 卡片",
+  "description": "注意：在普通的 React + bootstrap 项目中，样式不会发生异常，而在 docusaurus 项目中，样式会出现异常*，需要手动去设置样式",
+  "source": "@site/docs/web-elements/card.mdx",
+  "sourceDirName": "web-elements",
+  "slug": "/web-elements/card",
+  "permalink": "/adou-ui-doc/docs/web-elements/card",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Card 卡片"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Calendar 日历",
+    "permalink": "/adou-ui-doc/docs/web-elements/calendar"
+  },
+  "next": {
+    "title": "CollapseX 横向手风琴",
+    "permalink": "/adou-ui-doc/docs/web-elements/collapseX"
+  }
+}

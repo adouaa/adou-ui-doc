@@ -1,0 +1,25 @@
+{
+  "id": "web-elements/random-arrange",
+  "title": "RandomArrange 随机排列组件",
+  "description": "RandomArrange 是一个用于实现列表项随机排序的动画组件。",
+  "source": "@site/docs/web-elements/random-arrange.mdx",
+  "sourceDirName": "web-elements",
+  "slug": "/web-elements/random-arrange",
+  "permalink": "/adou-ui-doc/docs/web-elements/random-arrange",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "RandomArrange 随机排列组件"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "ResizableSidebar 可伸缩侧边栏",
+    "permalink": "/adou-ui-doc/docs/web-elements/resizeable-sliderbar"
+  },
+  "next": {
+    "title": "Drawer 抽屉组件",
+    "permalink": "/adou-ui-doc/docs/web-elements/off-canvas"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "form/button",
+  "title": "Button",
+  "description": "Button 组件是一个自定义的 React 按钮组件，它提供了丰富的可定制属性，允许你根据不同的需求创建各种样式和功能的按钮。",
+  "source": "@site/docs/form/button.mdx",
+  "sourceDirName": "form",
+  "slug": "/form/button",
+  "permalink": "/docs/form/button",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Button"
+  },
+  "sidebar": "tutorialSidebar",
+  "next": {
+    "title": "Cascader",
+    "permalink": "/docs/form/cascader"
+  }
+}

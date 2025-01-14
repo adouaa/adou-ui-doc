@@ -1,0 +1,25 @@
+{
+  "id": "web-elements/collapseX",
+  "title": "CollapseX 横向手风琴",
+  "description": "Collapse 是一个可折叠的组件，允许用户点击标题以展开或折叠内容。适用于需要隐藏和显示内容的场景。",
+  "source": "@site/docs/web-elements/collapseX.mdx",
+  "sourceDirName": "web-elements",
+  "slug": "/web-elements/collapseX",
+  "permalink": "/adou-ui-doc/docs/web-elements/collapseX",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "CollapseX 横向手风琴"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Card 卡片",
+    "permalink": "/adou-ui-doc/docs/web-elements/card"
+  },
+  "next": {
+    "title": "CollapseY 纵向手风琴",
+    "permalink": "/adou-ui-doc/docs/web-elements/collapseY"
+  }
+}

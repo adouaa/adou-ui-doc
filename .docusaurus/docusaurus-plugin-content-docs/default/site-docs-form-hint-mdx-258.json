@@ -1,0 +1,25 @@
+{
+  "id": "form/hint",
+  "title": "Hint 友情提示",
+  "description": "Hint 组件用于显示提示信息，支持自定义背景色和文字颜色。每个提示项可以包含多个文本段落，并支持高亮显示。",
+  "source": "@site/docs/form/hint.mdx",
+  "sourceDirName": "form",
+  "slug": "/form/hint",
+  "permalink": "/adou-ui-doc/docs/form/hint",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Hint 友情提示"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Select 选择器",
+    "permalink": "/adou-ui-doc/docs/form/select"
+  },
+  "next": {
+    "title": "Button 按钮",
+    "permalink": "/adou-ui-doc/docs/web-elements/button"
+  }
+}

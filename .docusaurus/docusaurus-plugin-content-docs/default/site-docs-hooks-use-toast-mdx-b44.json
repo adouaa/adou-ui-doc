@@ -1,0 +1,25 @@
+{
+  "id": "hooks/useToast",
+  "title": "useToast 轻提示",
+  "description": "useToast 是一个用于显示轻量级提示信息的 React Hook。支持多种类型的提示、自定义持续时间、进度条显示，以及鼠标悬停暂停等功能。",
+  "source": "@site/docs/hooks/useToast.mdx",
+  "sourceDirName": "hooks",
+  "slug": "/hooks/useToast",
+  "permalink": "/adou-ui-doc/docs/hooks/useToast",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "useToast 轻提示"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "useLoading 加载状态",
+    "permalink": "/adou-ui-doc/docs/hooks/useLoading"
+  },
+  "next": {
+    "title": "useDrag 拖拽钩子",
+    "permalink": "/adou-ui-doc/docs/hooks/useDrag"
+  }
+}

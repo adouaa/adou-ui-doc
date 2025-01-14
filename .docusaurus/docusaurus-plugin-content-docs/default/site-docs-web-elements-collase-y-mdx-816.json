@@ -1,0 +1,16 @@
+{
+  "id": "web-elements/collaseY",
+  "title": "CollapseY",
+  "description": "CollapseY 是一个可折叠的组件，允许用户通过点击或悬停来展开或折叠内容。适用于需要隐藏和显示内容的场景。",
+  "source": "@site/docs/web-elements/collaseY.mdx",
+  "sourceDirName": "web-elements",
+  "slug": "/web-elements/collaseY",
+  "permalink": "/docs/web-elements/collaseY",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "CollapseY"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "web-elements/calendar",
+  "title": "Calendar 日历",
+  "description": "注意：在普通的 React + bootstrap 项目中，样式不会发生异常，而在 docusaurus 项目中，样式会出现异常*，需要手动去设置样式",
+  "source": "@site/docs/web-elements/calendar.mdx",
+  "sourceDirName": "web-elements",
+  "slug": "/web-elements/calendar",
+  "permalink": "/adou-ui-doc/docs/web-elements/calendar",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Calendar 日历"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Button 按钮",
+    "permalink": "/adou-ui-doc/docs/web-elements/button"
+  },
+  "next": {
+    "title": "Card 卡片",
+    "permalink": "/adou-ui-doc/docs/web-elements/card"
+  }
+}

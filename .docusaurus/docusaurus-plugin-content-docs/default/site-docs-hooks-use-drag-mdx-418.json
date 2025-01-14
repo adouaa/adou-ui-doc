@@ -1,0 +1,21 @@
+{
+  "id": "hooks/useDrag",
+  "title": "useDrag 拖拽钩子",
+  "description": "useDrag 是一个用于实现元素拖拽功能的 React Hook。它提供了简单的方式来实现元素的拖拽移动，支持普通元素和对话框两种模式。",
+  "source": "@site/docs/hooks/useDrag.mdx",
+  "sourceDirName": "hooks",
+  "slug": "/hooks/useDrag",
+  "permalink": "/adou-ui-doc/docs/hooks/useDrag",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "useDrag 拖拽钩子"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "useToast 轻提示",
+    "permalink": "/adou-ui-doc/docs/hooks/useToast"
+  }
+}

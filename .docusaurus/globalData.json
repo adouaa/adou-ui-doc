@@ -1,0 +1,192 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/adou-ui-doc/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/adou-ui-doc/docs",
+          "mainDocId": "form/checkbox",
+          "docs": [
+            {
+              "id": "form/cascader",
+              "path": "/adou-ui-doc/docs/form/cascader"
+            },
+            {
+              "id": "form/checkbox",
+              "path": "/adou-ui-doc/docs/form/checkbox",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "form/hint",
+              "path": "/adou-ui-doc/docs/form/hint",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "form/input",
+              "path": "/adou-ui-doc/docs/form/input",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "form/select",
+              "path": "/adou-ui-doc/docs/form/select",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "hooks/useDrag",
+              "path": "/adou-ui-doc/docs/hooks/useDrag",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "hooks/useLoading",
+              "path": "/adou-ui-doc/docs/hooks/useLoading",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "hooks/useNotification",
+              "path": "/adou-ui-doc/docs/hooks/useNotification",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "hooks/useToast",
+              "path": "/adou-ui-doc/docs/hooks/useToast",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "intro",
+              "path": "/adou-ui-doc/docs/intro"
+            },
+            {
+              "id": "tutorial-basics/congratulations",
+              "path": "/adou-ui-doc/docs/tutorial-basics/congratulations"
+            },
+            {
+              "id": "tutorial-basics/create-a-blog-post",
+              "path": "/adou-ui-doc/docs/tutorial-basics/create-a-blog-post"
+            },
+            {
+              "id": "tutorial-basics/create-a-document",
+              "path": "/adou-ui-doc/docs/tutorial-basics/create-a-document"
+            },
+            {
+              "id": "tutorial-basics/create-a-page",
+              "path": "/adou-ui-doc/docs/tutorial-basics/create-a-page"
+            },
+            {
+              "id": "tutorial-basics/deploy-your-site",
+              "path": "/adou-ui-doc/docs/tutorial-basics/deploy-your-site"
+            },
+            {
+              "id": "tutorial-basics/markdown-features",
+              "path": "/adou-ui-doc/docs/tutorial-basics/markdown-features"
+            },
+            {
+              "id": "tutorial-basics/test",
+              "path": "/adou-ui-doc/docs/tutorial-basics/test"
+            },
+            {
+              "id": "tutorial-extras/manage-docs-versions",
+              "path": "/adou-ui-doc/docs/tutorial-extras/manage-docs-versions"
+            },
+            {
+              "id": "tutorial-extras/translate-your-site",
+              "path": "/adou-ui-doc/docs/tutorial-extras/translate-your-site"
+            },
+            {
+              "id": "web-elements/button",
+              "path": "/adou-ui-doc/docs/web-elements/button",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "web-elements/calendar",
+              "path": "/adou-ui-doc/docs/web-elements/calendar",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "web-elements/card",
+              "path": "/adou-ui-doc/docs/web-elements/card",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "web-elements/collapseX",
+              "path": "/adou-ui-doc/docs/web-elements/collapseX",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "web-elements/collapseY",
+              "path": "/adou-ui-doc/docs/web-elements/collapseY",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "web-elements/dialog",
+              "path": "/adou-ui-doc/docs/web-elements/dialog",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "web-elements/horizontal-scroll-view",
+              "path": "/adou-ui-doc/docs/web-elements/horizontal-scroll-view",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "web-elements/list",
+              "path": "/adou-ui-doc/docs/web-elements/list",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "web-elements/list-group",
+              "path": "/adou-ui-doc/docs/web-elements/list-group",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "web-elements/off-canvas",
+              "path": "/adou-ui-doc/docs/web-elements/off-canvas",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "web-elements/popover",
+              "path": "/adou-ui-doc/docs/web-elements/popover",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "web-elements/random-arrange",
+              "path": "/adou-ui-doc/docs/web-elements/random-arrange",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "web-elements/resizeable-sliderbar",
+              "path": "/adou-ui-doc/docs/web-elements/resizeable-sliderbar",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "web-elements/table",
+              "path": "/adou-ui-doc/docs/web-elements/table",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "web-elements/tabs",
+              "path": "/adou-ui-doc/docs/web-elements/tabs",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "web-elements/time-line",
+              "path": "/adou-ui-doc/docs/web-elements/time-line",
+              "sidebar": "tutorialSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/adou-ui-doc/docs/form/checkbox",
+                "label": "form/checkbox"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "web-elements/list",
+  "title": "List 树形",
+  "description": "List 是一个 树控件，可以用于展示树形结构的数据，使用它可以完整展现其中的 层级关系，并具有展开收起选择等交互功能。",
+  "source": "@site/docs/web-elements/list.mdx",
+  "sourceDirName": "web-elements",
+  "slug": "/web-elements/list",
+  "permalink": "/adou-ui-doc/docs/web-elements/list",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "List 树形"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "水平滚动",
+    "permalink": "/adou-ui-doc/docs/web-elements/horizontal-scroll-view"
+  },
+  "next": {
+    "title": "List Group 列表",
+    "permalink": "/adou-ui-doc/docs/web-elements/list-group"
+  }
+}

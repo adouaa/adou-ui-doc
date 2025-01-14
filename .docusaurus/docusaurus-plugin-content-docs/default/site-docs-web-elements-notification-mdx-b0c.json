@@ -1,0 +1,21 @@
+{
+  "id": "web-elements/notification",
+  "title": "Notification 通知提醒",
+  "description": "Notification 是一个全局通知提醒组件，支持 四种类型、自定义时长、自定义图标 等功能。",
+  "source": "@site/docs/web-elements/notification.mdx",
+  "sourceDirName": "web-elements",
+  "slug": "/web-elements/notification",
+  "permalink": "/docs/web-elements/notification",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Notification 通知提醒"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "OffCanvas 抽屉组件",
+    "permalink": "/docs/web-elements/off-canvas"
+  }
+}

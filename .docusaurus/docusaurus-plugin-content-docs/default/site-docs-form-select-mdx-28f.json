@@ -1,0 +1,25 @@
+{
+  "id": "form/select",
+  "title": "Select 选择器",
+  "description": "1. 基本使用",
+  "source": "@site/docs/form/select.mdx",
+  "sourceDirName": "form",
+  "slug": "/form/select",
+  "permalink": "/adou-ui-doc/docs/form/select",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Select 选择器"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Input 输入框",
+    "permalink": "/adou-ui-doc/docs/form/input"
+  },
+  "next": {
+    "title": "Hint 友情提示",
+    "permalink": "/adou-ui-doc/docs/form/hint"
+  }
+}

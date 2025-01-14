@@ -1,0 +1,25 @@
+{
+  "id": "web-elements/popover",
+  "title": "Popover 气泡卡片",
+  "description": "Popover 组件用于在用户与页面元素交互时显示更多的信息或内容，支持点击和悬停触发。",
+  "source": "@site/docs/web-elements/popover.mdx",
+  "sourceDirName": "web-elements",
+  "slug": "/web-elements/popover",
+  "permalink": "/adou-ui-doc/docs/web-elements/popover",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Popover 气泡卡片"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "List Group 列表",
+    "permalink": "/adou-ui-doc/docs/web-elements/list-group"
+  },
+  "next": {
+    "title": "ResizableSidebar 可伸缩侧边栏",
+    "permalink": "/adou-ui-doc/docs/web-elements/resizeable-sliderbar"
+  }
+}
