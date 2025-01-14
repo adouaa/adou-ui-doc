@@ -46,7 +46,7 @@ const ButtonLoadingExample = () => {
             size="lg"
             loading={isLoading1}
             type="primary"
-            onClickOK={handleClick1}
+            onClick={handleClick1}
           >
             Loading Button1
           </Button>
@@ -54,7 +54,7 @@ const ButtonLoadingExample = () => {
             spinerColor="danger"
             loading={isLoading2}
             type="warning"
-            onClickOK={handleClick2}
+            onClick={handleClick2}
           >
             Loading Button2
           </Button>
@@ -66,7 +66,7 @@ const ButtonLoadingExample = () => {
             size="lg"
             loading={isLoading3}
             outlineColor="success"
-            onClickOK={handleClick3}
+            onClick={handleClick3}
           >
             Loading Button3
           </Button>
@@ -76,7 +76,7 @@ const ButtonLoadingExample = () => {
             spinerType="grow"
             loading={isLoading4}
             outlineColor="danger"
-            onClickOK={handleClick4}
+            onClick={handleClick4}
           >
             Loading Button4
           </Button>
