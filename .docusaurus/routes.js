@@ -109,15 +109,15 @@ export default [
   },
   {
     path: '/adou-ui-doc/docs',
-    component: ComponentCreator('/adou-ui-doc/docs', 'c25'),
+    component: ComponentCreator('/adou-ui-doc/docs', 'c96'),
     routes: [
       {
         path: '/adou-ui-doc/docs',
-        component: ComponentCreator('/adou-ui-doc/docs', '02b'),
+        component: ComponentCreator('/adou-ui-doc/docs', 'be3'),
         routes: [
           {
             path: '/adou-ui-doc/docs',
-            component: ComponentCreator('/adou-ui-doc/docs', '6c3'),
+            component: ComponentCreator('/adou-ui-doc/docs', '4a1'),
             routes: [
               {
                 path: '/adou-ui-doc/docs/form/cascader',
@@ -315,6 +315,12 @@ export default [
               {
                 path: '/adou-ui-doc/docs/web-elements/time-line',
                 component: ComponentCreator('/adou-ui-doc/docs/web-elements/time-line', '6e8'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/adou-ui-doc/docs/web-elements/tooltip',
+                component: ComponentCreator('/adou-ui-doc/docs/web-elements/tooltip', '37b'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               }

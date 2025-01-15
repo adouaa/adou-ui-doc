@@ -1,0 +1,25 @@
+{
+  "id": "web-elements/tooltip",
+  "title": "Tooltip 工具提示",
+  "description": "Tooltip 组件用于在鼠标悬停或触发元素时显示简短的提示信息。适用于展示辅助信息，帮助用户更好地理解页面内容。支持多个方向和自定义样式 。",
+  "source": "@site/docs/web-elements/tooltip.mdx",
+  "sourceDirName": "web-elements",
+  "slug": "/web-elements/tooltip",
+  "permalink": "/adou-ui-doc/docs/web-elements/tooltip",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Tooltip 工具提示"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "TimeLine 时间轴",
+    "permalink": "/adou-ui-doc/docs/web-elements/time-line"
+  },
+  "next": {
+    "title": "useNotification 通知提醒",
+    "permalink": "/adou-ui-doc/docs/hooks/useNotification"
+  }
+}
