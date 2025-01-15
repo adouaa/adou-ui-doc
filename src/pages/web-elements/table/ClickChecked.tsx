@@ -1,6 +1,6 @@
 import React from "react";
 import Table, { TableCell } from "@site/src/components/web-elements/adou-table";
-import { data, columns } from "./basicData.tsx";
+import { data, columns } from "./basicData";
 
 interface ClickedCheckedProps {}
 

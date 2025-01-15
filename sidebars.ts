@@ -65,6 +65,7 @@ const sidebars: SidebarsConfig = {
         "web-elements/table",
         "web-elements/tabs",
         "web-elements/time-line",
+        "web-elements/tooltip",
       ],
     },
     {

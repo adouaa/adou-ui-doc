@@ -19,7 +19,183 @@ import Sortable from "@site/src/pages/web-elements/table/Sortable"
 `Table` 组件用于展示数据表格，支持多种功能，如 **排序、选择、折叠、树形、组合表头、响应式布局** 等。
 
 * 注意：在 `Docusaurus` 框架中，`table` 元素自动会有 `边框` 和 `斑马纹`，**无法去除** 。但是在 `Table` 组件中，可以通过对应属性去控制这些样式。
-* 注意：`组合表头` **在文档下无法正常展示**
+* 注意：`组合表头` **在文档下无法正常展示** ，代码如下
+
+<details>
+<summary>点击查看代码</summary>
+```jsx
+
+import React from "react";
+import Table, { TableCell } from "@site/src/components/web-elements/adou-table";
+
+export const data = [
+  {
+    id: "dept001",
+    department: "研发部",
+    email: "rd@company.com",
+    children: [
+      {
+        id: "emp001",
+        name: "张宇",
+        position: "高级研发工程师",
+        age: 35,
+        projects: "企业级管理系统开发移动应用性能优化",
+      },
+      {
+        id: "emp002",
+        name: "王悦",
+        position: "研发工程师",
+        age: 28,
+        projects: "数据分析工具研发",
+      },
+    ],
+  },
+  {
+    id: "dept002",
+    department: "市场部",
+    email: "marketing@company.com",
+    children: [
+      {
+        id: "emp003",
+        name: "李阳",
+        position: "市场经理",
+        age: 32,
+        campaigns: [
+          {
+            id: "camp001",
+            name: "新品上市推广活动",
+            status: "进行中",
+            startDate: "2024-04-01",
+            endDate: "2024-06-30",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "dept003",
+    department: "财务部",
+    email: "finance@company.com",
+    children: [
+      {
+        id: "emp004",
+        name: "赵琳",
+        position: "财务主管",
+        age: 38,
+        // 财务相关的任务或者项目可以在这里继续添加
+      },
+    ],
+  },
+];
+
+// 多级表头
+export const columns = [
+  {
+    title: "部门信息",
+    prop: "department",
+    width: "200px",
+    align: "center",
+    children: [
+      {
+        title: "部门名称",
+        prop: "department",
+        width: "150px",
+        tooltip: true,
+      },
+      {
+        title: "部门邮箱",
+        prop: "email",
+        width: "200px",
+        tooltip: true,
+      },
+    ],
+  },
+  {
+    title: "员工信息",
+    prop: "name",
+    width: "250px",
+    align: "center",
+    children: [
+      {
+        title: "员工姓名",
+        prop: "name",
+        width: "120px",
+        tooltip: true,
+      },
+      {
+        title: "职位",
+        prop: "position",
+        width: "120px",
+        tooltip: true,
+      },
+      {
+        title: "年龄",
+        prop: "age",
+        width: "80px",
+        tooltip: true,
+      },
+    ],
+  },
+  {
+    title: "项目/活动信息",
+    prop: "projects",
+    width: "350px",
+    align: "center",
+    children: [
+      {
+        title: "项目/活动名称",
+        prop: "projects",
+        width: "150px",
+        tooltip: true,
+      },
+      {
+        title: "进度/状态",
+        prop: "progress",
+        width: "120px",
+        tooltip: true,
+        render: (value, record) => {
+          if (record.projects) {
+            return value;
+          }
+          return record.campaigns && record.campaigns.length > 0
+            ? record.campaigns[0].status
+            : "";
+        },
+      },
+      {
+        title: "开始日期",
+        prop: "startDate",
+        width: "100px",
+        tooltip: true,
+      },
+      {
+        title: "结束日期",
+        prop: "endDate",
+        width: "100px",
+        tooltip: true,
+      },
+    ],
+  },
+];
+
+interface HeadGroupProps {}
+
+const HeadGroup = ({}: HeadGroupProps) => {
+  return (
+    <div className="head-group-wrapper">
+      <Table data={data} columns={columns}>
+        {columns.map((item: any) => (
+          <TableCell key={item.prop} {...item}></TableCell>
+        ))}
+      </Table>
+    </div>
+  );
+};
+
+export default HeadGroup;
+
+```
+</details>
 
 ## 1. 基本使用
 
@@ -31,7 +207,75 @@ import Sortable from "@site/src/pages/web-elements/table/Sortable"
 ```jsx
 import React from "react";
 import Table, { TableCell } from "@site/src/components/web-elements/adou-table";
-import { data, columns } from "./basicData";
+
+const data = [
+  {
+    id: "team001",
+    teamName: "研发团队",
+    leader: "张峰",
+    contactEmail: "rf_team@company.com",
+    memberCount: 30,
+    yearsSinceEstablishment: 5,
+    checked: false,
+  },
+  {
+    id: "team002",
+    teamName: "市场团队",
+    leader: "李悦",
+    contactEmail: "mk_team@company.com",
+    memberCount: 25,
+    yearsSinceEstablishment: 4,
+    checked: false,
+  },
+  {
+    id: "team003",
+    teamName: "销售团队",
+    leader: "王强",
+    contactEmail: "sl_team@company.com",
+    memberCount: 40,
+    yearsSinceEstablishment: 6,
+    checked: false,
+  },
+  {
+    id: "team004",
+    teamName: "客服团队",
+    leader: "赵琳",
+    contactEmail: "cs_team@company.com",
+    memberCount: 15,
+    yearsSinceEstablishment: 3,
+    checked: false,
+  },
+  {
+    id: "team005",
+    teamName: "财务团队",
+    leader: "孙洁",
+    contactEmail: "fc_team@company.com",
+    memberCount: 10,
+    yearsSinceEstablishment: 7,
+    checked: false,
+  },
+];
+
+const columns = [
+  { title: "团队 ID", prop: "id", width: "120px" },
+  {
+    title: "团队名称",
+    prop: "teamName",
+    width: "150px",
+  },
+  { title: "负责人", prop: "leader", width: "120px" },
+  {
+    title: "联系邮箱",
+    prop: "contactEmail",
+    width: "250px",
+  },
+  { title: "团队人数", prop: "memberCount", width: "120px" },
+  {
+    title: "成立年限",
+    prop: "yearsSinceEstablishment",
+    width: "120px",
+  },
+];
 
 interface BasicProps {}
 
@@ -409,7 +653,97 @@ export default Select;
 ```jsx
 import React, { useState } from "react";
 import Table, { TableCell } from "@site/src/components/web-elements/adou-table";
-import { data, columns } from "./treeData";
+
+export const data = [
+  {
+    id: "dept001",
+    name: "技术部",
+    type: "部门",
+    children: [
+      {
+        id: "emp001",
+        name: "张三",
+        type: "员工",
+        position: "高级工程师",
+        children: [
+          {
+            id: "task001",
+            name: "项目 A 开发任务",
+            type: "任务",
+            progress: "80%",
+          },
+          {
+            id: "task002",
+            name: "技术文档撰写",
+            type: "任务",
+            progress: "30%",
+          },
+        ],
+      },
+      {
+        id: "emp002",
+        name: "李四",
+        type: "员工",
+        position: "工程师",
+        children: [
+          {
+            id: "task003",
+            name: "项目 B 测试任务",
+            type: "任务",
+            progress: "50%",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "dept002",
+    name: "市场部",
+    type: "部门",
+    children: [
+      {
+        id: "emp003",
+        name: "王五",
+        type: "员工",
+        position: "市场经理",
+        children: [
+          {
+            id: "campaign001",
+            name: "产品推广活动",
+            type: "活动",
+            status: "进行中",
+          },
+        ],
+      },
+    ],
+  },
+];
+
+export const columns = [
+  {
+    prop: "id",
+    title: "部门ID",
+    width: "180px",
+    align: "center",
+    sortable: true,
+  },
+  {
+    prop: "name",
+    title: "部门名称",
+    width: "180px",
+    align: "end",
+  },
+  {
+    prop: "type",
+    title: "类型",
+    width: "180px",
+  },
+  {
+    prop: "position",
+    title: "职位",
+    width: "180px",
+  },
+];
 
 interface CollapseProps {}
 
@@ -442,10 +776,9 @@ export default Collapse;
 <details className="mt-3">
 <summary>点击查看代码</summary>
 ```jsx
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import Table, { TableCell } from "@site/src/components/web-elements/adou-table";
 import { columns, data } from "./treeData";
-import Button from "@site/src/components/adou-button";
 
 interface ExpandAllProps {}
 

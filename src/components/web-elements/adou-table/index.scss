@@ -112,6 +112,39 @@
             background-color: #e7ebee;
         }
     }
+
+    .pagination {
+
+        .prev-arrow,
+        .next-arrow {
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #f0f0f0 !important;
+                color: #333;
+            }
+        }
+
+        .prev-arrow.disabled,
+        .next-arrow.disabled {
+            color: #ccc !important;
+
+            &:hover {
+                background-color: transparent !important;
+                cursor: not-allowed;
+            }
+        }
+
+        .page-numbers {
+            .page-number-item:hover {
+                background-color: #f0f0f0 !important;
+                border: 1px solid #f0f0f0;
+                color: #333;
+            }
+        }
+    }
 }
 
 .ellipsis-1 {

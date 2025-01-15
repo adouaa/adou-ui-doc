@@ -3,7 +3,7 @@ import "./index.scss";
 
 interface TableCellProps {
   parentId?: any;
-  showTip?: boolean;
+  tooltip?: boolean;
   sortable?: boolean;
   collapse?: boolean;
   isParent?: boolean;
@@ -29,7 +29,7 @@ interface TableCellProps {
 const TableCell = (props: TableCellProps) => {
   const {
     parentId,
-    showTip,
+    tooltip,
     sortable,
     collapse,
     isParent,
@@ -131,15 +131,7 @@ const TableCell = (props: TableCellProps) => {
                 ) : parentId && colIndex === 0 ? (
                   <span className="ps-3"></span>
                 ) : null}
-                <div
-                  style={{
-                    maxWidth:
-                      showTip && parseFloat(maxWidth) > parseFloat(width) - 20
-                        ? parseFloat(width) - 20 + "px"
-                        : maxWidth,
-                  }}
-                  className="ellipsis-1 "
-                >
+                <div style={{ maxWidth }} className="ellipsis-1 ">
                   {editedValue}
                 </div>
               </div>

@@ -1,0 +1,243 @@
+---
+title: Tooltip 工具提示
+---
+
+import Card from "@site/src/components/web-elements/adou-card";
+import Basic from "@site/src/pages/web-elements/tooltip/Basic";
+import Position from "@site/src/pages/web-elements/tooltip/Position";
+import Style from "@site/src/pages/web-elements/tooltip/Style";
+import Trigger from "@site/src/pages/web-elements/tooltip/Trigger";
+import Wrap from "@site/src/pages/web-elements/tooltip/Wrap";
+
+`Tooltip` 组件用于在鼠标悬停或触发元素时显示简短的提示信息。适用于展示辅助信息，帮助用户更好地理解页面内容。**支持多个方向和自定义样式** 。
+
+## 1. 基本使用
+
+**效果示例**：
+
+<Card>
+<Basic />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import Tooltip from "@site/src/components/web-elements/adou-tooltip";
+import React from "react";
+
+interface BasicProps {}
+
+const Basic = ({}: BasicProps) => {
+  return (
+    <div className="basic-wrapper">
+      <Tooltip text="这是一个提示信息">
+        <span>悬停我查看提示</span>
+      </Tooltip>
+    </div>
+  );
+};
+
+export default Basic;
+```
+</details>
+</Card>
+
+## 2. 位置控制
+
+通过 `position` 属性可以控制提示框的位置，支持 `top`、`bottom`、`left`、`right` 以及其他复合位置。
+
+**效果示例**：
+
+<Card>
+<Position />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import Tooltip from "@site/src/components/web-elements/adou-tooltip";
+import React from "react";
+
+interface PositionProps {}
+
+const Position = ({}: PositionProps) => {
+  return (
+    <div className="position-wrapper">
+      <Tooltip text="顶部提示" position="top">
+        <span>顶部</span>
+      </Tooltip>
+      <Tooltip text="底部提示" position="bottom">
+        <span>底部</span>
+      </Tooltip>
+      <Tooltip text="左侧提示" position="left">
+        <span>左侧</span>
+      </Tooltip>
+      <Tooltip text="右侧提示" position="right">
+        <span>右侧</span>
+      </Tooltip>
+    </div>
+  );
+};
+
+export default Position;
+```
+</details>
+</Card>
+
+## 3. 样式调整
+
+`Tooltip` 提供了若干属性，可以调整背景色、字体颜色等。通过 `tooltipBgc` 和 `tooltipFontColor` 设置调整。
+
+效果示例：
+
+<Card>
+<Style />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import Tooltip from "@site/src/components/web-elements/adou-tooltip";
+import React from "react";
+
+const Style = () => {
+  return (
+    <div>
+      <Tooltip
+        text="自定义背景色和字体颜色"
+        tooltipBgc="#0055aa"
+        tooltipFontColor="#ffffff"
+      >
+        <span>滑动鼠标到这里</span>
+      </Tooltip>
+    </div>
+  );
+};
+
+export default Style;
+
+```
+</details>
+</Card>
+
+## 4. 触发方式
+
+通过 `show` 属性可以控制提示框的显示。结合 `mustShow` 属性，可以在特定场景下强制展示。
+
+**效果示例**：
+
+<Card>
+<Trigger />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import Button from "@site/src/components/adou-button";
+import Tooltip from "@site/src/components/web-elements/adou-tooltip";
+import React, { useState } from "react";
+
+interface TriggerProps {}
+
+const Trigger = ({}: TriggerProps) => {
+  const [mustShow, setMustShow] = useState(false);
+
+  return (
+    <div className="trigger-wrapper d-flex align-items-center">
+      <Tooltip text="强制显示的提示" mustShow={mustShow}>
+        <span>点击按钮强制显示提示</span>
+      </Tooltip>
+      <Button externalClassName="ms-2" onClick={() => setMustShow(!mustShow)}>
+        点击
+      </Button>
+    </div>
+  );
+};
+
+export default Trigger;
+
+```
+</details>
+</Card>
+
+## 5. 文字换行
+
+通过设置 `wrap` 或 `width` 属性可以控制文字换行。
+
+<Card>
+<Wrap />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import React from "react";
+import Tooltip from "@site/src/components/web-elements/adou-tooltip";
+import Button from "@site/src/components/adou-button";
+const Wrap = () => {
+  return (
+    <Tooltip
+      text="这是一段很长的提示文字，需要自动换行显示。这是一段很长的提示文字，需要自动换行显示。"
+      wrap
+      width="200px"
+    >
+      <span>长文本提示</span>
+    </Tooltip>
+  );
+};
+export default Wrap;
+
+```
+</details>
+</Card>
+
+## 属性
+
+| 属性名 | 类型 | 默认值 | 描述 |
+|---|---|---|---|
+| text | `ReactNode` | - | 提示文字内容。 |
+| position | `"top" \| "bottom" \| "left" \| "right" \| "top-left" \| "top-right" \| "bottom-left" \| "bottom-right" \| "left-top" \| "left-bottom" \| "right-bottom" \| "right-top"` | `"top"` | 提示框显示位置。 |
+| show | `boolean` | `true` | 是否显示提示。 |
+| wrap | `boolean` | `false` | 是否允许文字换行。 |
+| width | `string \| number` | - | 提示框宽度。 |
+| tooltipBgc | `string` | `"#333"` | 提示框背景色。 |
+| tooltipFontColor | `string` | - | 提示文字颜色。 |
+| arrowBorderColor | `string` | `"#333"` | 箭头颜色。 |
+| mustShow | `boolean` | `false` | 是否始终显示提示。 |
+| wrapperFlex | `boolean` | `false` | 是否启用 flex 布局。 |
+| wrapperClassname | `string` | - | 包装器额外类名。 |
+| arrowOffsetPercent | `number` | `0.2` | 箭头偏移百分比。 |
+| left | `string \| number` | - | 箭头左侧偏移量。 |
+| right | `string \| number` | - | 箭头右侧偏移量。 |
+| top | `string \| number` | - | 箭头顶部偏移量。 |
+| bottom | `string \| number` | - | 箭头底部偏移量。 |
+
+## 特性
+
+1. **多方位支持**：
+   - 支持 12 个不同方位的提示
+   - 可以根据需要调整箭头位置
+
+2. **样式定制**：
+   - 支持自定义背景色
+   - 支持自定义文字颜色
+   - 支持自定义箭头颜色
+
+3. **文本处理**：
+   - 支持文字自动换行
+   - 支持设置固定宽度
+   - 支持 ReactNode 类型的内容
+
+4. **交互优化**：
+   - 鼠标进入提示区域保持显示
+   - 支持延迟显示和隐藏
+   - 支持强制显示模式
+
+## 注意事项
+
+1. **位置设置**：
+   - 确保有足够空间显示提示框
+   - 注意避免提示框超出视口
+
+2. **样式使用**：
+   - 建议保持箭头颜色与背景色一致
+   - 文字颜色应与背景色形成对比
+
+3. **性能考虑**：
+   - 避免提示内容过于复杂
+   - 合理使用 mustShow 属性
+
+---
+
+通过以上的示例，可以在不同场景下灵活使用 `Tooltip` 组件，提升用户体验。
+
