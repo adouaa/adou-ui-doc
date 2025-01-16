@@ -1,0 +1,25 @@
+{
+  "id": "web-elements/slider",
+  "title": "Slider 滑块",
+  "description": "Slider 滑块组件用于在指定的数值区间内进行选择。支持单滑块和双滑块（范围选择）模式，可以设置步长、标记点，并支持输入框精确控制。",
+  "source": "@site/docs/web-elements/slider.mdx",
+  "sourceDirName": "web-elements",
+  "slug": "/web-elements/slider",
+  "permalink": "/adou-ui-doc/docs/web-elements/slider",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Slider 滑块"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Tooltip 工具提示",
+    "permalink": "/adou-ui-doc/docs/web-elements/tooltip"
+  },
+  "next": {
+    "title": "useNotification 通知提醒",
+    "permalink": "/adou-ui-doc/docs/hooks/useNotification"
+  }
+}
