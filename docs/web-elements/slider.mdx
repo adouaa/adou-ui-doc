@@ -1,0 +1,230 @@
+---
+title: Slider 滑块
+---
+
+import Card from "@site/src/components/web-elements/adou-card";
+import Basic from "@site/src/pages/web-elements/slider/Basic";
+import Range from "@site/src/pages/web-elements/slider/Range";
+import Input from "@site/src/pages/web-elements/slider/Input";
+import Marks from "@site/src/pages/web-elements/slider/Marks";
+import Step from "@site/src/pages/web-elements/slider/Step";
+
+
+`Slider` 滑块组件用于在指定的数值区间内进行选择。支持单滑块和双滑块（范围选择）模式，可以设置步长、标记点，并支持输入框精确控制。
+
+## 1. 基本使用
+
+最基础的滑块用法，通过拖动滑块选择数值。
+
+**效果示例**：
+
+<Card>
+<Basic />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import Slider from "@site/src/components/web-elements/adou-slider";
+import React from "react";
+
+const Basic = () => {
+  return (
+    <Slider
+      min={0}
+      max={100}
+      onChange={(value, percent) => console.log(value, percent)}
+    />
+  );
+};
+
+export default Basic;
+
+```
+</details>
+</Card>
+
+## 2. 范围选择
+
+设置 `range` 属性后可开启范围选择，此时会显示两个滑块。
+
+**效果示例**：
+
+<Card>
+<Range />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import Slider from "@site/src/components/web-elements/adou-slider";
+import React from "react";
+
+const Range = () => {
+  return (
+    <Slider
+      range
+      min={0}
+      max={100}
+      onChange={(value, percent) => console.log(value, percent)}
+    />
+  );
+};
+
+export default Range;
+
+```
+</details>
+</Card>
+
+## 3. 输入框模式
+
+通过 `showInput` 属性可以显示输入框，实现精确数值控制。
+
+**效果示例**：
+
+<Card>
+<Input />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import Slider from "@site/src/components/web-elements/adou-slider";
+import React from "react";
+
+const Input = () => {
+  return (
+    <Slider
+      showInput
+      min={0}
+      max={100}
+      onChange={(value, percent) => console.log(value, percent)}
+    />
+  );
+};
+
+export default Input;
+
+```
+</details>
+</Card>
+
+## 4. 带标记点
+
+使用 `marks` 属性可以在滑块上设置标记点。
+
+**效果示例**：
+
+<Card>
+<Marks />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import Slider from "@site/src/components/web-elements/adou-slider";
+import React from "react";
+
+const Marks = () => {
+  const marks = [
+    { distance: "0%", label: "0°C" },
+    { distance: "25%", label: "25°C" },
+    { distance: "50%", label: "50°C" },
+    { distance: "75%", label: "75°C" },
+    { distance: "100%", label: "100°C" },
+  ];
+  return (
+    <Slider
+      marks={marks}
+      min={0}
+      max={100}
+      onChange={(value, percent) => console.log(value, percent)}
+    />
+  );
+};
+
+export default Marks;
+
+```
+</details>
+</Card>
+
+## 5. 设置步长
+
+通过 `step` 属性设置滑块移动的步长，配合 `showStops` 可以显示步长点。
+
+**效果示例**：
+
+<Card>
+<Step />
+<details className="mt-3">
+<summary>点击查看代码</summary>
+```jsx
+import Slider from "@site/src/components/web-elements/adou-slider";
+import React from "react";
+
+const Step = () => {
+  return (
+    <Slider
+      step={10}
+      showStops
+      min={0}
+      max={100}
+      onChange={(value, percent) => console.log(value, percent)}
+    />
+  );
+};
+
+export default Step;
+
+```
+</details>
+</Card>
+
+## 属性
+
+| 属性名 | 类型 | 默认值 | 描述 |
+|---|---|---|---|
+| min | `number` | `0` | 最小值 |
+| max | `number` | `100` | 最大值 |
+| step | `number` | - | 步长，取值必须大于 0 |
+| value | `number \| number[]` | - | 滑块的值，范围模式时为数组 |
+| range | `boolean` | `false` | 是否启用范围选择模式 |
+| showStops | `boolean` | `true` | 是否显示步长点 |
+| showInput | `boolean` | `false` | 是否显示输入框 |
+| sliderWidth | `string \| number` | - | 滑块宽度 |
+| marks | `MarkItem[]` | - | 标记点配置 |
+| onChange | `(value: number \| number[], percent: number) => void` | - | 值改变时的回调 |
+
+## 特性
+
+1. **多模式支持**：
+   - 支持单滑块模式
+   - 支持范围选择模式
+   - 支持输入框精确控制
+
+2. **标记功能**：
+   - 支持自定义标记点
+   - 支持步长显示
+   - 支持标记文本自定义样式
+
+3. **交互优化**：
+   - 拖动时实时显示数值
+   - 键盘支持
+   - 点击滑动区域跳转
+
+4. **样式定制**：
+   - 可自定义滑块宽度
+   - 支持标记点样式定制
+   - 响应式设计
+
+## 注意事项
+
+1. **取值范围**：
+   - min/max 需要合理设置
+   - step 需要能被 (max-min) 整除
+
+2. **范围模式**：
+   - range 模式下不支持输入框
+   - 两个滑块不能交叉
+
+3. **性能考虑**：
+   - marks 数量不宜过多
+   - 避免频繁更新 value
+
+---
+
+通过以上示例和说明，可以在各种场景下灵活运用 `Slider` 组件，实现丰富的数值选择功能。
